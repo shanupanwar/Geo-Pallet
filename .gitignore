@@ -1,0 +1,7 @@
+# Private / not needed on GitHub
+*.WordPress.*.xml
+geo-pallet-theme.zip
+source-assets/
+.DS_Store
+# contains personal email addresses (kept locally only)
+content-fixes/restore-2-articles.xml
