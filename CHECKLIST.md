@@ -61,6 +61,12 @@ The live design only really works on phones and on wide computer screens. On tab
 - **Homepage background picture on phones** (`2026/09/Mobile-hero-image.png`) is missing on the live server.
 - Also missing on live but not shown anywhere: `abstract-round-wires-background…jpg`, `IMG_7586-scaled.jpeg`, `new-wooden-stacked-pallets…jpg` and two old screenshots.
 
+## Google Search improvements (approved 2026-11-23), verified on staging
+Everything is in `inc/seo.php`. Visitors see nothing different.
+- **Business card for Google:** the Home, Contact and Contact form pages carry hidden business details that Google reads (schema.org LocalBusiness): name, the Surrey address plus Langley as a second location, phone 604 584 4368, office@geopalletltd.com, hours, logo and the Facebook/Instagram/LinkedIn/YouTube pages. To change these, edit `geo_seo_business()`.
+- **Page titles and descriptions:** each page now shows its Google title and description (the ones already saved in Yoast) even if Yoast isn't installed. When Yoast is active it takes over again, so nothing is doubled.
+- **Share previews:** links shared on Facebook, WhatsApp, LinkedIn or X show a title, a summary and a picture. Blog posts use their own picture, and other pages use the homepage pallet photo. Yoast prints its own previews when it's active.
+
 ## You need to do
 1. **Import content.** Use Tools → Import → WordPress with `geopalletltd.WordPress.2026-11-21.xml` and tick "Download and import file attachments". This brings in the 15 published posts, featured images and categories. Page slugs must stay as on live (`about`, `custom-pallets-british-columbia`, `pallet-supplier-british-columbia`, `blogs-geopallet`, `contact-geo-pallet`, `contact-form`, `pallet-inquiry-forms`, `contact-us_geopallet-site-map`).
 2. **Settings → Reading:** set the front page to the static page "HOME".
@@ -80,6 +86,14 @@ The live design only really works on phones and on wide computer screens. On tab
    - CookieYes (cookie-law-info): the consent banner and the round icon bottom-left.
    - Google Site Kit / Analytics tag GT-TWD63HNW and the Facebook Pixel: tracking scripts are not included.
    - Redirects: every link on the site now points to a real page, but other websites and old Google results may still use `/aboutgeo/`, `/contact/`, `/services/`, `/products/`, `/geoblogs/` or `/wooden-pallet-solutions/`. On live these 301 to the home page, so recreate those redirects with a redirect plugin or server rules.
+8. **Google Search Console** (free; it shows how Google sees your site and lets you send it your page list). Do this after the new theme is live.
+   1. Open https://search.google.com/search-console and sign in with the Google account you use for the business. Live used Google Site Kit, so geopalletltd.com may already be listed at the top left. If it is, skip to step 4.
+   2. Click **Add property**, choose **URL prefix**, and type `https://geopalletltd.com/`.
+   3. Prove the site is yours. Pick **HTML tag** and copy the long code inside `content="…"`. In WordPress, go to **Yoast SEO → Settings → Site connections**, paste it into the Google box, save, and click **Verify** in Search Console. Without Yoast, use the **DNS record** option instead and give the code to whoever manages your domain.
+   4. In the left menu, open **Sitemaps** and submit `sitemap_index.xml` if Yoast is active, or `wp-sitemap.xml` without it. That's the list of all your pages.
+   5. Paste the home page address into **URL inspection** at the top and click **Request indexing**. Do the same for Products, Services, About and Contact. Google then re-reads them sooner.
+   6. Each week for the first month, open **Pages** (under Indexing) and look for "Not found (404)". Any old address listed there needs a redirect (see step 7).
+   7. Also worth doing (outside the website): claim or update your free **Google Business Profile** at https://business.google.com with the same address, phone and hours. That's what shows you on Google Maps.
 
 ## Differences from live (approximations)
 - **Animated headlines** (About and Products "clip"/"typing", Contact-form "highlight" circle) are rewritten to look the same, but timing may differ slightly.

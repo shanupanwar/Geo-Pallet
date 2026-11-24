@@ -88,6 +88,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 require get_template_directory() . '/inc/blog.php';
 require get_template_directory() . '/inc/forms.php';
+require get_template_directory() . '/inc/seo.php';
 
 /**
  * Pallet inquiry page: slug => Elementor template id of the form shown (same mapping as live).
