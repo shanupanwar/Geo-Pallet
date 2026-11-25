@@ -1,0 +1,157 @@
+.footer {
+  padding-top: 160px;
+  color: var(--muted);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 370px minmax(0, 1fr) 361px;
+  gap: 50px;
+  padding-bottom: 80px;
+  max-width: 1290px;
+}
+
+.brand img {
+  width: 174px;
+  height: auto;
+}
+
+.tagline {
+  margin: 20px 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: #fff;
+  font-size: 14px;
+  transition: background 0.25s;
+}
+
+.social a:hover {
+  background: var(--brown);
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.list {
+  font-style: normal;
+  display: grid;
+  gap: 12px;
+}
+
+.list a,
+.list span {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.list .icon {
+  color: var(--gold);
+  flex: none;
+}
+
+.list a:hover {
+  color: #fff;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.newsletter input[type="email"] {
+  flex: 1 1 180px;
+  min-width: 0;
+  background: transparent;
+  border: 1px solid var(--faint);
+  border-radius: 6px;
+  color: #fff;
+  font: inherit;
+  padding: 12px 14px;
+}
+
+.newsletter input::placeholder {
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.newsletter button {
+  background: var(--brown);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.newsletter button:hover {
+  background: var(--gold);
+}
+
+.formErr {
+  flex-basis: 100%;
+  color: #ff8a80;
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+
+.formMsg {
+  color: var(--gold-light);
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.bottom p {
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding-top: 80px;
+  }
+
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    padding-bottom: 50px;
+  }
+}

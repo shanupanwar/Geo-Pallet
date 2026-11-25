@@ -1,6 +1,0 @@
-/* Small additions approved 2026-11-22 (kept separate from the captured live CSS). */
-
-/* Home hero: show a still frame of the video until YouTube starts playing (computers only, like the video). */
-.elementor-6159 .elementor-element.elementor-element-6f24be6 > .elementor-background-video-container {
-	background: #020205 url("../img/home-hero-poster.jpg") center / cover no-repeat;
-}

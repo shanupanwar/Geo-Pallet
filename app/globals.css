@@ -1,0 +1,506 @@
+/*
+ * Geo Pallet design system: one small stylesheet that recreates the look of the
+ * WordPress/Elementor site (dark background, gold accents, Be Vietnam Pro).
+ * Colours, sizes and spacing live in the variables below.
+ */
+:root {
+  --bg: #020205;
+  --bg-card: #15171e;
+  --bg-card-2: rgba(2, 2, 5, 0.72);
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.76);
+  --faint: rgba(255, 255, 255, 0.27);
+  --gold: #b2996f;
+  --gold-light: #d2b582;
+  --gold-soft: #f3d198;
+  --brown: #7a6543;
+  --gold-gradient: linear-gradient(305deg, #d2b582 7%, #997746 63%);
+  --radius: 18px;
+  --radius-pill: 26px;
+  --container: 1280px;
+  --gutter: 20px;
+  --header-h: 119px;
+  --font: var(--font-vietnam), "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-alt: var(--font-poppins), Poppins, system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 130px; /* anchor links land below the sticky header */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  flex: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.narrow {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.section {
+  padding-block: 70px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 1000;
+  background: #fff;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+/* ---------- Eyebrow label ("ABOUT US", "OUR SERVICES") ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.eyebrow .icon {
+  color: var(--gold);
+  font-size: 15px;
+}
+
+/* ---------- Headings ---------- */
+.h-xl {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.3;
+}
+
+.h-lg {
+  font-size: clamp(26px, 3.4vw, 37px);
+  line-height: 1.3;
+}
+
+.h-md {
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.3;
+}
+
+.h-sm {
+  font-size: clamp(20px, 2.2vw, 27px);
+  line-height: 1.3;
+}
+
+.lead {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.gold {
+  color: var(--gold);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: #fff;
+  background: var(--brown);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 15px 28px;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.btn:hover {
+  background: var(--gold);
+}
+
+.btn-gradient {
+  background: var(--gold-gradient);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 10px 10px 22px;
+}
+
+.btn-gradient:hover {
+  background: var(--gold-gradient);
+  filter: brightness(1.08);
+}
+
+.btn-outline {
+  background: #000;
+  border-color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 10px 10px 22px;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #000;
+}
+
+.btn-dot {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--faint);
+}
+
+.btn-ghost:hover {
+  background: var(--brown);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.link-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.link-more:hover {
+  color: var(--gold-light);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 30px;
+}
+
+.card-dashed {
+  border: 1px dashed var(--faint);
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 60px;
+  align-items: center;
+}
+
+/* Counter boxes ("150k+ Completed Projects") */
+.stat {
+  background: var(--bg-card-2);
+  border: 2px solid var(--faint);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--gold);
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Rich text from articles and long product descriptions */
+.prose {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin-top: 1.6em;
+}
+
+.prose h2 {
+  font-size: 26px;
+}
+
+.prose h3 {
+  font-size: 21px;
+}
+
+.prose a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+  margin: 0 0 1em;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+}
+
+.prose strong {
+  color: var(--text);
+}
+
+.prose img {
+  border-radius: 12px;
+  margin: 1.5em 0;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--gold);
+  margin: 1.5em 0;
+  padding: 0.2em 0 0.2em 1.2em;
+  color: var(--text);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 15px;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--faint);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.prose th {
+  color: var(--text);
+  background: var(--bg-card);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+/* Fade-up on scroll (the Elementor entrance animations), only when motion is OK */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Phone and tablet (same switch point as the WordPress theme: 1024px) ---------- */
+@media (max-width: 1024px) {
+  :root {
+    --header-h: 80px;
+  }
+
+  .section {
+    padding-block: 50px;
+  }
+
+  .split,
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    padding: 24px;
+  }
+}
+
+/* ---------- Click-to-play YouTube video ---------- */
+.lite-yt {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.lite-yt button {
+  all: unset;
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.lite-yt img,
+.lite-yt iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+.lite-yt-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 72px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.9);
+}
+
+.lite-yt-play::after {
+  content: "";
+  position: absolute;
+  left: 29px;
+  top: 15px;
+  border-style: solid;
+  border-width: 10px 0 10px 17px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.lite-yt button:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: -4px;
+}

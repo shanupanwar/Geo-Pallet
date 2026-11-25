@@ -1,0 +1,48 @@
+# Checks every pull request (and every push to the dummy-geo-pallet work branch).
+# A pull request into main can be merged only when this passes (turn on branch protection, see README).
+name: Check
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [dummy-geo-pallet]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, types, build and SEO check
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      # Build exactly like GitHub Pages serves it, so broken links/pictures are caught here.
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://geopalletltd.com' }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build (also makes the optimized pictures)
+        run: npm run build
+
+      - name: SEO check
+        run: npm run seo-check

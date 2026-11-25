@@ -1,0 +1,16 @@
+{
+  "slug": "contact-form",
+  "label": "Contact form page",
+  "submit": "Get My Quote",
+  "success": "The form was sent successfully.",
+  "fields": [
+    { "id": "name", "type": "text", "label": "Full Name", "required": true, "width": "half", "autocomplete": "name", "validate": "fullName" },
+    { "id": "email", "type": "email", "label": "Business Email", "required": true, "width": "half", "autocomplete": "email" },
+    { "id": "phone", "type": "phone", "label": "Phone Number", "required": true, "width": "half" },
+    { "id": "company", "type": "text", "label": "Company name", "required": true, "width": "half", "autocomplete": "organization" },
+    { "id": "pallet", "type": "select", "label": "What type of pallets do you need?", "required": true, "width": "half", "choices": ["2 way Pallet", "4 way Pallet", "Skid Pallet", "Block Pallet", "Wing Pallet", "Custom Pallet", "Wood Cribbing", "Crate", "Not sure"] },
+    { "id": "heat", "type": "radio", "label": "Heat treated Pallets", "width": "half", "choices": ["Yes", "No"] },
+    { "id": "qty", "type": "select", "label": "Estimated quantity required?", "required": true, "width": "half", "choices": ["50–100", "100–500", "500+"] },
+    { "id": "location", "type": "text", "label": "Delivery location", "required": true, "width": "half" }
+  ]
+}

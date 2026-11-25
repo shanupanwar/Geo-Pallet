@@ -1,0 +1,216 @@
+{
+  "slug": "cribbing",
+  "label": "Cribbing",
+  "gravityFormId": 7,
+  "submit": "Submit",
+  "fields": [
+    {
+      "id": "14",
+      "type": "select",
+      "width": "half",
+      "label": "Company/Individual",
+      "required": true,
+      "choices": [
+        "Individual",
+        "Company"
+      ]
+    },
+    {
+      "id": "15",
+      "type": "text",
+      "width": "half",
+      "label": "Company Name",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "14",
+            "operator": "is",
+            "value": "Company"
+          }
+        ]
+      }
+    },
+    {
+      "id": "54",
+      "type": "name",
+      "width": "full",
+      "label": "Your Name",
+      "required": true,
+      "parts": [
+        {
+          "key": "3",
+          "placeholder": "First Name",
+          "autocomplete": "given-name"
+        },
+        {
+          "key": "6",
+          "placeholder": "Last Name",
+          "autocomplete": "family-name"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "type": "phone",
+      "width": "half",
+      "label": "Phone No.",
+      "required": true
+    },
+    {
+      "id": "17",
+      "type": "email",
+      "width": "half",
+      "label": "Email ID",
+      "required": true
+    },
+    {
+      "id": "10",
+      "type": "section",
+      "width": "full",
+      "cssClass": "green-heading",
+      "title": "Cribbing Specifications"
+    },
+    {
+      "id": "18",
+      "type": "number",
+      "width": "third",
+      "label": "Cribbing Quantity",
+      "required": true,
+      "min": 1.0,
+      "instruction": "Please enter a number greater than or equal to 1."
+    },
+    {
+      "id": "19",
+      "type": "select",
+      "width": "third",
+      "label": "Select  Duration",
+      "required": true,
+      "placeholder": "Select",
+      "choices": [
+        "Weekly",
+        "Monthly",
+        "Yearly",
+        "One Time"
+      ]
+    },
+    {
+      "id": "20",
+      "type": "select",
+      "width": "third",
+      "label": "Heat Treated",
+      "required": true,
+      "placeholder": "Select",
+      "choices": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "21",
+      "type": "select",
+      "width": "half",
+      "label": "Material size",
+      "required": true,
+      "placeholder": "Select",
+      "choices": [
+        "2x4",
+        "2x6",
+        "2x3",
+        "Custom"
+      ]
+    },
+    {
+      "id": "82",
+      "type": "text",
+      "width": "half",
+      "label": "Length (inches)",
+      "required": true,
+      "placeholder": "Inches"
+    },
+    {
+      "id": "73",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/12/Crib-one-piece.png",
+      "alt": "Crib one piece",
+      "showFor": [
+        "21",
+        "82"
+      ]
+    },
+    {
+      "id": "86",
+      "type": "text",
+      "width": "half",
+      "label": "Width",
+      "placeholder": "Inches",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "21",
+            "operator": "is",
+            "value": "Custom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "87",
+      "type": "text",
+      "width": "half",
+      "label": "Height",
+      "placeholder": "Inches",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "21",
+            "operator": "is",
+            "value": "Custom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "85",
+      "type": "text",
+      "width": "full",
+      "label": "Cribbing Height",
+      "required": true,
+      "placeholder": "Inches"
+    },
+    {
+      "id": "56",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/12/cribbing-highlight.png",
+      "alt": "Cribbing-height",
+      "showFor": [
+        "85"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "textarea",
+      "width": "full",
+      "label": "Any Additional Information,Please specify",
+      "placeholder": "e.g., load weight, delivery location."
+    },
+    {
+      "id": "48",
+      "type": "fileupload",
+      "width": "full",
+      "label": "Upload/Drag Any image",
+      "maxMb": 20,
+      "description": "Max. file size: 20 MB."
+    }
+  ]
+}

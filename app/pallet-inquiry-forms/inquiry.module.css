@@ -1,0 +1,83 @@
+.page {
+  padding: 60px var(--gutter) 40px;
+}
+
+.card {
+  max-width: 933px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  color: #554a4a;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 10px 40px 10px 40px;
+  background: #551616;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+}
+
+.head img {
+  width: 130px;
+  height: auto;
+  flex: none;
+}
+
+.head p {
+  margin: 0;
+}
+
+.h1 {
+  margin: 6px 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.body {
+  padding: 30px 40px 40px;
+}
+
+.picker {
+  margin-bottom: 26px;
+  max-width: 300px;
+}
+
+.picker label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 19px;
+  font-weight: 700;
+  color: #792424;
+}
+
+.picker select {
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  color: #792424;
+  background: #fff;
+  border: 1px solid #792424;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.loading {
+  color: #554a4a;
+}
+
+@media (max-width: 1024px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .body {
+    padding: 24px 20px 30px;
+  }
+}

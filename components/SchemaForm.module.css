@@ -1,0 +1,279 @@
+/* Shared form layout. "dark" = quote/contact forms on black; "light" = white pallet inquiry forms. */
+.form {
+  --f-text: #fff;
+  --f-muted: var(--muted);
+  --f-border: var(--faint);
+  --f-bg: transparent;
+  --f-accent: var(--brown);
+  --f-req: #ff8a80;
+  width: 100%;
+}
+
+.light {
+  --f-text: #2b2525;
+  --f-muted: #554a4a;
+  --f-border: #6f3535;
+  --f-bg: #fff;
+  --f-accent: #742929;
+  --f-req: #ac3030;
+  color: var(--f-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.full {
+  grid-column: span 6;
+}
+
+.half {
+  grid-column: span 3;
+}
+
+.third {
+  grid-column: span 2;
+}
+
+.field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--f-text);
+  padding: 0;
+}
+
+.dark .label {
+  text-transform: capitalize;
+}
+
+.red .label {
+  color: #8c3030;
+}
+
+.req {
+  color: var(--f-req);
+}
+
+.form input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+.form select,
+.form textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  color: var(--f-text);
+  background: var(--f-bg);
+  border: 1px solid var(--f-border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  min-height: 44px;
+}
+
+.dark input:not([type="radio"]):not([type="file"]),
+.dark select,
+.dark textarea {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dark select option {
+  color: #000;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: var(--f-muted);
+  opacity: 0.8;
+}
+
+.form [aria-invalid="true"] {
+  border-color: var(--f-req) !important;
+}
+
+.row,
+.phone {
+  display: flex;
+  gap: 12px;
+}
+
+.row > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.phone select {
+  flex: 0 0 96px;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding-top: 4px;
+}
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--f-text);
+  cursor: pointer;
+}
+
+.choice input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--f-accent);
+}
+
+.help {
+  font-size: 12px;
+  margin: 6px 0 0;
+  color: var(--f-muted);
+}
+
+.err {
+  font-size: 13px;
+  margin: 6px 0 0;
+  color: var(--f-req);
+}
+
+.formErr {
+  margin: 18px 0 0;
+  color: var(--f-req);
+  font-size: 14px;
+}
+
+.section h3 {
+  margin: 14px 0 0;
+  padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #023020;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .section h3 {
+  color: var(--gold);
+  border-color: var(--f-border);
+}
+
+.fold {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #8c3030;
+  background: #fff;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  text-align: left;
+}
+
+.foldIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.hint {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
+  margin: -9px 0;
+}
+
+.hint > img {
+  min-height: 0;
+  max-width: 420px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hintOn {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.submit,
+.cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 26px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--f-accent);
+  cursor: pointer;
+}
+
+.dark .submit {
+  width: 100%;
+  border-radius: var(--radius-pill);
+  padding: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.submit:hover,
+.cancel:hover {
+  filter: brightness(1.15);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.done {
+  padding: 30px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--f-text);
+  font-size: 16px;
+  text-align: center;
+}
+
+.light.done {
+  background: #f6f1ea;
+}
+
+@media (max-width: 1024px) {
+  .half,
+  .third {
+    grid-column: span 6;
+  }
+}

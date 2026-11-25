@@ -1,0 +1,139 @@
+.carousel {
+  position: relative;
+  max-width: 1280px;
+  margin: 40px auto 0;
+  padding: 0 55px;
+}
+
+.track {
+  position: relative;
+  height: 420px;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(560px, 70%);
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
+  cursor: pointer;
+}
+
+.card img {
+  object-fit: cover;
+}
+
+.card[data-pos="0"] {
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 5;
+  cursor: default;
+}
+
+.card[data-pos="-1"] {
+  transform: translate(-50%, -50%) translateX(-280px) scale(0.82);
+  z-index: 4;
+  filter: brightness(0.6);
+}
+
+.card[data-pos="1"] {
+  transform: translate(-50%, -50%) translateX(280px) scale(0.82);
+  z-index: 4;
+  filter: brightness(0.6);
+}
+
+.card[data-pos="-2"] {
+  transform: translate(-50%, -50%) translateX(-480px) scale(0.66);
+  z-index: 3;
+  filter: brightness(0.4);
+}
+
+.card[data-pos="2"] {
+  transform: translate(-50%, -50%) translateX(480px) scale(0.66);
+  z-index: 3;
+  filter: brightness(0.4);
+}
+
+.card[data-pos="hidden"] {
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav {
+  position: absolute;
+  top: 210px;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--faint);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--faint);
+  cursor: pointer;
+}
+
+.dots button[aria-current="true"] {
+  background: var(--gold);
+}
+
+@media (max-width: 1024px) {
+  .carousel {
+    padding: 0 40px;
+  }
+
+  .track {
+    height: 300px;
+  }
+
+  .card {
+    width: 80%;
+  }
+
+  .card[data-pos="-1"] {
+    transform: translate(-50%, -50%) translateX(-110px) scale(0.8);
+  }
+
+  .card[data-pos="1"] {
+    transform: translate(-50%, -50%) translateX(110px) scale(0.8);
+  }
+
+  .card[data-pos="-2"],
+  .card[data-pos="2"] {
+    opacity: 0;
+  }
+
+  .nav {
+    top: 150px;
+  }
+}

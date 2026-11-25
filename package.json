@@ -1,0 +1,36 @@
+{
+  "name": "geo-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "images": "node scripts/optimize-images.mjs",
+    "predev": "npm run images",
+    "dev": "next dev",
+    "prebuild": "npm run images",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "seo-check": "node scripts/seo-check.mjs out",
+    "check": "npm run lint && npm run typecheck && npm run build && npm run seo-check"
+  },
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "marked": "^15.0.12",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.35.5",
+    "typescript": "^5"
+  }
+}
