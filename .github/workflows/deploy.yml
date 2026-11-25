@@ -1,0 +1,74 @@
+# Publishes the site to GitHub Pages every time something is merged into main.
+# One-time setup: repo Settings -> Pages -> Source: "GitHub Actions" (see README).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you re-publish by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one publish at a time; a newer merge doesn't cancel one already going out.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      # Repository variables (Settings -> Secrets and variables -> Actions -> Variables):
+      #   SITE_URL         the public address, default https://geopalletltd.com
+      #   INDEXABLE        "true" only once the site is live on geopalletltd.com (lets Google list it)
+      #   FORM_ENDPOINT    where forms are sent, once the forms API exists
+      NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://geopalletltd.com' }}
+      NEXT_PUBLIC_INDEXABLE: ${{ vars.INDEXABLE || 'false' }}
+      NEXT_PUBLIC_FORM_ENDPOINT: ${{ vars.FORM_ENDPOINT || '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Read GitHub Pages settings
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        # base_path is "/Geo-Pallet" on shanupanwar.github.io and "" once a custom domain is set.
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - name: SEO check
+        run: npm run seo-check
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

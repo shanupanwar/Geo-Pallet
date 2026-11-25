@@ -1,0 +1,126 @@
+.hero {
+  padding: 110px 0 40px;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+  gap: 60px;
+  align-items: center;
+}
+
+.h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.2;
+}
+
+.circled {
+  position: relative;
+  white-space: nowrap;
+  color: var(--gold-light);
+}
+
+.circled::after {
+  content: "";
+  position: absolute;
+  inset: -8px -10px;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+.across {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.heroText {
+  max-width: 560px;
+}
+
+.formCard {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 34px 30px;
+}
+
+.formTitle {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.tiles {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.tiles a {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: 14px;
+  border-radius: 12px;
+  background: #000;
+}
+
+.tiles img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+}
+
+.tiles h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.list {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  color: #fff;
+}
+
+.list li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.x {
+  color: #e57373;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding-top: 60px;
+  }
+
+  .heroGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .circled {
+    white-space: normal;
+  }
+
+  .circled::after {
+    display: none;
+  }
+}

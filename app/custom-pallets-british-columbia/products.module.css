@@ -1,0 +1,48 @@
+.product {
+  padding-block: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.flip > :first-child {
+  order: 2;
+}
+
+.title {
+  font-size: clamp(24px, 2.6vw, 30px);
+  margin-bottom: 18px;
+}
+
+.body {
+  margin-bottom: 26px;
+}
+
+.body a {
+  color: var(--gold-light);
+}
+
+.ticks {
+  padding-left: 1.2em;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+.support {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .product {
+    padding-block: 40px;
+  }
+
+  .flip > :first-child {
+    order: 0;
+  }
+}

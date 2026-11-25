@@ -1,0 +1,289 @@
+/* ---------- Service cards (Delivery / Repair / Heat Treated) ---------- */
+.service {
+  position: relative;
+  min-height: 466px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: var(--bg-card);
+  isolation: isolate;
+}
+
+.serviceBg {
+  object-fit: cover;
+  z-index: -2;
+  transition: transform 1.2s ease;
+}
+
+.service::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 2, 5, 0.72);
+  z-index: -1;
+}
+
+.service:hover .serviceBg {
+  transform: scale(1.06);
+}
+
+.serviceBody {
+  padding: 40px 30px;
+}
+
+.serviceIcon {
+  display: inline-grid;
+  place-items: center;
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.serviceTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.service p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* ---------- Feature boxes (Competitive Pricing ...) ---------- */
+.feature {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 30px;
+  height: 100%;
+}
+
+.feature img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 22px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feature p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ---------- Testimonials ---------- */
+.testiGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 520px) minmax(0, 613px);
+  gap: 50px 80px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.viewport {
+  height: 480px;
+  overflow: hidden;
+  mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+}
+
+.track {
+  display: grid;
+  gap: 20px;
+  animation: scroll-up 60s linear infinite;
+}
+
+.viewport:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-up {
+  to {
+    transform: translateY(calc(-50% - 10px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow-y: auto;
+  }
+
+  .track {
+    animation: none;
+  }
+}
+
+.review {
+  margin: 0;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+}
+
+.stars {
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.review blockquote {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.review figcaption {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ---------- Members of ---------- */
+.membersGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.membersTitle {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.memberCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.member {
+  width: 240px;
+  min-height: 178px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid var(--bg-card);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}
+
+.memberLogo {
+  max-height: 80px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+/* ---------- Quote form section ---------- */
+.quote {
+  padding-top: 140px;
+}
+
+.quoteCard {
+  margin-top: 40px;
+  padding-block: 30px;
+}
+
+.quoteHead {
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.divider {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 20px auto 30px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ---------- Inner page banner ---------- */
+.hero {
+  padding: 150px 0 110px;
+}
+
+.heroTitle {
+  display: block;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(44px, 7vw, 89px);
+  line-height: 1.1;
+  margin-bottom: 28px;
+}
+
+.heroIntro {
+  max-width: 525px;
+  font-size: 17px;
+  color: #fff;
+}
+
+/* ---------- Breadcrumbs ---------- */
+.crumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 18px;
+  padding: 0;
+  font-size: 13px;
+}
+
+.crumbs li + li::before {
+  content: "›";
+  margin-right: 6px;
+  color: var(--faint);
+}
+
+.crumbs a:hover {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .service {
+    min-height: 380px;
+  }
+
+  .testiGrid,
+  .membersGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .membersTitle {
+    justify-content: flex-start;
+  }
+
+  .viewport {
+    height: 420px;
+  }
+
+  .quote {
+    padding-top: 70px;
+  }
+
+  .hero {
+    padding: 80px 0 60px;
+  }
+
+  .member {
+    width: 50%;
+  }
+}

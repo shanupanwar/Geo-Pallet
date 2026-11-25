@@ -1,0 +1,639 @@
+{
+  "slug": "skid-pallet",
+  "label": "Skid Pallet",
+  "gravityFormId": 4,
+  "submit": "Submit",
+  "fields": [
+    {
+      "id": "14",
+      "type": "select",
+      "width": "half",
+      "label": "Company/Individual",
+      "required": true,
+      "choices": [
+        "Individual",
+        "Company"
+      ]
+    },
+    {
+      "id": "15",
+      "type": "text",
+      "width": "half",
+      "label": "Company Name",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "14",
+            "operator": "is",
+            "value": "Company"
+          }
+        ]
+      }
+    },
+    {
+      "id": "54",
+      "type": "name",
+      "width": "full",
+      "label": "Your Name",
+      "required": true,
+      "parts": [
+        {
+          "key": "3",
+          "placeholder": "First Name",
+          "autocomplete": "given-name"
+        },
+        {
+          "key": "6",
+          "placeholder": "Last Name",
+          "autocomplete": "family-name"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "type": "phone",
+      "width": "half",
+      "label": "Phone No.",
+      "required": true
+    },
+    {
+      "id": "17",
+      "type": "email",
+      "width": "half",
+      "label": "Email ID",
+      "required": true
+    },
+    {
+      "id": "10",
+      "type": "section",
+      "width": "full",
+      "cssClass": "green-heading",
+      "title": "PALLET SPECIFICATIONS"
+    },
+    {
+      "id": "18",
+      "type": "number",
+      "width": "third",
+      "label": "Pallet Quantity",
+      "required": true,
+      "min": 1.0,
+      "instruction": "Please enter a number greater than or equal to 1."
+    },
+    {
+      "id": "19",
+      "type": "select",
+      "width": "third",
+      "label": "Select Timeframe",
+      "required": true,
+      "placeholder": "Select",
+      "choices": [
+        "Weekly",
+        "Monthly",
+        "Yearly",
+        "One Time"
+      ]
+    },
+    {
+      "id": "20",
+      "type": "select",
+      "width": "third",
+      "label": "Heat Treated Pallets",
+      "required": true,
+      "placeholder": "Select",
+      "choices": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "21",
+      "type": "select",
+      "width": "half",
+      "label": "Skid Pallet Size",
+      "placeholder": "Select Skid Pallet size",
+      "choices": [
+        "48\" x 40\" (1219 mm x 1016 mm)",
+        "42\" x 42\" (1067 mm x 1067 mm)",
+        "48\" x 48\" (1219 mm x 1219 mm)",
+        "Custom Size"
+      ]
+    },
+    {
+      "id": "23",
+      "type": "text",
+      "width": "half",
+      "label": "Custom skid pallet size",
+      "required": true,
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "21",
+            "operator": "is",
+            "value": "Custom Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "79",
+      "type": "number",
+      "width": "full",
+      "label": "No.of TOP BOARDS",
+      "cssClass": "red-heading",
+      "min": 1.0,
+      "placeholder": "Add No of Top Boards e.g 5,6..",
+      "instruction": "Please enter a number greater than or equal to 1."
+    },
+    {
+      "id": "73",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-top-same-size.png",
+      "alt": "Skid-top-same-size",
+      "showFor": [
+        "79"
+      ]
+    },
+    {
+      "id": "92",
+      "type": "section",
+      "width": "full",
+      "title": "Advanced details of Top Board",
+      "collapsible": "start"
+    },
+    {
+      "id": "25",
+      "type": "radio",
+      "width": "full",
+      "label": "Select Top Board Type",
+      "choices": [
+        "Mill Run",
+        "Standard Lumber"
+      ]
+    },
+    {
+      "id": "65",
+      "type": "radio",
+      "width": "full",
+      "label": "Select Top Board Size",
+      "choices": [
+        "Fixed Board Size",
+        "Variable Board Size"
+      ]
+    },
+    {
+      "id": "26",
+      "type": "select",
+      "width": "half",
+      "label": "Board Size(Thickness x width)",
+      "placeholder": "Select Top Board Size",
+      "choices": [
+        "2x4",
+        "1x4",
+        "2x6",
+        "1x6",
+        "1x3"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Fixed Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "28",
+      "type": "text",
+      "width": "half",
+      "label": "Length (inches)",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Fixed Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "56",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-top-same-size.png",
+      "alt": "Top way same size",
+      "showFor": [
+        "26",
+        "28"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Fixed Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "85",
+      "type": "select",
+      "width": "full",
+      "label": "Wing Size",
+      "placeholder": "Select",
+      "choices": [
+        "4x4",
+        "2x4",
+        "3x4"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Fixed Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "88",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-Wings.png",
+      "alt": "Skid-Wings",
+      "showFor": [
+        "85"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Fixed Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "33",
+      "type": "select",
+      "width": "half",
+      "label": "Lead Board Size(Thickness x width)",
+      "cssClass": "different-board-fields",
+      "placeholder": "Select Top Lead Board Size",
+      "choices": [
+        "2x4",
+        "1x4",
+        "2x6",
+        "1x6",
+        "1x3"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "34",
+      "type": "text",
+      "width": "half",
+      "label": "Length (inches)",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "57",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-Lead-Board.png",
+      "alt": "Skid-Lead-Board",
+      "showFor": [
+        "33",
+        "34"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "81",
+      "type": "select",
+      "width": "full",
+      "label": "Lead Wing Size",
+      "cssClass": "different-board-fields",
+      "placeholder": "Select",
+      "choices": [
+        "4x4",
+        "2x4",
+        "3x4"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "89",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-lead-wingss.png",
+      "alt": "Skid-lead-wingss",
+      "showFor": [
+        "81"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "35",
+      "type": "select",
+      "width": "half",
+      "label": "Middle Board Size(Thickness x width)",
+      "cssClass": "different-board-fields",
+      "placeholder": "Select Top Middle Board Size",
+      "choices": [
+        "2x4",
+        "1x4",
+        "2x6",
+        "1x6",
+        "1x3"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "36",
+      "type": "text",
+      "width": "half",
+      "label": "Length (inches)",
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "58",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-Middle-boards.png",
+      "alt": "Skid-Middle-boards",
+      "showFor": [
+        "35",
+        "36"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "84",
+      "type": "select",
+      "width": "full",
+      "label": "Middle Wing Size",
+      "placeholder": "Select",
+      "choices": [
+        "4x4",
+        "2x4",
+        "3x4"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "90",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-middle-wings.png",
+      "alt": "Skid-middle-wings",
+      "showFor": [
+        "84"
+      ],
+      "logic": {
+        "enabled": true,
+        "actionType": "show",
+        "logicType": "all",
+        "rules": [
+          {
+            "fieldId": "65",
+            "operator": "is",
+            "value": "Variable Board Size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "93",
+      "type": "section",
+      "width": "full",
+      "cssClass": "no-style-section",
+      "title": "",
+      "collapsible": "end"
+    },
+    {
+      "id": "42",
+      "type": "select",
+      "width": "half",
+      "label": "Edge Stringer Size (Thickness x width)",
+      "required": true,
+      "placeholder": "Select Edge Stringer Size",
+      "choices": [
+        "2x4",
+        "3x4",
+        "4x4"
+      ]
+    },
+    {
+      "id": "44",
+      "type": "text",
+      "width": "half",
+      "label": "Length (inches)",
+      "required": true
+    },
+    {
+      "id": "63",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-edge-stringer.png",
+      "alt": "Skid-edge-stringer",
+      "showFor": [
+        "42",
+        "44"
+      ]
+    },
+    {
+      "id": "75",
+      "type": "number",
+      "width": "full",
+      "label": "No.of Middle Stringers",
+      "required": true,
+      "min": 1.0,
+      "placeholder": "Add no.of Middle stringers e.g: 1, 2 , 3..",
+      "instruction": "Please enter a number greater than or equal to 1."
+    },
+    {
+      "id": "76",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-middle-stringer.png",
+      "alt": "Skid--middle-stringer",
+      "showFor": [
+        "75"
+      ]
+    },
+    {
+      "id": "46",
+      "type": "select",
+      "width": "half",
+      "label": "Middle Stringer (Thickness x width)",
+      "required": true,
+      "placeholder": "Select Middle Stringer Size",
+      "choices": [
+        "2x4",
+        "3x4",
+        "4x4"
+      ]
+    },
+    {
+      "id": "47",
+      "type": "text",
+      "width": "half",
+      "label": "Length (inches)",
+      "required": true
+    },
+    {
+      "id": "64",
+      "type": "hint",
+      "width": "full",
+      "image": "/wp-content/uploads/2025/04/Skid-middle-stringer.png",
+      "alt": "Diagram: middle stringer of a wooden skid",
+      "showFor": [
+        "46",
+        "47"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "textarea",
+      "width": "full",
+      "label": "Any Additional Information,Please specify",
+      "required": true,
+      "placeholder": "e.g., load weight, delivery location."
+    },
+    {
+      "id": "48",
+      "type": "fileupload",
+      "width": "full",
+      "label": "Upload/Drag Any image",
+      "maxMb": 20,
+      "description": "Max. file size: 20 MB."
+    }
+  ]
+}

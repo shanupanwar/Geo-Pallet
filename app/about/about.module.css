@@ -1,0 +1,241 @@
+/* Our Story */
+.story {
+  display: grid;
+  grid-template-columns: 530px minmax(0, 510px);
+  justify-content: space-between;
+  gap: 70px;
+}
+
+.storyMedia {
+  position: sticky;
+  top: calc(var(--header-h) + 30px);
+  align-self: start;
+}
+
+.storyPhotos {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.storyPhoto {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.storyPhoto.on {
+  opacity: 1;
+}
+
+.storyText {
+  display: grid;
+  gap: 160px;
+  padding-block: 150px 100px;
+}
+
+.storyPart ul {
+  padding-left: 1.2em;
+}
+
+.storyIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 71px;
+  height: 56px;
+  border-radius: 11px;
+  background: var(--brown);
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.storyTitle {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.storyLead {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.storyPhotoMobile {
+  display: none;
+}
+
+/* Logo */
+.logoTitle {
+  font-size: clamp(30px, 3.6vw, 44px);
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.83);
+}
+
+.logo {
+  margin-top: 60px;
+}
+
+.h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.video {
+  border-radius: 36px;
+}
+
+/* Team */
+.team {
+  display: grid;
+  grid-template-columns: minmax(0, 640px) minmax(0, 604px);
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.teamImg {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.teamStat {
+  margin-top: 20px;
+}
+
+.teamRight {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.teamCard {
+  border-radius: 28px;
+}
+
+.mvg {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  scrollbar-width: thin;
+}
+
+.mvgItem {
+  scroll-snap-align: start;
+  margin: 0;
+  padding: 26px 30px;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}
+
+.mvgItem blockquote {
+  margin: 0 0 12px;
+  color: var(--brown);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.mvgItem figcaption {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Key benefits */
+.benefits {
+  list-style: none;
+  margin-top: 50px;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.benefit {
+  position: relative;
+  font-size: 13px;
+  color: #fff;
+}
+
+.benefit img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+}
+
+.benefit h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.benefit p {
+  margin: 0;
+}
+
+.benefitArrow {
+  position: absolute;
+  right: -32px;
+  top: 50%;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+/* Business Quality Policy */
+.policy {
+  background: #494949;
+  padding: 70px 0;
+  margin-top: 70px;
+  color: #fff;
+}
+
+.policy .container {
+  max-width: 945px;
+}
+
+.policyTitle {
+  font-size: clamp(30px, 3.6vw, 45px);
+}
+
+@media (max-width: 1024px) {
+  .story {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .storyMedia {
+    position: static;
+  }
+
+  .storyPhotos {
+    display: none;
+  }
+
+  .storyText {
+    padding-block: 10px 0;
+    gap: 60px;
+  }
+
+  .storyPhotoMobile {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+
+  .team {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .benefits {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .benefitArrow {
+    display: none;
+  }
+}
