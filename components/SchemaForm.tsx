@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { submitForm, validators, type FormField } from "@/lib/forms";
+import { submitForm, type FormField } from "@/lib/forms";
+import { checkEmail, checkName, checkPhone, checkText, formatPhone, recordSend, tooManyRecent } from "@/lib/spam";
 import { withBase } from "@/lib/site";
 import styles from "./SchemaForm.module.css";
 
@@ -149,8 +150,12 @@ export default function SchemaForm({
       if (!active[f.id] || ["section", "hint", "html"].includes(f.type)) continue;
       const v = (values[f.id] ?? "").trim();
       if (f.type === "name") {
-        const missing = (f.parts || []).some((p) => !(values[`${f.id}.${p.key}`] ?? "").trim());
-        if (f.required && missing) errs[f.id] = "This field is required.";
+        const parts = (f.parts || []).map((p) => (values[`${f.id}.${p.key}`] ?? "").trim());
+        if (f.required && parts.some((p) => !p)) errs[f.id] = "This field is required.";
+        else {
+          const bad = parts.map((p) => (p ? checkName(p) : "")).find(Boolean);
+          if (bad) errs[f.id] = bad;
+        }
         continue;
       }
       if (f.type === "fileupload") {
@@ -163,9 +168,18 @@ export default function SchemaForm({
         continue;
       }
       if (!v) continue;
-      if (f.type === "email") errs[f.id] = validators.email(v);
-      if (f.type === "phone") errs[f.id] = validators.phone(v);
-      if (f.validate === "fullName") errs[f.id] = validators.fullName(v);
+      if (f.type === "email") {
+        const c = checkEmail(v);
+        if (!c.ok) errs[f.id] = c.error;
+      }
+      if (f.type === "phone") {
+        const c = checkPhone(v);
+        if (!c.ok) errs[f.id] = c.error;
+      }
+      if (f.validate === "fullName") errs[f.id] = checkName(v, { full: true });
+      else if (f.type === "text" && /name/i.test(f.label || "") && !/company/i.test(f.label || "")) errs[f.id] = checkName(v);
+      else if (f.type === "text") errs[f.id] = checkText(v, 200);
+      if (f.type === "textarea") errs[f.id] = checkText(v, 2000);
       if (f.type === "number") {
         const n = Number(v);
         if (Number.isNaN(n)) errs[f.id] = "Please enter a valid number.";
@@ -192,6 +206,24 @@ export default function SchemaForm({
       return;
     }
     if (Date.now() - started.current < 3000) return; // a complete form sent within 3 seconds is a robot
+    if (tooManyRecent()) {
+      setStatus({ kind: "error", msg: "You've sent several requests in the last hour. Please call 604 584 4368 or email sales@geopalletltd.com." });
+      return;
+    }
+    // Reasons a submission looks suspicious (sent along; never shown to the visitor).
+    const flags: string[] = [];
+    for (const f of schema.fields) {
+      if (!active[f.id]) continue;
+      const v = (values[f.id] ?? "").trim();
+      if (f.type === "phone" && v) {
+        const c = checkPhone(v);
+        if (c.ok && !c.local) flags.push(`Phone area code ${c.area} is outside BC / Washington`);
+      }
+      if (f.type === "email" && v) {
+        const c = checkEmail(v);
+        if (c.ok && c.junk) flags.push(`Email "${v}" looks like a placeholder`);
+      }
+    }
     const out: FormField[] = [];
     let section = "";
     for (const f of schema.fields) {
@@ -200,13 +232,19 @@ export default function SchemaForm({
       if (["section", "hint", "html", "fileupload"].includes(f.type)) continue;
       let v = values[f.id] ?? "";
       if (f.type === "name") v = (f.parts || []).map((p) => values[`${f.id}.${p.key}`] ?? "").join(" ").trim();
-      if (f.type === "phone" && f.countryCodes) v = `${values[`${f.id}.code`] ?? ""} ${v}`.trim();
+      if (f.type === "phone") {
+        const c = checkPhone(v);
+        if (c.ok) v = formatPhone(c.digits);
+        if (f.countryCodes) v = `${values[`${f.id}.code`] ?? ""} ${v}`.trim();
+      }
+      if (f.type === "email") v = v.trim().toLowerCase();
       if (!v.trim()) continue;
       const label = f.label && /^Length|Board Size|Lead Board|Middle Board/.test(f.label) && section ? `${section}: ${f.label}` : f.label || f.id;
       out.push({ label, value: v.trim() });
     }
     setStatus({ kind: "sending" });
-    const r = await submitForm(schema.label, out, Object.values(files).filter(Boolean) as File[]);
+    const r = await submitForm(schema.label, out, Object.values(files).filter(Boolean) as File[], flags);
+    if (r.ok) recordSend();
     if (r.ok) setStatus({ kind: "done", msg: schema.success || DEFAULT_SUCCESS });
     else if (r.notConnected && next) setStatus({ kind: "done", msg: r.error }); // until the forms API exists, still offer the next step
     else setStatus({ kind: "error", msg: r.error });
@@ -389,6 +427,17 @@ export default function SchemaForm({
             <div key={f.id} className={`${styles.field} ${w} ${f.cssClass?.includes("red-heading") ? styles.red : ""}`}>
               {labelEl}
               {control}
+              {f.type === "email" && values[f.id] ? (() => {
+                const c = checkEmail(values[f.id]);
+                return c.ok && c.suggestion ? (
+                  <p className={styles.help}>
+                    Did you mean <strong>{c.suggestion}</strong>?{" "}
+                    <button type="button" className={styles.linkBtn} onClick={() => set(f.id, c.suggestion as string)}>
+                      Use it
+                    </button>
+                  </p>
+                ) : null;
+              })() : null}
               {f.description ? <p className={styles.help}>{f.description}</p> : null}
               {f.instruction && !err ? <p id={`${id}-help`} className={styles.help}>{f.instruction}</p> : null}
               {err ? <p id={`${id}-err`} className={styles.err}>{err}</p> : null}

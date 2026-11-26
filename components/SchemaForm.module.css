@@ -273,3 +273,18 @@
     grid-column: span 6;
   }
 }
+
+.linkBtn {
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--gold-light);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.light .linkBtn {
+  color: #742929;
+}
