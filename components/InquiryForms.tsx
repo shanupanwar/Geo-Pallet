@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { prefillValues, readPrefill } from "@/lib/prefill";
 import SchemaForm, { type FormSchema } from "./SchemaForm";
 import styles from "@/app/pallet-inquiry-forms/inquiry.module.css";
 
@@ -25,16 +26,20 @@ export default function InquiryForms() {
   const params = useSearchParams();
   const router = useRouter();
   const slug = toSlug(params.get("selected"));
-  const [loaded, setLoaded] = useState<{ slug: string; schema: FormSchema } | null>(null);
+  const [loaded, setLoaded] = useState<{ slug: string; schema: FormSchema; initial: Record<string, string> } | null>(null);
 
   useEffect(() => {
     let live = true;
-    FORMS[slug].load().then((m) => live && setLoaded({ slug, schema: m.default as FormSchema }));
+    FORMS[slug].load().then((m) => {
+      const schema = m.default as FormSchema;
+      if (live) setLoaded({ slug, schema, initial: prefillValues(schema.fields, readPrefill()) });
+    });
     return () => {
       live = false;
     };
   }, [slug]);
-  const schema = loaded && loaded.slug === slug ? loaded.schema : null;
+  const current = loaded && loaded.slug === slug ? loaded : null;
+  const schema = current?.schema ?? null;
 
   return (
     <>
@@ -51,7 +56,7 @@ export default function InquiryForms() {
         </select>
       </div>
       {schema ? (
-        <SchemaForm key={slug} schema={schema} variant="light" idPrefix={`inq-${slug}`} cancelHref="/custom-pallets-british-columbia/" />
+        <SchemaForm key={slug} schema={schema} initialValues={current?.initial} variant="light" idPrefix={`inq-${slug}`} cancelHref="/custom-pallets-british-columbia/" />
       ) : (
         <p className={styles.loading} role="status">Loading the {FORMS[slug].label} form…</p>
       )}

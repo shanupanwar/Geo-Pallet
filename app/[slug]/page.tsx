@@ -4,9 +4,8 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Blocks";
 import JsonLd from "@/components/JsonLd";
 import PostCard from "@/components/PostCard";
-import SchemaForm, { type FormSchema } from "@/components/SchemaForm";
+import QuoteForm from "@/components/QuoteForm";
 import VideoFacade from "@/components/VideoFacade";
-import quoteSchema from "@/content/forms/quote.json";
 import { formatDate, getAllPosts, getCategories, getPost } from "@/lib/posts";
 import { REDIRECTS } from "@/lib/redirects";
 import { articleLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -118,7 +117,7 @@ export default async function PostPage({ params }: PageProps<"/[slug]">) {
           <div className={styles.box}>
             <h2 className={styles.boxTitle}>Get Free Quote</h2>
             <span className={styles.dot} aria-hidden="true" />
-            <SchemaForm schema={{ ...(quoteSchema as FormSchema), fields: (quoteSchema as FormSchema).fields.map((f) => ({ ...f, width: "full" })) }} idPrefix="sidebar-quote" />
+            <QuoteForm compact idPrefix="sidebar-quote" />
           </div>
           <div className={styles.box}>
             <h2 className={styles.boxTitle}>Blog Categories</h2>

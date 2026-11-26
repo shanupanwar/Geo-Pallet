@@ -1,0 +1,125 @@
+.wrap {
+  margin-top: 36px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.score {
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.stars,
+.cardStars {
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.arrows button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--faint);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, opacity 0.25s;
+}
+
+.arrows button:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: rgba(210, 181, 130, 0.08);
+}
+
+.arrows button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.track {
+  list-style: none;
+  margin: 0;
+  padding: 4px 2px 18px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(300px, calc((100% - 40px) / 3));
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track li {
+  scroll-snap-align: start;
+  display: flex;
+}
+
+.card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: 26px 26px 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 60%), var(--bg-card);
+}
+
+.card blockquote {
+  margin: 0;
+  flex: 1;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 1024px) {
+  .track {
+    grid-auto-columns: 82%;
+  }
+
+  .arrows {
+    display: none;
+  }
+}

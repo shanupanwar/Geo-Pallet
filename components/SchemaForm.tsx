@@ -103,12 +103,18 @@ export default function SchemaForm({
   before,
   cancelHref,
   idPrefix = schema.slug,
+  initialValues,
+  next,
 }: {
   schema: FormSchema;
   variant?: "dark" | "light";
   before?: React.ReactNode;
   cancelHref?: string;
   idPrefix?: string;
+  /** Values to start with, e.g. details carried over from the short quote form. */
+  initialValues?: Record<string, string>;
+  /** Extra content shown after sending (e.g. a button to the detailed form). Gets the values sent. */
+  next?: (values: Record<string, string>) => React.ReactNode;
 }) {
   const initial = useMemo(() => {
     const v: Record<string, string> = {};
@@ -116,8 +122,8 @@ export default function SchemaForm({
       if (f.type === "select" && !f.placeholder && f.choices && f.id.match(/^\d+$/)) v[f.id] = f.choices[0]; // Gravity Forms pre-selects the first choice
       if (f.type === "phone" && f.countryCodes) v[`${f.id}.code`] = f.countryCodes[0];
     }
-    return v;
-  }, [schema]);
+    return { ...v, ...initialValues };
+  }, [schema, initialValues]);
 
   const [values, setValues] = useState<Record<string, string>>(initial);
   const [files, setFiles] = useState<Record<string, File | null>>({});
@@ -201,13 +207,16 @@ export default function SchemaForm({
     }
     setStatus({ kind: "sending" });
     const r = await submitForm(schema.label, out, Object.values(files).filter(Boolean) as File[]);
-    setStatus(r.ok ? { kind: "done", msg: schema.success || DEFAULT_SUCCESS } : { kind: "error", msg: r.error });
+    if (r.ok) setStatus({ kind: "done", msg: schema.success || DEFAULT_SUCCESS });
+    else if (r.notConnected && next) setStatus({ kind: "done", msg: r.error }); // until the forms API exists, still offer the next step
+    else setStatus({ kind: "error", msg: r.error });
   }
 
   if (status.kind === "done") {
     return (
       <div className={`${styles.form} ${styles[variant]} ${styles.done}`} role="status">
         <p>{status.msg}</p>
+        {next ? next(values) : null}
       </div>
     );
   }

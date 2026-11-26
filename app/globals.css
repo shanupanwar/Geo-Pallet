@@ -19,7 +19,7 @@
   --radius-pill: 26px;
   --container: 1280px;
   --gutter: 20px;
-  --header-h: 119px;
+  --header-h: 88px;
   --font: var(--font-vietnam), "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-alt: var(--font-poppins), Poppins, system-ui, sans-serif;
 }
@@ -32,7 +32,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 130px; /* anchor links land below the sticky header */
+  scroll-padding-top: 100px; /* anchor links land below the sticky header */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -426,7 +426,7 @@ p {
 /* ---------- Phone and tablet (same switch point as the WordPress theme: 1024px) ---------- */
 @media (max-width: 1024px) {
   :root {
-    --header-h: 80px;
+    --header-h: 68px;
   }
 
   .section {
@@ -503,4 +503,27 @@ p {
 .lite-yt button:focus-visible {
   outline: 2px solid var(--gold-light);
   outline-offset: -4px;
+}
+
+/* Next step after the short quote form */
+.quote-next {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  font-size: 15px;
+}
+
+.quote-next p {
+  margin: 0;
+  max-width: 460px;
+}
+
+/* Pages with the phone Call / Get a Quote bar: keep the footer's last line clear of it */
+@media (max-width: 1024px) {
+  body:has(nav[aria-label="Quick contact"]) footer {
+    padding-bottom: 84px;
+  }
 }

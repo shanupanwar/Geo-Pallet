@@ -9,11 +9,11 @@
 export const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || "";
 
 export type FormField = { label: string; value: string };
-export type SubmitResult = { ok: true } | { ok: false; error: string };
+export type SubmitResult = { ok: true } | { ok: false; error: string; notConnected?: boolean };
 
 export async function submitForm(form: string, fields: FormField[], files: File[] = []): Promise<SubmitResult> {
   if (!FORM_ENDPOINT) {
-    return { ok: false, error: "This form isn't connected yet. Please call 604 584 4368 or email sales@geopalletltd.com." };
+    return { ok: false, notConnected: true, error: "This form isn't connected yet. Please call 604 584 4368 or email sales@geopalletltd.com." };
   }
   try {
     const page = typeof window !== "undefined" ? window.location.pathname : "";
