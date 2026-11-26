@@ -167,42 +167,6 @@
   transform: translateY(3px);
 }
 
-/* ---------- 2. Trust strip ---------- */
-.trust {
-  list-style: none;
-  margin: 10px 0 0;
-  padding: 26px 10px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-block: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.trust li {
-  display: grid;
-  gap: 4px;
-  justify-items: center;
-  text-align: center;
-  padding: 6px 10px;
-}
-
-.trust li + li {
-  border-left: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.trust strong {
-  font-size: clamp(26px, 3vw, 36px);
-  font-weight: 800;
-  line-height: 1.1;
-  color: var(--gold);
-}
-
-.trust span {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
 /* ---------- Phones: Call / Get a Quote bar ---------- */
 .actionBar {
   display: none;
@@ -211,16 +175,6 @@
 @media (max-width: 1024px) {
   .section {
     gap: 30px;
-  }
-
-  .trust {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 18px;
-    padding: 20px 0;
-  }
-
-  .trust li:nth-child(3) {
-    border-left: 0;
   }
 
   .heroText {

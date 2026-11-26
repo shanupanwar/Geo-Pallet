@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Eyebrow, FeatureBox, Members, QuoteSection, ServiceCard } from "@/components/Blocks";
+import { Eyebrow, Members, QuoteSection } from "@/components/Blocks";
 import HeroVideo from "@/components/HeroVideo";
+import { ReasonCards, ServiceCards, TrustStrip } from "@/components/HomeCards";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import ProductTiles from "@/components/ProductTiles";
@@ -18,13 +19,6 @@ export const metadata = pageMetadata({
   image: "/video/geo-pallet-hero-poster.jpg",
   imageAlt: "3D wooden pallet by Geo Pallet Ltd.",
 });
-
-const TRUST = [
-  { value: "150k+", label: "Completed projects" },
-  { value: "1,000+", label: "Clients" },
-  { value: "20+", label: "Years of experience" },
-  { value: "99%", label: "Positive reviews" },
-];
 
 export default function HomePage() {
   return (
@@ -53,14 +47,7 @@ export default function HomePage() {
 
       {/* 2. Trust strip */}
       <section className="container" aria-label="Geo Pallet in numbers">
-        <ul className={styles.trust}>
-          {TRUST.map((t) => (
-            <li key={t.label}>
-              <strong>{t.value}</strong>
-              <span>{t.label}</span>
-            </li>
-          ))}
-        </ul>
+        <TrustStrip />
       </section>
 
       {/* 3. About */}
@@ -75,7 +62,7 @@ export default function HomePage() {
               small details to ensure your freight moves safely across BC.
             </p>
           </header>
-          <Link href="/about/" className="btn btn-ghost">Know More</Link>
+          <Link href="/about/" className="btn btn-ghost">Our Story</Link>
         </div>
       </section>
 
@@ -87,9 +74,6 @@ export default function HomePage() {
             <h2 id="products-title" className={styles.h2}>Explore Our Wooden Pallet Products</h2>
           </header>
           <ProductTiles />
-          <a href="#form" className="btn btn-gradient">
-            Get a Quote <span className="btn-dot"><Icon name="arrowRight" /></span>
-          </a>
         </div>
       </section>
 
@@ -103,35 +87,7 @@ export default function HomePage() {
               We customize our work to best serve you, offering reliable wooden pallets British Columbia tailored to your supply chain.
             </p>
           </header>
-          <div className={`grid grid-3 ${styles.full}`}>
-            <ServiceCard
-              icon="truck"
-              title="Delivery Solutions"
-              text="We provide reliable pallet delivery and pallet pickup to ensure your wooden pallets reach you on time across BC."
-              href="/pallet-supplier-british-columbia/#delivery"
-              image="/wp-content/uploads/2024/05/BC-and-WA-geo-pallet-map.svg"
-              imageAlt="Map of pallet delivery across British Columbia and Washington"
-            />
-            <ServiceCard
-              icon="hammer"
-              title="Pallet Repair"
-              text="Our pallet repair and pallet recycling services deliver prompt, dependable solutions that meet industry standards and help you save on costs."
-              href="/pallet-supplier-british-columbia/#repair"
-              image="/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-12-at-5.42.32-AM-2-819x1024.jpeg"
-              imageAlt="Pallet repair services"
-            />
-            <ServiceCard
-              icon="fire"
-              title="Heat Treated Pallets"
-              text="Our heat treated pallets are ISPM 15 pallets compliant, offering reliable protection for your export needs."
-              href="/pallet-supplier-british-columbia/#heat"
-              image="/images/heat-treated-pallets-ispm-15-ht-stamp.webp"
-              imageAlt="ISPM-15 HT stamp being printed on heat-treated wooden pallets"
-            />
-          </div>
-          <a href={`tel:${BUSINESS.phones[0].tel}`} className="btn btn-outline">
-            Let&apos;s Talk: {BUSINESS.phones[0].label} <span className="btn-dot"><Icon name="phone" /></span>
-          </a>
+          <ServiceCards />
         </div>
       </section>
 
@@ -146,23 +102,7 @@ export default function HomePage() {
               expertise for consistent quality, durable skids, and dependable support across Vancouver and Langley.
             </p>
           </header>
-          <div className={`grid grid-3 ${styles.full}`}>
-            <FeatureBox
-              icon="/wp-content/uploads/2026/03/icons8-pricing-48.png"
-              title="Competitive Pricing"
-              text="We provide affordable, high-quality wooden pallets to ensure exceptional value for your business in Richmond."
-            />
-            <FeatureBox
-              icon="/wp-content/uploads/2026/03/icons8-example-50-1.png"
-              title="Tailored Custom Builds"
-              text="Our expert team uses a hands-on approach to build new pallets that fit your specific warehouse and shipping dimensions."
-            />
-            <FeatureBox
-              icon="/wp-content/uploads/2026/03/icons8-goal-oriented-focus-50-1.png"
-              title="Customer-First Focus"
-              text="Your needs come first, which is why we offer durable, custom-designed wooden pallets British Columbia built to last."
-            />
-          </div>
+          <ReasonCards />
         </div>
       </section>
 
