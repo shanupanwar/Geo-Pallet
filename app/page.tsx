@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow, FeatureBox, Members, QuoteSection, ServiceCard, Stat, Testimonials } from "@/components/Blocks";
 import HeroVideo from "@/components/HeroVideo";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
-import { PRODUCT_TILES } from "@/content/data/products";
+import ProductTiles from "@/components/ProductTiles";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 import styles from "./home.module.css";
 
@@ -19,10 +18,7 @@ export default function HomePage() {
   return (
     <>
       <section className={styles.hero}>
-        <div className={styles.heroMedia}>
-          <Image src="/home-hero-poster.jpg" alt="" fill priority sizes="100vw" className={styles.poster} />
-          <HeroVideo id="DevrDZtQOV0" />
-        </div>
+        <HeroVideo className={styles.heroMedia} />
         <div className={`container ${styles.heroText}`}>
           <h1 className={styles.h1}>
             <span className={styles.pre}>Trusted Source for a Wooden Pallet in British Columbia.</span>
@@ -64,16 +60,7 @@ export default function HomePage() {
       <section className={`section ${styles.products}`} aria-labelledby="products-title">
         <div className="container">
           <h2 id="products-title" className="h-md center">Explore Pallet Products</h2>
-          <ul className={styles.tiles}>
-            {PRODUCT_TILES.map((p) => (
-              <li key={p.href} className="reveal">
-                <Link href={p.href} className={styles.tile}>
-                  <h3>{p.title}</h3>
-                  <Image src={p.image} alt={p.alt} width={534} height={284} sizes="(max-width: 600px) 90vw, (max-width: 1024px) 45vw, 300px" />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ProductTiles />
         </div>
       </section>
 

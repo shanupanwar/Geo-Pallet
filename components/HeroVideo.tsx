@@ -1,21 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { withBase } from "@/lib/site";
+import Icon from "./Icon";
 
 /**
- * Home page background video. The still picture shows at once (fast first paint, good for Google);
- * the YouTube video is added only on computers, after the page has finished loading.
+ * Home page video (public/video/geo-pallet-hero.mp4, 1280×542, black background).
+ * The whole video is always visible (never cropped): it scales to the screen width, and the
+ * matching black page background fills any space around it. Plays silently on a loop, with a
+ * pause button; people who ask their device for less motion get the still picture.
  */
-export default function HeroVideo({ id }: { id: string }) {
-  const [play, setPlay] = useState(false);
+export default function HeroVideo({ className }: { className?: string }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
+  const src = withBase("/video/geo-pallet-hero.mp4");
+  const poster = withBase("/video/geo-pallet-hero-poster.jpg");
+
   useEffect(() => {
-    const ok = window.matchMedia("(min-width: 1025px) and (prefers-reduced-motion: no-preference)").matches;
-    if (!ok) return;
-    const start = () => setTimeout(() => setPlay(true), 800);
-    if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
+    const v = box.current?.querySelector("video");
+    if (!v) return;
+    const sync = () => setPaused(v.paused);
+    v.addEventListener("play", sync);
+    v.addEventListener("pause", sync);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) v.pause();
+    return () => {
+      v.removeEventListener("play", sync);
+      v.removeEventListener("pause", sync);
+    };
   }, []);
-  if (!play) return null;
-  const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1`;
-  return <iframe className="hero-video" src={src} title="Geo Pallet video" allow="autoplay; encrypted-media" tabIndex={-1} aria-hidden="true" />;
+
+  const toggle = () => {
+    const v = box.current?.querySelector("video");
+    if (!v) return;
+    if (v.paused) void v.play();
+    else v.pause();
+  };
+
+  return (
+    <div ref={box} className={className}>
+      {/* Written as plain HTML so "muted" is in the page itself, which phones require for autoplay. */}
+      <div
+        className="hero-video-box"
+        dangerouslySetInnerHTML={{
+          __html: `<video class="hero-video" autoplay muted loop playsinline preload="auto" poster="${poster}" aria-label="3D animation of a Geo Pallet wooden pallet being assembled"><source src="${src}" type="video/mp4"></video>`,
+        }}
+      />
+      <button type="button" className="hero-video-toggle" onClick={toggle} aria-label={paused ? "Play video" : "Pause video"}>
+        <Icon name={paused ? "play" : "pause"} />
+      </button>
+    </div>
+  );
 }

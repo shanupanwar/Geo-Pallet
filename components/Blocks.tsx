@@ -93,27 +93,37 @@ export function Testimonials({ intro }: { intro: string }) {
   );
 }
 
+/** "Members of": two compact association cards. The whole card is the link. */
 export function Members() {
   const orgs = [
-    { name: "Canadian Wood Pallet & Container Association", logo: "/wp-content/uploads/2024/05/cwcpa-logo-2.png", w: 115, h: 121, url: "https://www.canadianpallets.com" },
-    { name: "National Wooden Pallet & Container Association", logo: "/wp-content/uploads/2025/12/NWPCA-Logo-600x132-1.webp", w: 600, h: 132, url: "https://www.palletcentral.com/page/AboutPalletDesign" },
+    { short: "CWPCA", name: "Canadian Wood Pallet & Container Association", logo: "/wp-content/uploads/2024/05/cwcpa-logo-2.png", w: 115, h: 121, url: "https://www.canadianpallets.com" },
+    { short: "NWPCA", name: "National Wooden Pallet & Container Association", logo: "/wp-content/uploads/2025/12/NWPCA-Logo-600x132-1.webp", w: 600, h: 132, url: "https://www.palletcentral.com/page/AboutPalletDesign" },
   ];
   return (
-    <section className={`section ${styles.members}`} aria-labelledby="members-title">
+    <section className={styles.members} aria-labelledby="members-title">
       <div className={`container ${styles.membersGrid}`}>
-        <h2 id="members-title" className={`h-xl ${styles.membersTitle}`}>
-          <Icon name="pallet" className="gold" /> Members of
-        </h2>
-        <div className={styles.memberCards}>
-          {orgs.map((o) => (
-            <div key={o.name} className={styles.member}>
-              <Image src={o.logo} alt={`${o.name} logo`} width={o.w} height={o.h} className={styles.memberLogo} />
-              <a href={o.url} target="_blank" rel="noopener" className="link-more">
-                Visit Website »<span className="sr-only"> ({o.name})</span>
-              </a>
-            </div>
-          ))}
+        <div>
+          <Eyebrow>Industry associations</Eyebrow>
+          <h2 id="members-title" className={styles.membersTitle}>Members of</h2>
         </div>
+        <ul className={styles.memberCards}>
+          {orgs.map((o) => (
+            <li key={o.name}>
+              <a href={o.url} target="_blank" rel="noopener" className={styles.member}>
+                <span className={styles.memberLogo}>
+                  <Image src={o.logo} alt={`${o.name} logo`} width={o.w} height={o.h} />
+                </span>
+                <span className={styles.memberText}>
+                  <strong>{o.short}</strong>
+                  <span>{o.name}</span>
+                  <span className={styles.memberLink}>
+                    Visit website <Icon name="external" />
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

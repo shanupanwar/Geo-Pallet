@@ -1,45 +1,52 @@
+/* Home video: always shown whole (never cropped). It scales with the screen width; on short,
+   wide screens its height is capped and the black background fills the sides seamlessly. */
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--header-h));
-  min-height: calc(100svh - var(--header-h));
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  isolation: isolate;
 }
 
 .heroMedia {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-
-.heroMedia::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(2, 2, 5, 0) 35%, rgba(2, 2, 5, 0.85) 85%, var(--bg));
-}
-
-.poster {
-  object-fit: cover;
+  position: relative;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .heroMedia :global(.hero-video) {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 542;
+  max-height: calc(100svh - var(--header-h) - 150px);
+  object-fit: contain;
+  background: var(--bg);
+}
+
+.heroMedia :global(.hero-video-toggle) {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: max(100%, 177.78vh);
-  height: max(100%, 56.25vw);
-  max-width: none;
-  transform: translate(-50%, -50%) scale(1.3); /* crops YouTube's title bar and controls */
-  border: 0;
-  pointer-events: none;
+  right: 20px;
+  bottom: 14px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--faint);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.25s, border-color 0.25s;
+}
+
+.heroMedia :global(.hero-video-toggle):hover,
+.heroMedia :global(.hero-video-toggle):focus-visible {
+  opacity: 1;
+  border-color: var(--gold);
 }
 
 .heroText {
-  padding-top: 120px;
-  padding-bottom: 70px;
+  padding-top: 10px;
+  padding-bottom: 60px;
   max-width: var(--container);
 }
 
@@ -83,43 +90,6 @@
   padding-top: 100px;
 }
 
-.tiles {
-  list-style: none;
-  margin: 40px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  padding: 18px 10px 10px;
-  border-radius: 12px;
-  background: #000;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.tile:hover {
-  transform: translateY(-4px);
-  background: var(--bg-card);
-}
-
-.tile h3 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.tile img {
-  width: 100%;
-  height: 180px;
-  object-fit: contain;
-}
-
 .servicesHead {
   margin-bottom: 50px;
   align-items: end;
@@ -139,19 +109,7 @@
 }
 
 @media (max-width: 1024px) {
-  .hero {
-    min-height: 620px;
-  }
-
-  .tiles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .tile img {
-    height: 140px;
-  }
-
-  .quality {
+    .quality {
     padding-top: 70px;
   }
 }

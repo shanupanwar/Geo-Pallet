@@ -1,10 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Eyebrow, Testimonials } from "@/components/Blocks";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import SchemaForm, { type FormSchema } from "@/components/SchemaForm";
-import { PRODUCT_TILES } from "@/content/data/products";
+import ProductTiles from "@/components/ProductTiles";
 import contactFormSchema from "@/content/forms/contact-form.json";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 import styles from "./contact-form.module.css";
@@ -42,16 +40,7 @@ export default function ContactFormPage() {
       <section className="section" aria-labelledby="explore-title">
         <div className="container">
           <h2 id="explore-title" className="h-sm center">Explore Our Pallet Products</h2>
-          <ul className={styles.tiles}>
-            {PRODUCT_TILES.map((p) => (
-              <li key={p.href}>
-                <Link href={p.href}>
-                  <Image src={p.image} alt={p.alt} width={534} height={284} sizes="(max-width: 600px) 45vw, 280px" />
-                  <h3>{p.title}</h3>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ProductTiles />
         </div>
       </section>
 
