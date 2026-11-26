@@ -71,6 +71,23 @@
   max-height: calc(100svh - var(--header-h) - 200px);
   object-fit: contain;
   background: var(--bg);
+  /* Brand tone: same warm, calm grade as the service photos */
+  filter: sepia(0.12) saturate(0.92) contrast(1.06) brightness(0.95);
+}
+
+/* Soft dark edges so the video melts into the black page instead of ending in a hard line */
+.heroMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 85% at 50% 45%, transparent 55%, var(--bg) 100%),
+    linear-gradient(180deg, var(--bg) 0%, transparent 10%, transparent 82%, var(--bg) 100%);
+}
+
+.heroMedia :global(.hero-video-toggle) {
+  z-index: 1;
 }
 
 .heroMedia :global(.hero-video-toggle) {

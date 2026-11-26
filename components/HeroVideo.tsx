@@ -19,6 +19,8 @@ export default function HeroVideo({ className }: { className?: string }) {
   useEffect(() => {
     const v = box.current?.querySelector("video");
     if (!v) return;
+    v.defaultPlaybackRate = 0.85; // a little slower: calmer, more premium
+    v.playbackRate = 0.85;
     const sync = () => setPaused(v.paused);
     v.addEventListener("play", sync);
     v.addEventListener("pause", sync);
