@@ -240,6 +240,28 @@
   color: var(--gold-light);
 }
 
+/* Centered version (homepage): heading on top, the two cards side by side underneath. */
+.membersCentered .membersGrid {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  text-align: center;
+  gap: 34px;
+}
+
+.membersCentered .membersGrid > div {
+  display: grid;
+  justify-items: center;
+}
+
+.membersCentered .membersTitle {
+  font-size: clamp(28px, 3.4vw, 40px);
+}
+
+.membersCentered .memberCards {
+  width: min(100%, 820px);
+  text-align: left;
+}
+
 /* ---------- Quote form section ---------- */
 .quote {
   padding-top: 140px;

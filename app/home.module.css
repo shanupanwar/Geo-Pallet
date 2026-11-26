@@ -11,6 +11,26 @@
   padding-block: calc(var(--space) / 2);
 }
 
+/* Every section follows the same centered pattern:
+   small label -> heading -> one short line -> content -> (optional) one button. */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.header {
+  max-width: 720px;
+  display: grid;
+  justify-items: center;
+}
+
+.header :global(.eyebrow) {
+  margin-bottom: 14px;
+}
+
 .h2 {
   font-size: clamp(28px, 3.4vw, 40px);
   line-height: 1.2;
@@ -21,46 +41,14 @@
 .sub {
   max-width: 640px;
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
 }
 
-:global(.center) > .sub {
-  margin-inline: auto;
-}
-
-.body {
-  font-size: 17px;
-  line-height: 1.7;
-  margin: 0 0 18px;
-}
-
-/* Section header: heading on the left, quiet link on the right */
-.head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 40px;
-}
-
-.textLink {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--gold-light);
-}
-
-.textLink .icon {
-  font-size: 12px;
-  transition: transform 0.25s ease;
-}
-
-.textLink:hover .icon {
-  transform: translateX(4px);
+/* content that should use the full container width (cards, tiles) */
+.full {
+  width: 100%;
+  text-align: left;
 }
 
 /* ---------- 1. Video + headline ---------- */
@@ -215,27 +203,14 @@
   text-transform: uppercase;
 }
 
-/* ---------- 3. About ---------- */
-.about {
-  align-items: start;
-}
-
-/* ---------- 6. Why choose us ---------- */
-.features {
-  margin-top: 44px;
-  max-width: 1040px;
-}
-
 /* ---------- Phones: Call / Get a Quote bar ---------- */
 .actionBar {
   display: none;
 }
 
 @media (max-width: 1024px) {
-  .head {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 28px;
+  .section {
+    gap: 30px;
   }
 
   .trust {

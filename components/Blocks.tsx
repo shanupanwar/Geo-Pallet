@@ -93,13 +93,13 @@ export function Testimonials({ intro }: { intro: string }) {
 }
 
 /** "Members of": two compact association cards. The whole card is the link. */
-export function Members({ title = "Members of" }: { title?: string }) {
+export function Members({ title = "Members of", centered = false }: { title?: string; centered?: boolean }) {
   const orgs = [
     { short: "CWPCA", name: "Canadian Wood Pallet & Container Association", logo: "/wp-content/uploads/2024/05/cwcpa-logo-2.png", w: 115, h: 121, url: "https://www.canadianpallets.com" },
     { short: "NWPCA", name: "National Wooden Pallet & Container Association", logo: "/wp-content/uploads/2025/12/NWPCA-Logo-600x132-1.webp", w: 600, h: 132, url: "https://www.palletcentral.com/page/AboutPalletDesign" },
   ];
   return (
-    <section className={styles.members} aria-labelledby="members-title">
+    <section className={`${styles.members} ${centered ? styles.membersCentered : ""}`} aria-labelledby="members-title">
       <div className={`container ${styles.membersGrid}`}>
         <div>
           <Eyebrow>Industry associations</Eyebrow>
