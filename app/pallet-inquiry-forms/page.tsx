@@ -17,7 +17,7 @@ export default function InquiryPage() {
     <section className={styles.page}>
       <div className={styles.card}>
         <div className={styles.head}>
-          <Image src="/wp-content/uploads/2025/04/Untitled-design.png" alt="Geo Pallet Ltd. logo" width={261} height={163} />
+          <Image src="/wp-content/uploads/2025/04/geo-pallet-logo-red.png" alt="Geo Pallet Ltd. logo" width={261} height={163} />
           <div>
             <h1 className={styles.h1}>Pallet Quote Request Form</h1>
             <p>

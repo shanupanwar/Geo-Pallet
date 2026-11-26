@@ -8,7 +8,7 @@ category: WOODEN PALLETS & SOLUTIONS
 categorySlug: wooden-pallets-solutions
 categories:
   - wooden-pallets-solutions
-image: /wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-9.55.04-PM.jpeg
+image: /wp-content/uploads/2026/05/wood-cribbing.jpeg
 imageAlt: Wood cribbing stacked to support heavy equipment
 focusKeyword: Wood cribbing
 ---

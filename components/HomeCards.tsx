@@ -18,7 +18,7 @@ const SERVICES = [
     title: "Delivery Solutions",
     text: "We provide reliable pallet delivery and pallet pickup to ensure your wooden pallets reach you on time across BC.",
     href: "/pallet-supplier-british-columbia/#delivery",
-    image: "/wp-content/uploads/2026/03/IMG_3008-1.jpeg",
+    image: "/wp-content/uploads/2026/03/geo-pallet-delivery-truck.jpeg",
     alt: "Geo Pallet truck delivering wooden pallets",
   },
   {
@@ -26,7 +26,7 @@ const SERVICES = [
     title: "Pallet Repair",
     text: "Our pallet repair and pallet recycling services deliver prompt, dependable solutions that meet industry standards and help you save on costs.",
     href: "/pallet-supplier-british-columbia/#repair",
-    image: "/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-12-at-5.42.32-AM-2-819x1024.jpeg",
+    image: "/wp-content/uploads/2026/03/pallet-repair-worker-nail-gun-819x1024.jpeg",
     alt: "Worker repairing a wooden pallet",
   },
   {

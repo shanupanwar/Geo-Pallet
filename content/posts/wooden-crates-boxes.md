@@ -8,7 +8,7 @@ category: WOODEN PALLETS & SOLUTIONS
 categorySlug: wooden-pallets-solutions
 categories:
   - wooden-pallets-solutions
-image: /wp-content/uploads/2026/05/WhatsApp-Image-2026-06-05-at-1.35.33-AM.jpeg
+image: /wp-content/uploads/2026/05/wooden-crates-boxes.jpeg
 imageAlt: Custom wooden shipping crates
 focusKeyword: Wooden Crates
 ---

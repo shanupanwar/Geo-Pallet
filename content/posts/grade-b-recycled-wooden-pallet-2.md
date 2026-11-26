@@ -8,7 +8,7 @@ category: WOODEN PALLETS & SOLUTIONS
 categorySlug: wooden-pallets-solutions
 categories:
   - wooden-pallets-solutions
-image: /wp-content/uploads/2026/05/WhatsApp-Image-2026-07-01-at-3.21.19-AM.jpeg
+image: /wp-content/uploads/2026/05/grade-b-recycled-wooden-pallet.jpeg
 imageAlt: Grade B recycled wooden pallet with visible repairs
 focusKeyword: Grade B Recycled Wooden Pallets
 ---
