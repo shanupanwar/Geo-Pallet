@@ -1,6 +1,8 @@
 # Google reviews on the website: setup steps (for you)
 
-Plan agreed 2026-11-27: the homepage shows your **Google star rating, total review count and your
+> **Not used.** Chosen instead (2026-11-27): free option, real Google reviews copied into content/data/testimonials.ts.
+
+Original plan: the homepage shows your **Google star rating, total review count and your
 5 latest Google reviews**, fetched live in the visitor's browser (Google's "Places API (New)"), with
 "Reviews from Google", "See all reviews on Google" and "Write a review". If Google can't be reached,
 the 9 reviews already on the site are shown instead.

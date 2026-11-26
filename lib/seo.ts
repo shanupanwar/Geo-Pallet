@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { googleLinks } from "@/content/data/testimonials";
 import { BUSINESS, INDEXABLE, SITE_URL, absoluteUrl } from "./site";
 
 type PageSeo = {
@@ -80,8 +81,11 @@ export function localBusinessLd() {
       telephone: BUSINESS.phones[0].tel,
       address: address(1),
       openingHoursSpecification: hoursSpec(),
+      hasMap: googleLinks("Langley").map,
+      sameAs: [googleLinks("Langley").map],
     },
-    sameAs: BUSINESS.social.map((s) => s.url).filter(Boolean),
+    hasMap: googleLinks("Surrey").map,
+    sameAs: [googleLinks("Surrey").map, ...BUSINESS.social.map((s) => s.url).filter(Boolean)],
   };
 }
 

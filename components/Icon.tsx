@@ -6,7 +6,7 @@ import {
   faWarehouse, faPeopleArrows, faArrowUpWideShort, faChevronLeft, faChevronRight, faRecycle, faTruckFast, faRulerCombined, faPause, faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { faClock as farClock } from "@fortawesome/free-regular-svg-icons";
-import { faFacebookF, faLinkedinIn, faInstagram, faTiktok, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faGoogle, faLinkedinIn, faInstagram, faTiktok, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 /** Icons used on the site, drawn as inline SVG (no icon font, no JavaScript). */
 const ICONS: Record<string, IconDefinition> = {
@@ -17,7 +17,7 @@ const ICONS: Record<string, IconDefinition> = {
   award: faAward, leaf: faLeaf, info: faCircleInfo, paperclip: faPaperclip, clipboardCheck: faClipboardCheck,
   peopleCarry: faPeopleCarryBox, warehouse: faWarehouse, peopleArrows: faPeopleArrows, sortUp: faArrowUpWideShort,
   chevronLeft: faChevronLeft, chevronRight: faChevronRight, recycle: faRecycle, truckFast: faTruckFast, ruler: faRulerCombined, pause: faPause, external: faArrowUpRightFromSquare,
-  facebook: faFacebookF, linkedin: faLinkedinIn, instagram: faInstagram, tiktok: faTiktok, twitter: faXTwitter, youtube: faYoutube,
+  google: faGoogle, facebook: faFacebookF, linkedin: faLinkedinIn, instagram: faInstagram, tiktok: faTiktok, twitter: faXTwitter, youtube: faYoutube,
 };
 
 export type IconName = keyof typeof ICONS;
