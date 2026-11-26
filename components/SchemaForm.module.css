@@ -53,10 +53,6 @@
   padding: 0;
 }
 
-.dark .label {
-  text-transform: capitalize;
-}
-
 .red .label {
   color: #8c3030;
 }

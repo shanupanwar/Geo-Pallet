@@ -138,8 +138,6 @@ export function QuoteSection({ title = "Let’s Get Moving" }: { title?: string 
         <p className="lead">We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
       </div>
       <div className={`container narrow ${styles.quoteCard}`}>
-        <p className={styles.quoteHead}>Get My Quote</p>
-        <span className={styles.divider} aria-hidden="true" />
         <QuoteForm />
       </div>
     </section>

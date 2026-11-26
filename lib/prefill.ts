@@ -20,7 +20,7 @@ const DETAILED: Record<string, string> = {
 
 /** Address of the detailed form for the pallet type chosen in the short form. */
 export function detailedFormHref(pallet: string | undefined): string {
-  const label = DETAILED[(pallet || "").trim().toLowerCase()];
+  const label = DETAILED[(pallet || "").trim().toLowerCase().replace(/-/g, " ")];
   return label ? `/pallet-inquiry-forms/?selected=${label.replace(/ /g, "+")}` : "/pallet-inquiry-forms/";
 }
 
