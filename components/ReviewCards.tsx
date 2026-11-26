@@ -10,33 +10,25 @@ import styles from "./ReviewCards.module.css";
 export default function ReviewCards() {
   const loop = [...TESTIMONIALS, ...TESTIMONIALS]; // second copy makes the loop seamless
   const locations = Object.keys(GOOGLE_PROFILES) as Location[];
+  const total = locations.reduce((n, l) => n + GOOGLE_PROFILES[l].count, 0);
   return (
     <div className={styles.wrap}>
-      <ul className={styles.badges} aria-label="Google ratings for both locations">
-        {locations.map((loc) => {
-          const p = GOOGLE_PROFILES[loc];
-          const l = googleLinks(loc);
-          return (
-            <li key={loc} className={styles.badge}>
-              <Icon name="google" className={styles.g} />
-              <span className={styles.badgeText}>
-                <strong>{loc}</strong>
-                <span>
-                  <span className={styles.stars} aria-hidden="true">★★★★★</span> {p.rating.toFixed(1)} · {p.count} Google reviews
-                </span>
-              </span>
-              <span className={styles.badgeLinks}>
-                <a href={l.reviews} target="_blank" rel="noopener">
-                  Read<span className="sr-only"> {loc} reviews on Google</span>
-                </a>
-                <a href={l.write} target="_blank" rel="noopener">
-                  Write a review<span className="sr-only"> for {loc}</span>
-                </a>
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      {/* One quiet summary line; each location name opens its reviews on Google. */}
+      <p className={styles.summary}>
+        <Icon name="google" className={styles.g} />
+        <span className={styles.stars} aria-hidden="true">★★★★★</span>
+        <span>
+          {total} Google reviews ·{" "}
+          {locations.map((loc, i) => (
+            <span key={loc}>
+              {i > 0 ? " · " : ""}
+              <a href={googleLinks(loc).reviews} target="_blank" rel="noopener" className={styles.loc}>
+                {loc} {GOOGLE_PROFILES[loc].rating.toFixed(1)}
+              </a>
+            </span>
+          ))}
+        </span>
+      </p>
 
       <div className={styles.viewport} tabIndex={0} aria-label="Customer reviews from Google (hover to pause)">
         <ul className={styles.track}>
@@ -54,10 +46,7 @@ export default function ReviewCards() {
                   <span className={styles.avatar} aria-hidden="true">
                     {t.name.replace(/&/g, "").split(/\s+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join("")}
                   </span>
-                  <span>
-                    {t.name}
-                    <small>Google review · {t.location}</small>
-                  </span>
+                  {t.name}
                 </figcaption>
               </figure>
             </li>
