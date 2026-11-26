@@ -86,12 +86,26 @@
   transform: scale(1.001);
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Brand tone: slightly warmer, calmer and darker so all photos feel like one set with the black/gold site */
+  filter: saturate(0.78) contrast(1.06) brightness(0.86) sepia(0.14);
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.6s ease;
+}
+
+/* soft warm wash over every photo (same on all three) */
+.photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(150deg, rgba(210, 181, 130, 0.14), rgba(2, 2, 5, 0.18) 70%);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 .photo::after {
   content: "";
   position: absolute;
+  z-index: 1;
   inset: 0 0 -2px; /* overlaps the card body by 2px so no line can show between them */
   background: linear-gradient(180deg, transparent 50%, var(--bg-card) 100%);
 }
@@ -140,6 +154,7 @@
 
 .service:hover .photo img {
   transform: scale(1.05);
+  filter: saturate(0.95) contrast(1.04) brightness(0.95) sepia(0.05);
 }
 
 .service:hover .more svg {

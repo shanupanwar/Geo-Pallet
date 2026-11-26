@@ -398,7 +398,7 @@ export default function SchemaForm({
             case "phone":
               control = f.countryCodes ? (
                 <div className={styles.phone}>
-                  <select aria-label="Country code" value={values[`${f.id}.code`] ?? ""} onChange={(e) => set(`${f.id}.code`, e.target.value)}>
+                  <select className={styles.code} aria-label="Country code" value={values[`${f.id}.code`] ?? ""} onChange={(e) => set(`${f.id}.code`, e.target.value)}>
                     {f.countryCodes.map((c) => <option key={c}>{c}</option>)}
                   </select>
                   <input {...common} type="tel" autoComplete="tel-national" placeholder={f.placeholder} value={values[f.id] ?? ""} onChange={(e) => set(f.id, e.target.value)} />
