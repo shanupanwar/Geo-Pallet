@@ -361,6 +361,72 @@
   text-align: left;
 }
 
+/* Homepage: no grey boxes. Logos sit on the page background, split by a thin gold line,
+   with gold hairlines above and below (same calm style as "Why choose us"). */
+.membersCentered .memberCards {
+  gap: 0;
+  border-block: 1px solid rgba(210, 181, 130, 0.18);
+}
+
+.membersCentered .memberCards li + li {
+  border-left: 1px solid rgba(210, 181, 130, 0.18);
+}
+
+.membersCentered .member {
+  justify-content: center;
+  gap: 22px;
+  padding: 30px 34px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  transition: background-color 0.35s ease;
+}
+
+.membersCentered .member:hover,
+.membersCentered .member:focus-visible {
+  transform: none;
+  box-shadow: none;
+  background: radial-gradient(ellipse at center, rgba(210, 181, 130, 0.08), transparent 70%);
+}
+
+.membersCentered .memberLogo {
+  width: 120px;
+  height: 76px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.membersCentered .memberLogo img {
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.membersCentered .member:hover .memberLogo img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.membersCentered .memberText {
+  font-size: 13px;
+}
+
+.membersCentered .memberText strong {
+  font-size: 17px;
+}
+
+@media (max-width: 1024px) {
+  .membersCentered .memberCards li + li {
+    border-left: 0;
+    border-top: 1px solid rgba(210, 181, 130, 0.18);
+  }
+
+  .membersCentered .member {
+    justify-content: flex-start;
+    padding: 24px 6px;
+  }
+}
+
 /* ---------- Quote section: 3 steps, then the form ---------- */
 .quoteWrap {
   display: grid;
