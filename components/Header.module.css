@@ -9,10 +9,27 @@
 
 /* After scrolling: shorter, see-through dark glass with a hairline, like Apple's menu bar. */
 .header[data-scrolled] {
+  background: transparent;
+  border-bottom-color: rgba(210, 181, 130, 0.22);
+}
+
+/* The glass blur sits on a layer behind the header's content, not on the header itself: a blur on the
+   header would trap the phone menu panel inside the header bar (it would show only a sliver, over the video). */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.header[data-scrolled]::before {
+  opacity: 1;
   background: rgba(6, 6, 9, 0.72);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   backdrop-filter: saturate(160%) blur(14px);
-  border-bottom-color: rgba(210, 181, 130, 0.22);
 }
 
 .inner {
@@ -372,9 +389,15 @@
 /* Phones/tablets: keep the header readable (no video behind it there) */
 @media (max-width: 1024px) {
   .header {
+    background: transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .header::before,
+  .header[data-scrolled]::before {
+    opacity: 1;
     background: rgba(6, 6, 9, 0.9);
     -webkit-backdrop-filter: saturate(160%) blur(14px);
     backdrop-filter: saturate(160%) blur(14px);
-    border-bottom-color: rgba(255, 255, 255, 0.06);
   }
 }
