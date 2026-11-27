@@ -3,6 +3,9 @@
   max-width: 1280px;
   margin: 40px auto 0;
   padding: 0 55px;
+  /* side photos must stay inside the slider: if they poke past the screen edge, the browser shrinks the
+     whole page and the design ends up squeezed to the left */
+  overflow-x: clip;
 }
 
 .track {

@@ -34,6 +34,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* anchor links land below the sticky header */
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip; /* nothing may make the page wider than the screen (phones would zoom out and push the design left) */
 }
 
 body {
