@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TESTIMONIALS } from "@/content/data/testimonials";
+import { GOOGLE_PROFILES, TESTIMONIALS, googleLinks, type Location } from "@/content/data/testimonials";
 import Icon from "./Icon";
 import QuoteForm from "./QuoteForm";
 import styles from "./Blocks.module.css";
@@ -65,23 +65,48 @@ export function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-/** Auto-scrolling customer reviews (CSS only; pauses on hover and for people who prefer less motion). */
-export function Testimonials({ intro }: { intro: string }) {
+/**
+ * Customer reviews: text + gold Google rating on the left, real Google reviews sliding slowly
+ * upward on the right (pauses on hover). CSS only; people who prefer less motion get a still list.
+ */
+export function Testimonials({ intro, title = "Our success, echoed by our clients" }: { intro: string; title?: string }) {
   const items = [...TESTIMONIALS, ...TESTIMONIALS];
+  const locations = Object.keys(GOOGLE_PROFILES) as Location[];
+  const total = locations.reduce((n, l) => n + GOOGLE_PROFILES[l].count, 0);
   return (
     <section className={`section ${styles.testimonials}`} aria-labelledby="reviews-title">
       <div className={`container ${styles.testiGrid}`}>
-        <div className="reveal">
+        <div className={`${styles.testiIntro} reveal`}>
           <Eyebrow>Testimonials</Eyebrow>
-          <h2 id="reviews-title" className="h-xl">Our success, echoed by our clients</h2>
-          <p className="lead">{intro}</p>
+          <h2 id="reviews-title" className={styles.testiTitle}>{title}</h2>
+          <p className={styles.testiLead}>{intro}</p>
+          <div className={styles.rating}>
+            <span className={styles.ratingTop}>
+              <Icon name="google" className={styles.ratingG} />
+              <span className={styles.ratingStars} aria-hidden="true">★★★★★</span>
+              <strong>{total} Google reviews</strong>
+            </span>
+            <span className={styles.ratingLocs}>
+              {locations.map((loc) => (
+                <a key={loc} href={googleLinks(loc).reviews} target="_blank" rel="noopener" className={styles.ratingLoc}>
+                  {loc} <b>{GOOGLE_PROFILES[loc].rating.toFixed(1)}</b>
+                  <span className="sr-only"> stars, read reviews on Google</span>
+                </a>
+              ))}
+            </span>
+          </div>
         </div>
-        <div className={styles.viewport} aria-label="Customer testimonials">
+        <div className={styles.viewport} tabIndex={0} aria-label="Customer reviews from Google (hover to pause)">
           <div className={styles.track}>
             {items.map((t, i) => (
               <figure key={i} className={styles.review} aria-hidden={i >= TESTIMONIALS.length ? true : undefined}>
-                <div className={styles.stars} aria-label="5 out of 5 stars">★★★★★</div>
-                <blockquote>{t.text}</blockquote>
+                <div className={styles.reviewTop}>
+                  <span className={styles.stars} aria-label="5 out of 5 stars">★★★★★</span>
+                  <span className={styles.reviewTag}>
+                    <Icon name="google" /> {t.location}
+                  </span>
+                </div>
+                <blockquote>“{t.text}”</blockquote>
                 <figcaption>{t.name}</figcaption>
               </figure>
             ))}

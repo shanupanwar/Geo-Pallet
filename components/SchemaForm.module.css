@@ -81,8 +81,8 @@
   min-height: 50px;
   padding: 13px 16px;
   border-radius: 12px;
-  border-color: rgba(255, 255, 255, 0.14);
-  background-color: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.18);
+  background-color: transparent;
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
@@ -157,8 +157,8 @@
 }
 
 .dark .phone {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
 }
 
 .phone:focus-within {
@@ -231,9 +231,9 @@
   min-width: 88px;
   min-height: 50px;
   padding: 0 22px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.035);
+  background: transparent;
   font-weight: 600;
   transition: border-color 0.2s, background-color 0.2s, color 0.2s;
 }

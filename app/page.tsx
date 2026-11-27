@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { Eyebrow, Members, QuoteSection } from "@/components/Blocks";
+import { Eyebrow, Members, QuoteSection, Testimonials } from "@/components/Blocks";
 import HeroVideo from "@/components/HeroVideo";
 import { ReasonCards, ServiceCards, TrustStrip } from "@/components/HomeCards";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import ProductTiles from "@/components/ProductTiles";
-import ReviewCards from "@/components/ReviewCards";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL, absoluteUrl } from "@/lib/site";
 import styles from "./home.module.css";
@@ -106,20 +105,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Reviews */}
-      <section className={styles.block} aria-labelledby="reviews-title">
-        <div className={`container ${styles.section}`}>
-          <header className={`${styles.header} reveal`}>
-            <Eyebrow>Testimonials</Eyebrow>
-            <h2 id="reviews-title" className={styles.h2}>What Our Customers Say</h2>
-            <p className={styles.sub}>
-              Customers drive our commitment to continuous improvement. On the whole , regular process reviews ensure compliance and
-              consistently meet evolving needs with high-quality solutions.
-            </p>
-          </header>
-        </div>
-        <ReviewCards />
-      </section>
+      {/* 7. Reviews: text + gold Google rating left, Google reviews sliding upward right */}
+      <Testimonials
+        title="What Our Customers Say"
+        intro="Customers drive our commitment to continuous improvement. On the whole , regular process reviews ensure compliance and consistently meet evolving needs with high-quality solutions."
+      />
 
       {/* 8. Short quote form (the detailed form is offered after sending) */}
       <QuoteSection title="Get a Free Pallet Quote" />
