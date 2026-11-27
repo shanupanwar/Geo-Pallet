@@ -228,3 +228,8 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* long web addresses in posts wrap onto the next line instead of pushing past the screen edge on phones */
+.article a {
+  overflow-wrap: anywhere;
+}

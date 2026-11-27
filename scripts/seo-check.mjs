@@ -82,7 +82,7 @@ for (const file of pages) {
   // Internal links and images are checked on every page, including forwarding pages.
   for (const m of html.matchAll(/<a\s[^>]*href="([^"]+)"/gi)) {
     const href = decode(m[1]);
-    if (/^(https?:|mailto:|tel:|#|javascript:)/i.test(href)) continue;
+    if (/^(https?:|mailto:|tel:|sms:|#|javascript:)/i.test(href)) continue;
     if (!exists(href)) err(page, `broken link → ${href}`);
   }
   for (const m of html.matchAll(/<img\s[^>]*>/gi)) {
