@@ -110,18 +110,28 @@ excluded from the sitemap.
 - Spam protection (`lib/spam.ts`): honeypot, phone validation (fake/555 numbers rejected; area codes
   outside BC/Washington are flagged), throwaway emails rejected, email typo hint, junk names, no links,
   max 3 sends per hour per browser.
-- Sending: `submitForm()` in `lib/forms.ts` POSTs to `NEXT_PUBLIC_FORM_ENDPOINT`. **Not connected yet** —
-  forms currently show "This form isn't connected yet. Please call…".
+- Sending: `submitForm()` in `lib/forms.ts` POSTs JSON (as text/plain, files base64 inside) to
+  `NEXT_PUBLIC_FORM_ENDPOINT` (GitHub variable `FORM_ENDPOINT`).
+- **Chosen sending service: Google Apps Script** in the owner's Google account
+  (`google-apps-script/Code.gs`, owner guide `docs/FORMS-SETUP.md`): re-checks the request, emails
+  NOTIFY_EMAIL (Reply-To = customer, "[Check]" subject for flagged), saves uploads to a private Drive
+  folder, logs a row per form tab in the Google Sheet, sends the customer a confirmation (not for
+  flagged). Secrets (NOTIFY_EMAIL, TURNSTILE_SECRET) live only in Script properties, never in the repo.
+  Owner is testing with a test Gmail first. Turnstile (human check) is optional until go-live.
+- Until the endpoint is set, forms show "This form isn't connected yet. Please call…".
 - Plan for the sending service is in `README.md` (server re-check, Turnstile, MX check, 6-digit
   confirmation code for flagged submissions, "[Check] " subject prefix, send to office@geopalletltd.com).
   The owner wants **free** options only ("I don't want to spend a penny").
 
 ## Next steps (status)
 
-1. **Make the homepage quote form actually send** (owner asked for this next). GitHub Pages is static,
-   so a free external sending service / serverless endpoint is needed. **Explain the free options in
-   simple words and let the owner choose before building anything.**
-2. Go-live later: point geopalletltd.com to the site, set `SITE_URL` and `INDEXABLE=true`.
+1. **Connect the forms**: script and guide are ready. Waiting for the owner to deploy the Apps Script
+   and paste the Web app URL (…/exec). Then: set `FORM_ENDPOINT`, test every form end to end
+   (quote, inquiry with upload, contact, newsletter), later add Cloudflare Turnstile.
+2. **UI/UX for the other pages** (About, Products + pallet pages, Services, Blog, Contact, Inquiry
+   forms, Site Map, 404) to match the homepage — show designs for approval first.
+3. **Test everything** (links, phones, speed/SEO).
+4. Go-live later: point geopalletltd.com to the site, set `SITE_URL` and `INDEXABLE=true`.
 
 ## Never commit
 
