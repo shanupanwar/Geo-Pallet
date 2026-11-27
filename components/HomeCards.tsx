@@ -20,7 +20,6 @@ const SERVICES = [
     href: "/pallet-supplier-british-columbia/#delivery",
     image: "/wp-content/uploads/2026/03/geo-pallet-delivery-truck.jpeg",
     alt: "Geo Pallet truck delivering wooden pallets",
-    warm: true, // bright blue sky photo: warmed and calmed to match the other two
   },
   {
     icon: Hammer,
@@ -40,18 +39,20 @@ const SERVICES = [
   },
 ];
 
-/** Services: one large photo card + two stacked ones; text sits on the photo. Whole card is the link. */
+/** Services: three equal cards. Photo on top in its natural colours, text below on the dark card. Whole card is the link. */
 export function ServiceCards() {
   return (
-    <ul className={styles.bento}>
-      {SERVICES.map((s, i) => (
-        <li key={s.title} className={`${i === 0 ? styles.bentoBig : ""} reveal`}>
-          <Link href={s.href} className={`${styles.tile} ${"warm" in s && s.warm ? styles.warm : ""}`}>
-            <Image src={s.image} alt={s.alt} fill sizes={i === 0 ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 520px"} />
-            <span className={styles.tileBody}>
+    <ul className={styles.services}>
+      {SERVICES.map((s) => (
+        <li key={s.title} className="reveal">
+          <Link href={s.href} className={styles.service}>
+            <span className={styles.servicePhoto}>
+              <Image src={s.image} alt={s.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1024px) 50vw, 400px" />
+            </span>
+            <span className={styles.serviceBody}>
               <LineIcon icon={s.icon} size="sm" />
-              <h3 className={styles.tileTitle}>{s.title}</h3>
-              <span className={styles.tileText}>{s.text}</span>
+              <h3 className={styles.title}>{s.title}</h3>
+              <span className={styles.text}>{s.text}</span>
               <span className={styles.more} aria-hidden="true">
                 Learn more <ArrowRight strokeWidth={1.75} />
               </span>

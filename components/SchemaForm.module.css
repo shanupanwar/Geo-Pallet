@@ -177,15 +177,20 @@
 .form .phone .code {
   flex: 0 0 auto;
   width: auto;
+}
+
+.form .phone .code .ddButton {
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   padding-left: 16px;
-  padding-right: 34px;
-  background-position: right 12px center;
-  border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
   font-weight: 600;
 }
 
-.light .phone .code {
-  border-right-color: rgba(0, 0, 0, 0.12) !important;
+.light .phone .code .ddButton {
+  border-right-color: rgba(0, 0, 0, 0.12);
 }
 
 .form .phone input {
@@ -414,4 +419,178 @@
 
 .light .linkBtn {
   color: #742929;
+}
+
+/* ---------- Our own dropdown (replaces the browser's plain list) ---------- */
+.dd {
+  position: relative;
+  width: 100%;
+}
+
+.ddButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 14px;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  color: var(--f-text);
+  background: var(--f-bg);
+  border: 1px solid var(--f-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.dark .ddButton {
+  min-height: 50px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
+}
+
+.dark .ddButton:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.ddButton:focus-visible,
+.ddButton[aria-expanded="true"] {
+  outline: none;
+  border-color: var(--f-accent-focus, var(--gold));
+  box-shadow: 0 0 0 3px var(--f-ring, rgba(210, 181, 130, 0.2));
+}
+
+.light .ddButton {
+  --f-accent-focus: #742929;
+  --f-ring: rgba(116, 41, 41, 0.15);
+}
+
+.ddValue {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ddEmpty .ddValue {
+  color: var(--f-muted);
+  opacity: 0.85;
+}
+
+.ddArrow {
+  flex: none;
+  width: 12px;
+  height: 8px;
+  color: var(--gold-light, #d2b582);
+  transition: transform 0.25s ease;
+}
+
+.light .ddArrow {
+  color: #742929;
+}
+
+.ddButton[aria-expanded="true"] .ddArrow {
+  transform: rotate(180deg);
+}
+
+.ddList {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 14px;
+  background: #15161d;
+  border: 1px solid rgba(210, 181, 130, 0.28);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+  animation: ddIn 0.16s ease-out;
+}
+
+.ddList[hidden] {
+  display: none;
+}
+
+.ddUp {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+
+.ddCompact .ddList {
+  right: auto;
+  min-width: 150px;
+}
+
+.light .ddList {
+  background: #fff;
+  border-color: rgba(116, 41, 41, 0.25);
+  box-shadow: 0 18px 40px rgba(43, 37, 37, 0.18);
+}
+
+.ddOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 9px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.86);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.ddActive {
+  background: rgba(210, 181, 130, 0.12);
+  color: #fff;
+}
+
+.ddOption[aria-selected="true"] {
+  color: var(--gold-light, #d2b582);
+  font-weight: 600;
+}
+
+.light .ddOption {
+  color: #2b2525;
+}
+
+.light .ddActive {
+  background: rgba(116, 41, 41, 0.08);
+}
+
+.light .ddOption[aria-selected="true"] {
+  color: #742929;
+}
+
+.ddCheck {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes ddIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ddList {
+    animation: none;
+  }
+}
+
+/* the phone box (code + number) turns red as one piece when the number is missing or wrong */
+.phone:has([aria-invalid="true"]) {
+  border-color: var(--f-req);
 }

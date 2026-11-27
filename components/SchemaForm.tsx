@@ -5,6 +5,7 @@ import { submitForm, type FormField } from "@/lib/forms";
 import { checkEmail, checkName, checkPhone, checkText, formatPhone, recordSend, tooManyRecent } from "@/lib/spam";
 import { withBase } from "@/lib/site";
 import styles from "./SchemaForm.module.css";
+import Dropdown from "./Dropdown";
 
 /**
  * One form engine for every form on the site. Each form is a data file in content/forms/*.json
@@ -328,12 +329,17 @@ export default function SchemaForm({
               break;
             case "select":
               control = (
-                <select {...common} value={values[f.id] ?? ""} onChange={(e) => set(f.id, e.target.value)}>
-                  {f.placeholder || !f.id.match(/^\d+$/) ? <option value="">{f.placeholder || "Select"}</option> : null}
-                  {(f.choices || []).map((c, i) => (
-                    <option key={c} value={c}>{f.choiceLabels?.[i] || c}</option>
-                  ))}
-                </select>
+                <Dropdown
+                  id={id}
+                  value={values[f.id] ?? ""}
+                  placeholder={f.placeholder || "Select"}
+                  options={(f.choices || []).map((c, i) => ({ value: c, label: f.choiceLabels?.[i] || c }))}
+                  onChange={(v) => set(f.id, v)}
+                  onFocus={common.onFocus}
+                  onBlur={common.onBlur}
+                  invalid={!!err}
+                  describedBy={common["aria-describedby"]}
+                />
               );
               break;
             case "radio":
@@ -398,9 +404,14 @@ export default function SchemaForm({
             case "phone":
               control = f.countryCodes ? (
                 <div className={styles.phone}>
-                  <select className={styles.code} aria-label="Country code" value={values[`${f.id}.code`] ?? ""} onChange={(e) => set(`${f.id}.code`, e.target.value)}>
-                    {f.countryCodes.map((c) => <option key={c}>{c}</option>)}
-                  </select>
+                  <Dropdown
+                    compact
+                    className={styles.code}
+                    ariaLabel="Country code"
+                    value={values[`${f.id}.code`] ?? ""}
+                    options={f.countryCodes.map((c) => ({ value: c, label: c }))}
+                    onChange={(v) => set(`${f.id}.code`, v)}
+                  />
                   <input {...common} type="tel" autoComplete="tel-national" placeholder={f.placeholder} value={values[f.id] ?? ""} onChange={(e) => set(f.id, e.target.value)} />
                 </div>
               ) : (
