@@ -2,7 +2,7 @@
   "slug": "quote",
   "label": "Quote request",
   "submit": "Get a quote",
-  "success": "Thanks for contacting. Your request has been received.Our team will contact you shortly with details.",
+  "success": "Thanks for contacting. Your request has been received. Our team will contact you shortly with details.",
   "fields": [
     {
       "id": "name",

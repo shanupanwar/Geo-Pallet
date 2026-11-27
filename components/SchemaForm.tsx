@@ -45,7 +45,7 @@ export type FieldDef = {
 
 export type FormSchema = { slug: string; label: string; submit: string; success?: string; fields: FieldDef[] };
 
-const DEFAULT_SUCCESS = "Thanks for contacting. Your request has been received.Our team will contact you shortly with details.";
+const DEFAULT_SUCCESS = "Thanks for contacting. Your request has been received. Our team will contact you shortly with details.";
 
 function ruleMatches(rule: Rule, values: Record<string, string>) {
   const v = (values[rule.fieldId] ?? "").trim();
