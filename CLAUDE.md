@@ -126,8 +126,8 @@ excluded from the sitemap.
 ## Next steps (status)
 
 1. **Forms**: connected and live (2026-11-27). GitHub variable `FORM_ENDPOINT` = the owner's Apps Script
-   web app (test Gmail for now). Tested live: quote form → script replies ok. Owner still to confirm
-   rows in the Sheet's "Quote request" tab (rows go to one tab per form, not Sheet1) and emails.
+   web app (test Gmail for now). Tested live: quote form → email and Sheet row arrived (owner confirmed
+   2026-11-28; rows go to one tab per form, e.g. "Quote request", not Sheet1).
    Still to do: test inquiry form with upload, contact forms, newsletter; switch NOTIFY_EMAIL to
    office@geopalletltd.com; add Cloudflare Turnstile before go-live.
    Local dev uses `.env.local` (gitignored) with `NEXT_PUBLIC_FORM_ENDPOINT`.
