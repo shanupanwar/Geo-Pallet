@@ -39,18 +39,18 @@ const SERVICES = [
   },
 ];
 
-/** Services: photo on top, then icon, title, text. The whole card is one link. */
+/** Services: three equal cards. Photo on top in its natural colours, text below on the dark card. Whole card is the link. */
 export function ServiceCards() {
   return (
     <ul className={styles.services}>
       {SERVICES.map((s) => (
         <li key={s.title} className="reveal">
           <Link href={s.href} className={styles.service}>
-            <span className={styles.photo}>
-              <Image src={s.image} alt={s.alt} fill sizes="(max-width: 1024px) 100vw, 400px" />
+            <span className={styles.servicePhoto}>
+              <Image src={s.image} alt={s.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1024px) 50vw, 400px" />
             </span>
-            <span className={styles.body}>
-              <LineIcon icon={s.icon} />
+            <span className={styles.serviceBody}>
+              <LineIcon icon={s.icon} size="sm" />
               <h3 className={styles.title}>{s.title}</h3>
               <span className={styles.text}>{s.text}</span>
               <span className={styles.more} aria-hidden="true">
@@ -70,18 +70,21 @@ const REASONS = [
   { icon: HeartHandshake, title: "Customer-First Focus", text: "Your needs come first, which is why we offer durable, custom-designed wooden pallets British Columbia built to last." },
 ];
 
-/** "Why choose us": three equal cards, gold line icon, soft border that glows on hover. */
+/** "Why choose us": three columns in one row (icon + number, title, text), fine dividers, no boxes. */
 export function ReasonCards() {
   return (
-    <ul className={styles.reasons}>
-      {REASONS.map((r) => (
+    <ol className={styles.reasons}>
+      {REASONS.map((r, i) => (
         <li key={r.title} className={`${styles.reason} reveal`}>
-          <LineIcon icon={r.icon} />
-          <h3 className={styles.title}>{r.title}</h3>
-          <p className={styles.text}>{r.text}</p>
+          <span className={styles.reasonNo} aria-hidden="true">0{i + 1}</span>
+          <LineIcon icon={r.icon} size="sm" />
+          <div>
+            <h3 className={styles.title}>{r.title}</h3>
+            <p className={styles.text}>{r.text}</p>
+          </div>
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }
 

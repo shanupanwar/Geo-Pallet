@@ -65,11 +65,11 @@ export default function MobileMenu({ nav, phone }: { nav: NavItem[]; phone: { la
           ))}
         </ul>
         <div className={styles.panelActions}>
-          <a href={`tel:${phone.tel}`} className="btn btn-gradient">
-            Let&apos;s Talk <span className="btn-dot"><Icon name="arrowRight" /></span>
+          <a href={`tel:${phone.tel}`} className={styles.phone}>
+            <Icon name="phone" className={styles.phoneIcon} /> {phone.label}
           </a>
-          <Link href="/#form" className="btn btn-outline" onClick={() => setOpen(false)}>
-            Get a Quote <span className="btn-dot"><Icon name="arrowRight" /></span>
+          <Link href="/#form" className={styles.panelQuote} onClick={() => setOpen(false)}>
+            Get a Quote
           </Link>
         </div>
       </div>

@@ -1,19 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TESTIMONIALS } from "@/content/data/testimonials";
+import { GOOGLE_PROFILES, TESTIMONIALS, googleLinks, type Location } from "@/content/data/testimonials";
+import { BadgeDollarSign, ClipboardList, Truck } from "lucide-react";
 import Icon from "./Icon";
 import QuoteForm from "./QuoteForm";
 import styles from "./Blocks.module.css";
 
 /* Reusable page sections shared by several pages. All render as plain HTML (no JavaScript). */
 
-export function Eyebrow({ children, as: Tag = "p" }: { children: React.ReactNode; as?: "p" | "span" }) {
-  return (
-    <Tag className="eyebrow">
-      <Icon name="pallet" /> {children}
-    </Tag>
-  );
-}
+export { default as Eyebrow } from "./Eyebrow";
+import Eyebrow from "./Eyebrow";
 
 export function ServiceCard({
   title,
@@ -65,23 +61,48 @@ export function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-/** Auto-scrolling customer reviews (CSS only; pauses on hover and for people who prefer less motion). */
-export function Testimonials({ intro }: { intro: string }) {
+/**
+ * Customer reviews: text + gold Google rating on the left, real Google reviews sliding slowly
+ * upward on the right (pauses on hover). CSS only; people who prefer less motion get a still list.
+ */
+export function Testimonials({ intro, title = "Our success, echoed by our clients" }: { intro: string; title?: string }) {
   const items = [...TESTIMONIALS, ...TESTIMONIALS];
+  const locations = Object.keys(GOOGLE_PROFILES) as Location[];
+  const total = locations.reduce((n, l) => n + GOOGLE_PROFILES[l].count, 0);
   return (
     <section className={`section ${styles.testimonials}`} aria-labelledby="reviews-title">
       <div className={`container ${styles.testiGrid}`}>
-        <div className="reveal">
+        <div className={`${styles.testiIntro} reveal`}>
           <Eyebrow>Testimonials</Eyebrow>
-          <h2 id="reviews-title" className="h-xl">Our success, echoed by our clients</h2>
-          <p className="lead">{intro}</p>
+          <h2 id="reviews-title" className={styles.testiTitle}>{title}</h2>
+          <p className={styles.testiLead}>{intro}</p>
+          <div className={styles.rating}>
+            <span className={styles.ratingTop}>
+              <Icon name="google" className={styles.ratingG} />
+              <span className={styles.ratingStars} aria-hidden="true">★★★★★</span>
+              <strong>{total} Google reviews</strong>
+            </span>
+            <span className={styles.ratingLocs}>
+              {locations.map((loc) => (
+                <a key={loc} href={googleLinks(loc).reviews} target="_blank" rel="noopener" className={styles.ratingLoc}>
+                  {loc} <b>{GOOGLE_PROFILES[loc].rating.toFixed(1)}</b>
+                  <span className="sr-only"> stars, read reviews on Google</span>
+                </a>
+              ))}
+            </span>
+          </div>
         </div>
-        <div className={styles.viewport} aria-label="Customer testimonials">
+        <div className={styles.viewport} tabIndex={0} aria-label="Customer reviews from Google (hover to pause)">
           <div className={styles.track}>
             {items.map((t, i) => (
               <figure key={i} className={styles.review} aria-hidden={i >= TESTIMONIALS.length ? true : undefined}>
-                <div className={styles.stars} aria-label="5 out of 5 stars">★★★★★</div>
-                <blockquote>{t.text}</blockquote>
+                <div className={styles.reviewTop}>
+                  <span className={styles.stars} aria-label="5 out of 5 stars">★★★★★</span>
+                  <span className={styles.reviewTag}>
+                    <Icon name="google" /> {t.location}
+                  </span>
+                </div>
+                <blockquote>“{t.text}”</blockquote>
                 <figcaption>{t.name}</figcaption>
               </figure>
             ))}
@@ -128,17 +149,39 @@ export function Members({ title = "Members of", centered = false }: { title?: st
   );
 }
 
-/** "Let's Get Moving" + "Get My Quote" form (Home page, anchor #form). */
+/**
+ * Quote section (homepage, anchor #form): what happens in 3 simple steps, then the short form.
+ * Focused on getting a price, not on contact details.
+ */
 export function QuoteSection({ title = "Let’s Get Moving" }: { title?: string }) {
+  const steps = [
+    { icon: ClipboardList, title: "Tell us what you need", text: "Pallet type, quantity and delivery area. It only takes a minute." },
+    { icon: BadgeDollarSign, title: "Get your price", text: "Our team will contact you shortly with details." },
+    { icon: Truck, title: "We deliver", text: "Pallet delivery across the Lower Mainland and U.S. border areas." },
+  ];
   return (
     <section className={`section ${styles.quote}`} id="form" aria-labelledby="quote-title">
-      <div className="container narrow center reveal">
-        <Eyebrow>Quote Now</Eyebrow>
-        <h2 id="quote-title" className="h-md">{title}</h2>
-        <p className="lead">We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
-      </div>
-      <div className={`container narrow ${styles.quoteCard}`}>
-        <QuoteForm />
+      <div className={`container ${styles.quoteWrap}`}>
+        <div className={`${styles.quoteHeader} reveal`}>
+          <Eyebrow>Quote Now</Eyebrow>
+          <h2 id="quote-title" className={styles.quoteTitle}>{title}</h2>
+          <p className={styles.quoteLead}>We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
+        </div>
+        <ol className={styles.steps}>
+          {steps.map((st, i) => (
+            <li key={st.title} className="reveal">
+              <span className={styles.stepIcon} aria-hidden="true">
+                <st.icon strokeWidth={1.5} />
+                <b>{i + 1}</b>
+              </span>
+              <h3>{st.title}</h3>
+              <p>{st.text}</p>
+            </li>
+          ))}
+        </ol>
+        <div className={styles.quoteForm}>
+          <QuoteForm />
+        </div>
       </div>
     </section>
   );

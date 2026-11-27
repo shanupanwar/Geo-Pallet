@@ -8,7 +8,31 @@
 }
 
 .block {
-  padding-block: calc(var(--space) / 2);
+  padding-block: 0;
+}
+
+/* Clear sections: every section is its own band, alternating pure black and charcoal,
+   with generous space, so you always see where one section ends and the next begins. */
+.home {
+  --band: #0b0c11;
+}
+
+.home > section:nth-of-type(n + 3) {
+  padding-block: var(--space);
+}
+
+.home > section:nth-of-type(even) {
+  background: var(--band);
+  border-block: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.trustBand {
+  padding-block: 34px;
+}
+
+/* last section (Associations) sits closer to the footer */
+.home > section:last-of-type {
+  padding-bottom: 64px;
 }
 
 /* Every section follows the same centered pattern:
@@ -45,6 +69,19 @@
   margin: 0;
 }
 
+/* Two-column sections (Why choose us, Quote): text left, content right */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 440px) minmax(0, 620px);
+  justify-content: center;
+  align-items: center;
+  gap: 40px 90px;
+}
+
+.splitHead {
+  text-align: left;
+}
+
 /* content that should use the full container width (cards, tiles) */
 .full {
   width: 100%;
@@ -68,7 +105,7 @@
   width: 100%;
   height: auto;
   aspect-ratio: 1280 / 542;
-  max-height: calc(100svh - var(--header-h) - 200px);
+  max-height: calc(100svh - var(--header-h) - 120px);
   object-fit: contain;
   background: var(--bg);
 }
@@ -98,8 +135,8 @@
 }
 
 .heroText {
-  padding-top: 8px;
-  padding-bottom: 40px;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(56px, 7vw, 96px);
   text-align: center;
 }
 
@@ -177,9 +214,15 @@
     gap: 30px;
   }
 
-  .heroText {
-    padding-bottom: 28px;
+  .split {
+    grid-template-columns: minmax(0, 1fr);
   }
+
+  .heroText {
+    padding-top: 36px;
+    padding-bottom: 56px;
+  }
+
 
   .actionBar {
     display: grid;
@@ -205,7 +248,7 @@
     justify-content: center;
     gap: 8px;
     min-height: 46px;
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 14px;
     font-weight: 700;
     color: #fff;

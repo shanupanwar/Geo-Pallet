@@ -77,34 +77,110 @@
   margin: 0;
 }
 
-/* ---------- Testimonials ---------- */
+/* ---------- Testimonials (compact two columns, upward slide) ---------- */
 .testiGrid {
   display: grid;
-  grid-template-columns: minmax(0, 520px) minmax(0, 613px);
-  gap: 50px 80px;
+  grid-template-columns: minmax(0, 460px) minmax(0, 560px);
+  gap: 40px 70px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
+.testiTitle {
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.testiLead {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* Gold Google rating */
+.rating {
+  display: grid;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(210, 181, 130, 0.2);
+}
+
+.ratingTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold-light);
+}
+
+.ratingTop strong {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.ratingG {
+  font-size: 18px;
+  color: var(--gold-light);
+}
+
+.ratingStars {
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-size: 16px;
+}
+
+.ratingLocs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ratingLoc {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid rgba(210, 181, 130, 0.4);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-light);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.ratingLoc b {
+  color: #fff;
+}
+
+.ratingLoc:hover {
+  background: rgba(210, 181, 130, 0.1);
+  border-color: var(--gold);
+}
+
+/* Right: reviews slide slowly upward; edges fade; hover pauses */
 .viewport {
-  height: 480px;
+  height: 420px;
   overflow: hidden;
-  mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
 }
 
 .track {
   display: grid;
-  gap: 20px;
-  animation: scroll-up 60s linear infinite;
+  gap: 16px;
+  animation: scroll-up 90s linear infinite;
 }
 
-.viewport:hover .track {
+.viewport:hover .track,
+.viewport:focus-within .track,
+.viewport:active .track {
   animation-play-state: paused;
 }
 
 @keyframes scroll-up {
   to {
-    transform: translateY(calc(-50% - 10px));
+    transform: translateY(calc(-50% - 8px));
   }
 }
 
@@ -120,28 +196,51 @@
 
 .review {
   margin: 0;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius);
-  padding: 24px 26px;
+  padding: 20px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 60%), var(--bg-card);
+  transition: border-color 0.3s;
+}
+
+.review:hover {
+  border-color: rgba(210, 181, 130, 0.45);
+}
+
+.reviewTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .stars {
   color: var(--gold);
-  letter-spacing: 3px;
-  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.reviewTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .review blockquote {
-  margin: 0 0 14px;
-  font-size: 16px;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .review figcaption {
   font-weight: 700;
   color: #fff;
+  font-size: 14px;
 }
 
 /* ---------- Members of (compact cards) ---------- */
@@ -262,44 +361,185 @@
   text-align: left;
 }
 
-/* ---------- Quote form section ---------- */
-.quote {
-  padding-top: 140px;
+/* Homepage: no grey boxes. Logos sit on the page background, split by a thin gold line,
+   no lines above/below, so it doesn't double up with the footer's top line. */
+.membersCentered .memberCards {
+  gap: 0;
 }
 
-.quoteCard {
-  margin-top: 36px;
-  padding: 36px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 50%), var(--bg-card);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+.membersCentered .memberCards li + li {
+  border-left: 1px solid rgba(210, 181, 130, 0.18);
 }
 
-@media (max-width: 600px) {
-  .quoteCard {
-    padding: 24px 18px;
-    border-radius: 18px;
+.membersCentered .member {
+  justify-content: center;
+  gap: 22px;
+  padding: 30px 34px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  transition: background-color 0.35s ease;
+}
+
+.membersCentered .member:hover,
+.membersCentered .member:focus-visible {
+  transform: none;
+  box-shadow: none;
+  background: radial-gradient(ellipse at center, rgba(210, 181, 130, 0.08), transparent 70%);
+}
+
+.membersCentered .memberLogo {
+  width: 120px;
+  height: 76px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.membersCentered .memberLogo img {
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.membersCentered .member:hover .memberLogo img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.membersCentered .memberText {
+  font-size: 13px;
+}
+
+.membersCentered .memberText strong {
+  font-size: 17px;
+}
+
+@media (max-width: 1024px) {
+  .membersCentered .memberCards li + li {
+    border-left: 0;
+    border-top: 1px solid rgba(210, 181, 130, 0.18);
+  }
+
+  .membersCentered .member {
+    justify-content: flex-start;
+    padding: 22px 6px;
   }
 }
 
-.quoteHead {
-  text-align: center;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin: 0;
+/* ---------- Quote section: 3 steps, then the form ---------- */
+.quoteWrap {
+  display: grid;
+  justify-items: center;
+  gap: 44px;
 }
 
-.divider {
-  display: block;
-  width: 8px;
-  height: 8px;
-  margin: 20px auto 30px;
+.quoteHeader {
+  max-width: 680px;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+}
+
+.quoteTitle {
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.quoteLead {
+  margin: 0;
+  font-size: 16px;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: min(100%, 900px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  position: relative;
+  text-align: center;
+}
+
+/* thin gold line connecting the three steps */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 16.6%;
+  right: 16.6%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(210, 181, 130, 0.5), transparent);
+}
+
+.steps li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.stepIcon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--bg);
+  border: 1px solid rgba(210, 181, 130, 0.45);
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+
+.stepIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.stepIcon b {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #111;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.steps h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.steps p {
+  margin: 0;
+  max-width: 240px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.quoteForm {
+  width: min(100%, 820px);
+}
+
+@media (max-width: 760px) {
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .steps::before {
+    display: none;
+  }
 }
 
 /* ---------- Inner page banner ---------- */

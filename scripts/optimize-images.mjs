@@ -7,7 +7,8 @@
  *     -> public/_img/wp-content/uploads/2025/12/2-Way-Pallet-640.webp (and other widths)
  *
  * lib/image-manifest.json records which widths exist; lib/image-loader.ts picks the right one.
- * Already-made copies are skipped, so re-runs are quick.
+ * Already-made copies are skipped, so re-runs are quick. Delete public/_img to rebuild them all
+ * (needed after changing the settings below).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -48,7 +49,14 @@ for (const src of usedImages().sort()) {
     const out = path.join(OUT, src.replace(/\.\w+$/, `-${w}.webp`));
     if (fs.existsSync(out) && fs.statSync(out).mtimeMs >= fs.statSync(file).mtimeMs) continue;
     fs.mkdirSync(path.dirname(out), { recursive: true });
-    await sharp(file).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 78 }).toFile(out);
+    // Gentle sharpening + a touch more colour so photos look crisp and clear, then high-quality WebP.
+    await sharp(file)
+      .rotate()
+      .resize({ width: w, withoutEnlargement: true, kernel: "lanczos3" })
+      .sharpen({ sigma: 0.7, m1: 0.6, m2: 2 })
+      .modulate({ saturation: 1.06 })
+      .webp({ quality: 86, smartSubsample: true })
+      .toFile(out);
     made += 1;
   }
   manifest[src] = unique;

@@ -1,26 +1,29 @@
 .footer {
-  padding-top: 160px;
+  margin-top: 0;
+  padding-top: 64px;
   color: var(--muted);
+  background: #050508;
+  border-top: 1px solid rgba(210, 181, 130, 0.18);
 }
 
 .cols {
   display: grid;
-  grid-template-columns: 370px minmax(0, 1fr) 361px;
-  gap: 50px;
-  padding-bottom: 80px;
-  max-width: 1290px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 64px;
+  padding-bottom: 52px;
 }
 
 .brand img {
-  width: 174px;
+  width: 150px;
   height: auto;
 }
 
 .tagline {
-  margin: 20px 0;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
+  margin: 18px 0 22px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
 }
 
@@ -29,7 +32,8 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .social a {
@@ -37,29 +41,45 @@
   place-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  color: #fff;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
-  transition: background 0.25s;
+  transition: border-color 0.25s, color 0.25s;
 }
 
 .social a:hover {
-  background: var(--brown);
+  border-color: var(--gold);
+  color: var(--gold-light);
 }
 
 .title {
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  margin: 0 0 20px;
+  color: var(--gold-light);
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.links a:hover {
+  color: #fff;
 }
 
 .list {
   font-style: normal;
   display: grid;
-  gap: 12px;
+  gap: 11px;
+  font-size: 14px;
 }
 
 .list a,
@@ -80,47 +100,56 @@
 
 .small {
   font-size: 14px;
+  margin: 0;
 }
 
 .newsletter {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .newsletter input[type="email"] {
-  flex: 1 1 180px;
+  flex: 1 1 0;
   min-width: 0;
+  min-height: 44px;
   background: transparent;
-  border: 1px solid var(--faint);
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
   color: #fff;
   font: inherit;
-  padding: 12px 14px;
+  font-size: 14px;
+  padding: 0 14px;
+}
+
+.newsletter input[type="email"]:focus {
+  outline: none;
+  border-color: var(--gold);
 }
 
 .newsletter input::placeholder {
   color: var(--muted);
-  text-transform: uppercase;
-  font-size: 13px;
 }
 
 .newsletter button {
-  background: var(--brown);
-  color: #fff;
+  flex: none;
+  min-height: 44px;
+  padding: 0 18px;
   border: 0;
-  border-radius: 6px;
-  padding: 12px 20px;
+  border-radius: 8px;
+  background: var(--gold-gradient);
+  color: #111;
   font: inherit;
+  font-size: 12px;
   font-weight: 700;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
-  font-size: 13px;
   cursor: pointer;
 }
 
 .newsletter button:hover {
-  background: var(--gold);
+  filter: brightness(1.08);
 }
 
 .formErr {
@@ -135,23 +164,64 @@
 }
 
 .bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 40px 0;
-  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 20px 0;
+  font-size: 13px;
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }
 
 .bottom p {
   margin: 0;
 }
 
+.bottomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.bottomLinks a + a::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  margin: 0 14px;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.bottomRow a:hover {
+  color: #fff;
+}
+
 @media (max-width: 1024px) {
+  .cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+  }
+
+  .cols > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
   .footer {
-    padding-top: 80px;
+    padding-top: 48px;
   }
 
   .cols {
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
-    padding-bottom: 50px;
+  }
+
+  .bottomRow {
+    flex-direction: column;
   }
 }

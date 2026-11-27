@@ -2,17 +2,17 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #000;
+  background: var(--bg); /* blends with the page; the video starts below it, so nothing is covered */
   border-bottom: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* After scrolling: shorter, see-through dark glass with a hairline, like Apple's menu bar. */
 .header[data-scrolled] {
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(6, 6, 9, 0.72);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   backdrop-filter: saturate(160%) blur(14px);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(210, 181, 130, 0.22);
 }
 
 .inner {
@@ -50,6 +50,8 @@
 .nav {
   flex: 1 1 auto;
   min-width: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .menu {
@@ -58,35 +60,54 @@
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 0;
 }
 
 .menu > li {
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menu > li + li::before {
+  content: "";
+  width: 1px;
+  height: 14px;
+  margin: 0 22px;
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 16px 4px;
-  font-size: 14px;
+  padding: 14px 0;
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.82);
   position: relative;
+  transition: color 0.25s;
+}
+
+.link:hover,
+.link[aria-current="page"] {
+  color: #fff;
 }
 
 .link::after {
   content: "";
   position: absolute;
-  left: 4px;
-  right: 4px;
-  bottom: 8px;
+  left: 0;
+  right: 0;
+  bottom: 6px;
   height: 2px;
-  background: #fff;
+  border-radius: 2px;
+  background: var(--gold);
   transform: scaleX(0);
-  transition: transform 0.3s;
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 .link:hover::after,
@@ -184,8 +205,8 @@
 
 /* Small laptops: tighter menu so "GET A QUOTE" is never cut off */
 @media (min-width: 1025px) and (max-width: 1240px) {
-  .menu {
-    gap: 12px;
+  .menu > li + li::before {
+    margin: 0 12px;
   }
 
   .logo {
@@ -260,5 +281,100 @@
     flex-wrap: wrap;
     gap: 14px;
     margin-top: 28px;
+  }
+}
+
+/* Right side: phone number as text + one gold button (no capsules) */
+.actions {
+  align-items: center;
+  gap: 24px;
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #fff;
+  white-space: nowrap;
+  transition: color 0.25s;
+}
+
+.phone:hover {
+  color: var(--gold-light);
+}
+
+.phoneIcon {
+  color: var(--gold);
+  font-size: 13px;
+}
+
+.quote {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(210, 181, 130, 0.45);
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.quoteArrow {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+
+.quote:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.quote:hover .quoteArrow {
+  transform: translateX(4px);
+}
+
+.panelQuote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 8px;
+  background: var(--gold-gradient);
+  color: #111;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .panelActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .panelActions .phone {
+    justify-content: center;
+    min-height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+  }
+
+}
+
+/* Phones/tablets: keep the header readable (no video behind it there) */
+@media (max-width: 1024px) {
+  .header {
+    background: rgba(6, 6, 9, 0.9);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
   }
 }

@@ -5,6 +5,7 @@ import Icon from "./Icon";
 import NewsletterForm from "./NewsletterForm";
 import styles from "./Footer.module.css";
 
+/** Footer: three aligned columns (brand + social, contact details, newsletter); bottom bar with © and links. */
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -40,14 +41,18 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className={styles.title}>Subscribe to our newsletter</h2>
+          <h2 className={styles.title}>Newsletter</h2>
           <p className={styles.small}>Sign up for my newsletter to get latest updates. Do not worry, we will never spam you.</p>
           <NewsletterForm />
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className="container">
-          <p>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
+        <div className={`container ${styles.bottomRow}`}>
+          <p>© {new Date().getFullYear()} {BUSINESS.name} All rights reserved.</p>
+          <nav aria-label="Footer" className={styles.bottomLinks}>
+            <Link href="/announcements/">Announcements &amp; Updates</Link>
+            <Link href="/contact-us_geopallet-site-map/">Site Map</Link>
+          </nav>
         </div>
       </div>
     </footer>

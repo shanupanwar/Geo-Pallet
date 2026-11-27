@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Be_Vietnam_Pro, Poppins } from "next/font/google";
+import { Manrope, Poppins } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
@@ -9,10 +9,10 @@ import { BUSINESS, INDEXABLE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 // Fonts are downloaded at build time and served from the site itself (fast, no Google Fonts request).
-const vietnam = Be_Vietnam_Pro({
+const manrope = Manrope({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-vietnam",
+  variable: "--font-main",
   display: "swap",
 });
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-poppins", display: "swap" });
@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-CA" className={`${vietnam.variable} ${poppins.variable}`} suppressHydrationWarning>
+    <html lang="en-CA" className={`${manrope.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
         {/* Lets the fade-in effect hide sections only when JavaScript is running. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
