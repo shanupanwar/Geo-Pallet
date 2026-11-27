@@ -8,8 +8,9 @@
 
 .cols {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 1.4fr) minmax(0, 1.2fr);
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 64px;
   padding-bottom: 52px;
 }
 
@@ -179,6 +180,23 @@
   margin: 0;
 }
 
+.bottomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.bottomLinks a + a::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  margin: 0 14px;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .bottomRow a:hover {
   color: #fff;
 }
@@ -186,7 +204,11 @@
 @media (max-width: 1024px) {
   .cols {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 36px;
+    gap: 40px;
+  }
+
+  .cols > :last-child {
+    grid-column: 1 / -1;
   }
 }
 

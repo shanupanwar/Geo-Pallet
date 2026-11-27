@@ -5,7 +5,7 @@ import Icon from "./Icon";
 import NewsletterForm from "./NewsletterForm";
 import styles from "./Footer.module.css";
 
-/** Footer: brand + social, updates link, contact details, newsletter; slim bottom bar. */
+/** Footer: three aligned columns (brand + social, contact details, newsletter); bottom bar with © and links. */
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -25,15 +25,6 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-
-        <nav aria-label="Footer">
-          <h2 className={styles.title}>Updates</h2>
-          <ul className={styles.links}>
-            <li>
-              <Link href="/announcements/">Announcements &amp; Updates</Link>
-            </li>
-          </ul>
-        </nav>
 
         <div>
           <h2 className={styles.title}>Contact Info</h2>
@@ -58,7 +49,10 @@ export default function Footer() {
       <div className={styles.bottom}>
         <div className={`container ${styles.bottomRow}`}>
           <p>© {new Date().getFullYear()} {BUSINESS.name} All rights reserved.</p>
-          <Link href="/contact-us_geopallet-site-map/">Site Map</Link>
+          <nav aria-label="Footer" className={styles.bottomLinks}>
+            <Link href="/announcements/">Announcements &amp; Updates</Link>
+            <Link href="/contact-us_geopallet-site-map/">Site Map</Link>
+          </nav>
         </div>
       </div>
     </footer>

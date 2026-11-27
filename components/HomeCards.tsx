@@ -20,6 +20,7 @@ const SERVICES = [
     href: "/pallet-supplier-british-columbia/#delivery",
     image: "/wp-content/uploads/2026/03/geo-pallet-delivery-truck.jpeg",
     alt: "Geo Pallet truck delivering wooden pallets",
+    warm: true, // bright blue sky photo: warmed and calmed to match the other two
   },
   {
     icon: Hammer,
@@ -45,7 +46,7 @@ export function ServiceCards() {
     <ul className={styles.bento}>
       {SERVICES.map((s, i) => (
         <li key={s.title} className={`${i === 0 ? styles.bentoBig : ""} reveal`}>
-          <Link href={s.href} className={styles.tile}>
+          <Link href={s.href} className={`${styles.tile} ${"warm" in s && s.warm ? styles.warm : ""}`}>
             <Image src={s.image} alt={s.alt} fill sizes={i === 0 ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 520px"} />
             <span className={styles.tileBody}>
               <LineIcon icon={s.icon} size="sm" />
