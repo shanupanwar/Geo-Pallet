@@ -362,10 +362,9 @@
 }
 
 /* Homepage: no grey boxes. Logos sit on the page background, split by a thin gold line,
-   with gold hairlines above and below (same calm style as "Why choose us"). */
+   no lines above/below, so it doesn't double up with the footer's top line. */
 .membersCentered .memberCards {
   gap: 0;
-  border-block: 1px solid rgba(210, 181, 130, 0.18);
 }
 
 .membersCentered .memberCards li + li {
@@ -423,7 +422,7 @@
 
   .membersCentered .member {
     justify-content: flex-start;
-    padding: 24px 6px;
+    padding: 22px 6px;
   }
 }
 
