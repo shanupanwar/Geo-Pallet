@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GOOGLE_PROFILES, TESTIMONIALS, googleLinks, type Location } from "@/content/data/testimonials";
-import { BadgeDollarSign, ClipboardList, Truck } from "lucide-react";
+import { BadgeDollarSign, ClipboardList, MessageSquareText, Truck } from "lucide-react";
+import { BUSINESS } from "@/lib/site";
 import Icon from "./Icon";
 import QuoteForm from "./QuoteForm";
 import styles from "./Blocks.module.css";
@@ -179,6 +180,17 @@ export function QuoteSection({ title = "Let’s Get Moving" }: { title?: string 
             </li>
           ))}
         </ol>
+        {/* Plain text-message link: opens the visitor's own messaging app with our number and a starter message.
+            Nothing is sent or stored by the website; the visitor presses Send in their own app. */}
+        <p className={`${styles.textUs} reveal`}>
+          <MessageSquareText strokeWidth={1.5} aria-hidden="true" />
+          <span>
+            Prefer texting? Send us a photo of your pallet:{" "}
+            <a href={`sms:${BUSINESS.textNumber.tel}?&body=${encodeURIComponent("Hi Geo Pallet, I'd like a quote for: ")}`}>
+              {BUSINESS.textNumber.label}
+            </a>
+          </span>
+        </p>
         <div className={styles.quoteForm}>
           <QuoteForm />
         </div>

@@ -37,6 +37,8 @@ export const BUSINESS = {
     { label: "604 584 4368", tel: "+16045844368" },
     { label: "604 584 4367", tel: "+16045844367" },
   ],
+  /** "Text us" number in the quote section. TESTING number for now: swap for the company's texting number before go-live. */
+  textNumber: { label: "+91 97797 25737", tel: "+919779725737" },
   locations: [
     {
       id: "surrey",
