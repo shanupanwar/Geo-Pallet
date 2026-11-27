@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GOOGLE_PROFILES, TESTIMONIALS, googleLinks, type Location } from "@/content/data/testimonials";
+import { BUSINESS } from "@/lib/site";
 import Icon from "./Icon";
 import QuoteForm from "./QuoteForm";
 import styles from "./Blocks.module.css";
@@ -148,17 +149,45 @@ export function Members({ title = "Members of", centered = false }: { title?: st
   );
 }
 
-/** "Let's Get Moving" + "Get My Quote" form (Home page, anchor #form). */
+/**
+ * Quote section (homepage, anchor #form): text + other ways to reach us on the left,
+ * the short quote form on the right. Calm, no boxes.
+ */
 export function QuoteSection({ title = "Let’s Get Moving" }: { title?: string }) {
   return (
     <section className={`section ${styles.quote}`} id="form" aria-labelledby="quote-title">
-      <div className="container narrow center reveal">
-        <Eyebrow>Quote Now</Eyebrow>
-        <h2 id="quote-title" className="h-md">{title}</h2>
-        <p className="lead">We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
-      </div>
-      <div className={`container narrow ${styles.quoteCard}`}>
-        <QuoteForm />
+      <div className={`container ${styles.quoteGrid}`}>
+        <div className={`${styles.quoteIntro} reveal`}>
+          <Eyebrow>Quote Now</Eyebrow>
+          <h2 id="quote-title" className={styles.quoteTitle}>{title}</h2>
+          <p className={styles.quoteLead}>We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
+          <ul className={styles.quoteContacts}>
+            <li>
+              <Icon name="phone" />
+              <span>
+                <small>Prefer to talk?</small>
+                <a href={`tel:${BUSINESS.phones[0].tel}`}>{BUSINESS.phones[0].label}</a>
+              </span>
+            </li>
+            <li>
+              <Icon name="envelope" />
+              <span>
+                <small>Email</small>
+                <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
+              </span>
+            </li>
+            <li>
+              <Icon name="clockRegular" />
+              <span>
+                <small>Business hours</small>
+                {BUSINESS.hoursText}
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.quoteForm}>
+          <QuoteForm />
+        </div>
       </div>
     </section>
   );

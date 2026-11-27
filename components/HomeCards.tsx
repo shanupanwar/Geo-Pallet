@@ -70,18 +70,21 @@ const REASONS = [
   { icon: HeartHandshake, title: "Customer-First Focus", text: "Your needs come first, which is why we offer durable, custom-designed wooden pallets British Columbia built to last." },
 ];
 
-/** "Why choose us": three equal cards, gold line icon, soft border that glows on hover. */
+/** "Why choose us": a calm list (icon, title, text) separated by fine lines: no boxes. */
 export function ReasonCards() {
   return (
-    <ul className={styles.reasons}>
-      {REASONS.map((r) => (
+    <ol className={styles.reasons}>
+      {REASONS.map((r, i) => (
         <li key={r.title} className={`${styles.reason} reveal`}>
-          <LineIcon icon={r.icon} />
-          <h3 className={styles.title}>{r.title}</h3>
-          <p className={styles.text}>{r.text}</p>
+          <span className={styles.reasonNo} aria-hidden="true">0{i + 1}</span>
+          <LineIcon icon={r.icon} size="sm" />
+          <div>
+            <h3 className={styles.title}>{r.title}</h3>
+            <p className={styles.text}>{r.text}</p>
+          </div>
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }
 

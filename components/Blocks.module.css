@@ -361,44 +361,86 @@
   text-align: left;
 }
 
-/* ---------- Quote form section ---------- */
-.quote {
-  padding-top: 140px;
+/* ---------- Quote section: intro + contacts left, form right ---------- */
+.quoteGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) minmax(0, 640px);
+  justify-content: center;
+  align-items: start;
+  gap: 40px 90px;
 }
 
-.quoteCard {
-  margin-top: 36px;
-  padding: 36px;
-  border-radius: 24px;
-  /* no grey box: just a thin gold line on the black page */
-  border: 1px solid rgba(210, 181, 130, 0.28);
-  background: transparent;
+.quoteTitle {
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.2;
+  margin: 0 0 14px;
 }
 
-@media (max-width: 600px) {
-  .quoteCard {
-    padding: 24px 18px;
-    border-radius: 18px;
-  }
+.quoteLead {
+  margin: 0 0 32px;
+  font-size: 16px;
 }
 
-.quoteHead {
-  text-align: center;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.quoteContacts {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
 }
 
-.divider {
-  display: block;
-  width: 8px;
-  height: 8px;
-  margin: 20px auto 30px;
-  border-radius: 50%;
-  background: var(--gold);
+.quoteContacts li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.quoteContacts li > .icon {
+  flex: none;
+  margin-top: 4px;
+  color: var(--gold);
+  font-size: 16px;
+}
+
+.quoteContacts span {
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.quoteContacts small {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.quoteContacts a {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.quoteContacts a:hover {
+  color: var(--gold-light);
+}
+
+.quoteForm {
+  padding-left: 50px;
+  border-left: 1px solid rgba(210, 181, 130, 0.22);
+}
+
+@media (max-width: 1024px) {
+  .quoteGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .quoteForm {
+    padding-left: 0;
+    border-left: 0;
+  }
 }
 
 /* ---------- Inner page banner ---------- */

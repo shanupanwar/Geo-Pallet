@@ -92,10 +92,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Why choose us */}
+      {/* 6. Why choose us: text left, calm numbered list right */}
       <section className={styles.block} aria-labelledby="why-title">
-        <div className={`container ${styles.section}`}>
-          <header className={`${styles.header} reveal`}>
+        <div className={`container ${styles.split}`}>
+          <header className={`${styles.splitHead} reveal`}>
             <Eyebrow>Quality That Performs</Eyebrow>
             <h2 id="why-title" className={styles.h2}>Why Businesses Choose Geo Pallet</h2>
             <p className={styles.sub}>

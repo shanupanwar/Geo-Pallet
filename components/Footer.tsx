@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS } from "@/lib/site";
+import { BUSINESS, NAV } from "@/lib/site";
 import Icon from "./Icon";
 import NewsletterForm from "./NewsletterForm";
 import styles from "./Footer.module.css";
 
+/** Footer: brand + social, quick links, contact details, newsletter; slim bottom bar. */
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -25,6 +26,20 @@ export default function Footer() {
           </ul>
         </div>
 
+        <nav aria-label="Footer">
+          <h2 className={styles.title}>Quick Links</h2>
+          <ul className={styles.links}>
+            {NAV.map((n) => (
+              <li key={n.href}>
+                <Link href={n.href}>{n.label}</Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/pallet-inquiry-forms/">Pallet Quote Form</Link>
+            </li>
+          </ul>
+        </nav>
+
         <div>
           <h2 className={styles.title}>Contact Info</h2>
           <address className={styles.list}>
@@ -40,14 +55,15 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className={styles.title}>Subscribe to our newsletter</h2>
+          <h2 className={styles.title}>Newsletter</h2>
           <p className={styles.small}>Sign up for my newsletter to get latest updates. Do not worry, we will never spam you.</p>
           <NewsletterForm />
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className="container">
-          <p>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
+        <div className={`container ${styles.bottomRow}`}>
+          <p>© {new Date().getFullYear()} {BUSINESS.name} All rights reserved.</p>
+          <Link href="/contact-us_geopallet-site-map/">Site Map</Link>
         </div>
       </div>
     </footer>
