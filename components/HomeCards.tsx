@@ -39,20 +39,18 @@ const SERVICES = [
   },
 ];
 
-/** Services: photo on top, then icon, title, text. The whole card is one link. */
+/** Services: one large photo card + two stacked ones; text sits on the photo. Whole card is the link. */
 export function ServiceCards() {
   return (
-    <ul className={styles.services}>
-      {SERVICES.map((s) => (
-        <li key={s.title} className="reveal">
-          <Link href={s.href} className={styles.service}>
-            <span className={styles.photo}>
-              <Image src={s.image} alt={s.alt} fill sizes="(max-width: 1024px) 100vw, 400px" />
-            </span>
-            <span className={styles.body}>
-              <LineIcon icon={s.icon} />
-              <h3 className={styles.title}>{s.title}</h3>
-              <span className={styles.text}>{s.text}</span>
+    <ul className={styles.bento}>
+      {SERVICES.map((s, i) => (
+        <li key={s.title} className={`${i === 0 ? styles.bentoBig : ""} reveal`}>
+          <Link href={s.href} className={styles.tile}>
+            <Image src={s.image} alt={s.alt} fill sizes={i === 0 ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 520px"} />
+            <span className={styles.tileBody}>
+              <LineIcon icon={s.icon} size="sm" />
+              <h3 className={styles.tileTitle}>{s.title}</h3>
+              <span className={styles.tileText}>{s.text}</span>
               <span className={styles.more} aria-hidden="true">
                 Learn more <ArrowRight strokeWidth={1.75} />
               </span>
@@ -70,7 +68,7 @@ const REASONS = [
   { icon: HeartHandshake, title: "Customer-First Focus", text: "Your needs come first, which is why we offer durable, custom-designed wooden pallets British Columbia built to last." },
 ];
 
-/** "Why choose us": a calm list (icon, title, text) separated by fine lines: no boxes. */
+/** "Why choose us": three columns in one row (icon + number, title, text), fine dividers, no boxes. */
 export function ReasonCards() {
   return (
     <ol className={styles.reasons}>

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS, NAV } from "@/lib/site";
+import { BUSINESS } from "@/lib/site";
 import Icon from "./Icon";
 import NewsletterForm from "./NewsletterForm";
 import styles from "./Footer.module.css";
 
-/** Footer: brand + social, quick links, contact details, newsletter; slim bottom bar. */
+/** Footer: brand + social, updates link, contact details, newsletter; slim bottom bar. */
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -27,15 +27,10 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Footer">
-          <h2 className={styles.title}>Quick Links</h2>
+          <h2 className={styles.title}>Updates</h2>
           <ul className={styles.links}>
-            {NAV.map((n) => (
-              <li key={n.href}>
-                <Link href={n.href}>{n.label}</Link>
-              </li>
-            ))}
             <li>
-              <Link href="/pallet-inquiry-forms/">Pallet Quote Form</Link>
+              <Link href="/announcements/">Announcements &amp; Updates</Link>
             </li>
           </ul>
         </nav>

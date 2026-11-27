@@ -34,7 +34,7 @@
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(210, 181, 130, 0.35), transparent);
   filter: blur(6px);
-  opacity: 0.45;
+  opacity: 0; /* spotlight only appears on hover */
   transform: scaleX(0.85);
   transition: opacity 0.45s ease, transform 0.45s ease;
   z-index: -1;
@@ -46,7 +46,7 @@
   height: 170px;
   object-fit: contain;
   transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.45s ease;
-  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.55));
+  filter: none; /* no shadow until hover */
 }
 
 .name {

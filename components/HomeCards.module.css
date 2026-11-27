@@ -43,8 +43,130 @@
   color: var(--muted);
 }
 
-/* ---------- Service photo cards ---------- */
-.services,
+/* ---------- Services: bento (one large + two stacked) ---------- */
+.bento {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, 290px);
+  gap: 20px;
+  text-align: left;
+}
+
+.bento li {
+  display: flex;
+}
+
+.bentoBig {
+  grid-row: span 2;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--bg-card);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.tile img {
+  object-fit: cover;
+  z-index: -2;
+  filter: contrast(1.05) saturate(1.1);
+  transform: scale(1.001);
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* dark fade from the bottom so the text is always readable */
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(2, 2, 5, 0) 15%, rgba(2, 2, 5, 0.72) 52%, rgba(2, 2, 5, 0.96) 100%);
+}
+
+.tileBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px 28px;
+}
+
+.tileBody .icon {
+  background: rgba(2, 2, 5, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-color: rgba(210, 181, 130, 0.5);
+}
+
+.tileTitle {
+  margin: 6px 0 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tileText {
+  max-width: 460px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.more svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.3s ease;
+}
+
+.tile:hover,
+.tile:focus-visible {
+  border-color: rgba(210, 181, 130, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.tile:hover img {
+  transform: scale(1.05);
+}
+
+.tile:hover .more svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: 320px;
+  }
+
+  .bentoBig {
+    grid-row: auto;
+  }
+}
+
+/* ---------- Why choose us: three columns in one row, fine dividers, no boxes ---------- */
 .reasons {
   list-style: none;
   margin: 0;
@@ -52,127 +174,28 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
   text-align: left;
-}
-
-.services li {
-  display: flex;
-}
-
-.service {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
-  isolation: isolate;
-}
-
-.photo {
-  position: relative;
-  display: block;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--bg-card);
-  transform: translateZ(0); /* own layer: no flickering edge while the photo zooms */
-}
-
-.photo img {
-  object-fit: cover;
-  transform: scale(1.001);
-  backface-visibility: hidden;
-  will-change: transform;
-  /* Crisp and vivid (no dull tone) */
-  filter: contrast(1.05) saturate(1.1);
-  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.6s ease;
-}
-
-
-.photo::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 0 0 -2px; /* overlaps the card body by 2px so no line can show between them */
-  background: linear-gradient(180deg, transparent 62%, var(--bg-card) 100%);
-}
-
-.body {
-  position: relative;
-  z-index: 1;
-  margin-top: -1px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-  padding: 0 26px 26px;
-}
-
-.body .icon {
-  margin-top: -26px; /* icon sits on the photo's edge */
-  background: #1b1d25;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
-}
-
-.more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 6px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.more svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.3s ease;
-}
-
-.service:hover,
-.service:focus-visible {
-  border-color: rgba(210, 181, 130, 0.45);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(210, 181, 130, 0.12);
-}
-
-.service:hover .photo img {
-  transform: scale(1.05);
-  filter: contrast(1.07) saturate(1.15) brightness(1.03);
-}
-
-.service:hover .more svg {
-  transform: translateX(4px);
-}
-
-/* ---------- Why choose us: calm numbered list ---------- */
-.reasons {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
+  border-block: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .reason {
-  display: grid;
-  grid-template-columns: 34px 44px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-  padding: 26px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 34px;
 }
 
-.reason:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.reason + .reason {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reasonHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .reasonNo {
-  padding-top: 10px;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -180,7 +203,22 @@
 }
 
 .reason .title {
-  margin-bottom: 6px;
+  margin: 4px 0 0;
+}
+
+@media (max-width: 1024px) {
+  .reasons {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .reason {
+    padding: 26px 0;
+  }
+
+  .reason + .reason {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
 }
 
 /* ---------- Trust strip ---------- */
@@ -231,12 +269,6 @@
 }
 
 @media (max-width: 1024px) {
-  .services,
-  .reasons {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
-  }
-
   .trust {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: 16px;

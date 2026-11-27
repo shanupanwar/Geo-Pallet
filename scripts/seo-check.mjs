@@ -117,7 +117,8 @@ for (const file of pages) {
 
   if (title) titles.set(title, [...(titles.get(title) || []), page]);
   if (desc) descs.set(desc, [...(descs.get(desc) || []), page]);
-  indexable.push(page); // every real page must be in the sitemap
+  // every real page must be in the sitemap, except placeholders marked <meta name="geo-sitemap" content="exclude">
+  if (metaContent(html, "name", "geo-sitemap") !== "exclude") indexable.push(page);
 }
 
 for (const [t, list] of titles) if (list.length > 1) err(list.join(", "), `same title on several pages: "${t}"`);

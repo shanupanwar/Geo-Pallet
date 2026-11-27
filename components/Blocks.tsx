@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GOOGLE_PROFILES, TESTIMONIALS, googleLinks, type Location } from "@/content/data/testimonials";
-import { BUSINESS } from "@/lib/site";
+import { BadgeDollarSign, ClipboardList, Truck } from "lucide-react";
 import Icon from "./Icon";
 import QuoteForm from "./QuoteForm";
 import styles from "./Blocks.module.css";
@@ -150,41 +150,35 @@ export function Members({ title = "Members of", centered = false }: { title?: st
 }
 
 /**
- * Quote section (homepage, anchor #form): text + other ways to reach us on the left,
- * the short quote form on the right. Calm, no boxes.
+ * Quote section (homepage, anchor #form): what happens in 3 simple steps, then the short form.
+ * Focused on getting a price, not on contact details.
  */
 export function QuoteSection({ title = "Let’s Get Moving" }: { title?: string }) {
+  const steps = [
+    { icon: ClipboardList, title: "Tell us what you need", text: "Pallet type, quantity and delivery area. It only takes a minute." },
+    { icon: BadgeDollarSign, title: "Get your price", text: "Our team will contact you shortly with details." },
+    { icon: Truck, title: "We deliver", text: "Pallet delivery across the Lower Mainland and U.S. border areas." },
+  ];
   return (
     <section className={`section ${styles.quote}`} id="form" aria-labelledby="quote-title">
-      <div className={`container ${styles.quoteGrid}`}>
-        <div className={`${styles.quoteIntro} reveal`}>
+      <div className={`container ${styles.quoteWrap}`}>
+        <div className={`${styles.quoteHeader} reveal`}>
           <Eyebrow>Quote Now</Eyebrow>
           <h2 id="quote-title" className={styles.quoteTitle}>{title}</h2>
           <p className={styles.quoteLead}>We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
-          <ul className={styles.quoteContacts}>
-            <li>
-              <Icon name="phone" />
-              <span>
-                <small>Prefer to talk?</small>
-                <a href={`tel:${BUSINESS.phones[0].tel}`}>{BUSINESS.phones[0].label}</a>
-              </span>
-            </li>
-            <li>
-              <Icon name="envelope" />
-              <span>
-                <small>Email</small>
-                <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
-              </span>
-            </li>
-            <li>
-              <Icon name="clockRegular" />
-              <span>
-                <small>Business hours</small>
-                {BUSINESS.hoursText}
-              </span>
-            </li>
-          </ul>
         </div>
+        <ol className={styles.steps}>
+          {steps.map((st, i) => (
+            <li key={st.title} className="reveal">
+              <span className={styles.stepIcon} aria-hidden="true">
+                <st.icon strokeWidth={1.5} />
+                <b>{i + 1}</b>
+              </span>
+              <h3>{st.title}</h3>
+              <p>{st.text}</p>
+            </li>
+          ))}
+        </ol>
         <div className={styles.quoteForm}>
           <QuoteForm />
         </div>
