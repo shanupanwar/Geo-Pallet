@@ -4,13 +4,93 @@
   "submit": "Get a quote",
   "success": "Thanks for contacting. Your request has been received.Our team will contact you shortly with details.",
   "fields": [
-    { "id": "name", "type": "text", "label": "Full Name", "required": true, "width": "half", "autocomplete": "name", "validate": "fullName" },
-    { "id": "email", "type": "email", "label": "Your Email Address", "required": true, "width": "half", "autocomplete": "email" },
-    { "id": "phone", "type": "phone", "label": "Phone Number", "required": true, "width": "half", "countryCodes": ["CA +1", "US +1"], "placeholder": "Enter phone number" },
-    { "id": "company", "type": "text", "label": "Company Name", "required": true, "width": "half", "autocomplete": "organization" },
-    { "id": "pallet", "type": "select", "label": "What type of pallets do you need?", "required": true, "width": "half", "choices": ["2 way Pallet", "4 way Pallet", "Skid Pallet", "Block pallet", "Wing Pallet", "Wood Cribbing", "Crate", "Custom"] },
-    { "id": "heat", "type": "radio", "label": "Heat treated Pallets", "required": true, "width": "half", "choices": ["Yes", "No"] },
-    { "id": "qty", "type": "select", "label": "Estimated Quantity", "required": true, "width": "half", "choices": ["50-100", "100-500", "500+"] },
-    { "id": "location", "type": "select", "label": "Delivery location", "required": true, "width": "half", "choices": ["Across B.C", "Washington USA"] }
+    {
+      "id": "name",
+      "type": "text",
+      "label": "Full name",
+      "required": true,
+      "width": "half",
+      "autocomplete": "name",
+      "validate": "fullName"
+    },
+    {
+      "id": "email",
+      "type": "email",
+      "label": "Email address",
+      "required": true,
+      "width": "half",
+      "autocomplete": "email"
+    },
+    {
+      "id": "phone",
+      "type": "phone",
+      "label": "Phone number",
+      "required": true,
+      "width": "half",
+      "countryCodes": [
+        "CA +1",
+        "US +1"
+      ],
+      "placeholder": "Enter phone number"
+    },
+    {
+      "id": "company",
+      "type": "text",
+      "label": "Company name",
+      "required": true,
+      "width": "half",
+      "autocomplete": "organization"
+    },
+    {
+      "id": "pallet",
+      "type": "select",
+      "label": "What type of pallets do you need?",
+      "required": true,
+      "width": "half",
+      "choices": [
+        "2-way pallet",
+        "4-way pallet",
+        "Skid pallet",
+        "Block pallet",
+        "Wing pallet",
+        "Wood cribbing",
+        "Crate",
+        "Custom"
+      ]
+    },
+    {
+      "id": "heat",
+      "type": "radio",
+      "label": "Heat-treated pallets",
+      "required": true,
+      "width": "half",
+      "choices": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "qty",
+      "type": "select",
+      "label": "Estimated quantity",
+      "required": true,
+      "width": "half",
+      "choices": [
+        "50-100",
+        "100-500",
+        "500+"
+      ]
+    },
+    {
+      "id": "location",
+      "type": "select",
+      "label": "Delivery location",
+      "required": true,
+      "width": "half",
+      "choices": [
+        "Across B.C",
+        "Washington USA"
+      ]
+    }
   ]
 }

@@ -8,7 +8,7 @@ category: WOODEN PALLETS & SOLUTIONS
 categorySlug: wooden-pallets-solutions
 categories:
   - wooden-pallets-solutions
-image: /wp-content/uploads/2026/04/WhatsApp-Image-2026-06-24-at-10.44.48-AM.jpeg
+image: /wp-content/uploads/2026/04/4-way-stringer-pallet.jpeg
 imageAlt: 4-way notched stringer wooden pallet
 focusKeyword: 4-way pallets
 ---

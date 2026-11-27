@@ -8,7 +8,7 @@ category: WOODEN PALLETS & SOLUTIONS
 categorySlug: wooden-pallets-solutions
 categories:
   - wooden-pallets-solutions
-image: /wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-9.55.06-PM.jpeg
+image: /wp-content/uploads/2026/05/block-pallet.jpeg
 imageAlt: Block Pallets
 focusKeyword: Block pallets
 ---

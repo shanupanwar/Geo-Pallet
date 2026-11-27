@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS, NAV } from "@/lib/site";
 import Icon from "./Icon";
+import HeaderScroll from "./HeaderScroll";
 import MobileMenu from "./MobileMenu";
 import styles from "./Header.module.css";
 
@@ -57,6 +58,7 @@ export default function Header() {
 
         <MobileMenu nav={NAV} phone={BUSINESS.phones[0]} />
       </div>
+      <HeaderScroll />
     </header>
   );
 }

@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TESTIMONIALS } from "@/content/data/testimonials";
-import quoteSchema from "@/content/forms/quote.json";
 import Icon from "./Icon";
-import SchemaForm, { type FormSchema } from "./SchemaForm";
+import QuoteForm from "./QuoteForm";
 import styles from "./Blocks.module.css";
 
 /* Reusable page sections shared by several pages. All render as plain HTML (no JavaScript). */
@@ -93,45 +92,53 @@ export function Testimonials({ intro }: { intro: string }) {
   );
 }
 
-export function Members() {
+/** "Members of": two compact association cards. The whole card is the link. */
+export function Members({ title = "Members of", centered = false }: { title?: string; centered?: boolean }) {
   const orgs = [
-    { name: "Canadian Wood Pallet & Container Association", logo: "/wp-content/uploads/2024/05/cwcpa-logo-2.png", w: 115, h: 121, url: "https://www.canadianpallets.com" },
-    { name: "National Wooden Pallet & Container Association", logo: "/wp-content/uploads/2025/12/NWPCA-Logo-600x132-1.webp", w: 600, h: 132, url: "https://www.palletcentral.com/page/AboutPalletDesign" },
+    { short: "CWPCA", name: "Canadian Wood Pallet & Container Association", logo: "/wp-content/uploads/2024/05/cwcpa-logo-2.png", w: 115, h: 121, url: "https://www.canadianpallets.com" },
+    { short: "NWPCA", name: "National Wooden Pallet & Container Association", logo: "/wp-content/uploads/2025/12/NWPCA-Logo-600x132-1.webp", w: 600, h: 132, url: "https://www.palletcentral.com/page/AboutPalletDesign" },
   ];
   return (
-    <section className={`section ${styles.members}`} aria-labelledby="members-title">
+    <section className={`${styles.members} ${centered ? styles.membersCentered : ""}`} aria-labelledby="members-title">
       <div className={`container ${styles.membersGrid}`}>
-        <h2 id="members-title" className={`h-xl ${styles.membersTitle}`}>
-          <Icon name="pallet" className="gold" /> Members of
-        </h2>
-        <div className={styles.memberCards}>
-          {orgs.map((o) => (
-            <div key={o.name} className={styles.member}>
-              <Image src={o.logo} alt={`${o.name} logo`} width={o.w} height={o.h} className={styles.memberLogo} />
-              <a href={o.url} target="_blank" rel="noopener" className="link-more">
-                Visit Website »<span className="sr-only"> ({o.name})</span>
-              </a>
-            </div>
-          ))}
+        <div>
+          <Eyebrow>Industry associations</Eyebrow>
+          <h2 id="members-title" className={styles.membersTitle}>{title}</h2>
         </div>
+        <ul className={styles.memberCards}>
+          {orgs.map((o) => (
+            <li key={o.name}>
+              <a href={o.url} target="_blank" rel="noopener" className={styles.member}>
+                <span className={styles.memberLogo}>
+                  <Image src={o.logo} alt={`${o.name} logo`} width={o.w} height={o.h} />
+                </span>
+                <span className={styles.memberText}>
+                  <strong>{o.short}</strong>
+                  <span>{o.name}</span>
+                  <span className={styles.memberLink}>
+                    Visit website <Icon name="external" />
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
 }
 
 /** "Let's Get Moving" + "Get My Quote" form (Home page, anchor #form). */
-export function QuoteSection() {
+export function QuoteSection({ title = "Let’s Get Moving" }: { title?: string }) {
   return (
     <section className={`section ${styles.quote}`} id="form" aria-labelledby="quote-title">
       <div className="container narrow center reveal">
         <Eyebrow>Quote Now</Eyebrow>
-        <h2 id="quote-title" className="h-md">Let’s Get Moving</h2>
+        <h2 id="quote-title" className="h-md">{title}</h2>
         <p className="lead">We’ve got the inventory, the logistics, and the reliability you’ve been missing.</p>
       </div>
       <div className={`container narrow ${styles.quoteCard}`}>
-        <p className={styles.quoteHead}>Get My Quote</p>
-        <span className={styles.divider} aria-hidden="true" />
-        <SchemaForm schema={quoteSchema as FormSchema} idPrefix="quote" />
+        <QuoteForm />
       </div>
     </section>
   );

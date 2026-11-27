@@ -109,7 +109,26 @@ show/hide rules and thank-you messages. **Sending is not connected yet**: the fo
 later. Until then, submitting shows a message with the phone number and email.
 
 When the API exists, set the repository variable `FORM_ENDPOINT` to its address. Every form then POSTs
-`{ form, fields: [{ label, value }], page }` (as JSON, or multipart with `payload` + `files` when a file is attached).
+`{ form, fields: [{ label, value }], page, flags, suspicious }` (as JSON, or multipart with `payload` + `files` when a file is attached).
+
+### Spam protection (agreed 2026-11-27)
+
+Already in the browser (`lib/spam.ts`):
+- **Blocked:** impossible phone numbers (wrong length, area codes that don't exist, 555-01xx, 111 111 1111),
+  throwaway email services, broken emails, web links in text fields, over-long text, names with digits,
+  a hidden robot trap, forms sent within 3 seconds, more than 3 sends per hour from one browser.
+- **Flagged, not blocked:** phone numbers outside BC / Washington State, placeholder-looking emails
+  (`test@`, `abcd@`, `asdf@`…). Flags travel with the submission in `flags`.
+- Email typos get a "Did you mean …?" hint (e.g. gmial.com → gmail.com).
+
+The forms API must (a robot can skip the browser):
+1. Repeat every check above on the server.
+2. Verify a Cloudflare Turnstile token (free, invisible bot check), limit sends per IP address.
+3. Check that the email's domain can receive mail (MX record).
+4. If anything is flagged: email the visitor a 6-digit confirmation code; deliver to
+   office@geopalletltd.com only after it's entered. Otherwise deliver with **"[Check] "** at the start of
+   the subject, so nothing genuine is lost.
+5. Clean submissions go to office@geopalletltd.com as normal.
 
 > GitHub Pages only serves static files, so the forms API has to run somewhere else
 > (for example a serverless function or a small server).

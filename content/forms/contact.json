@@ -4,11 +4,50 @@
   "submit": "Get Free Quote",
   "success": "The form was sent successfully.",
   "fields": [
-    { "id": "first", "type": "text", "label": "First Name", "required": true, "width": "half", "autocomplete": "given-name" },
-    { "id": "last", "type": "text", "label": "Last Name", "required": true, "width": "half", "autocomplete": "family-name" },
-    { "id": "phone", "type": "phone", "label": "Phone Number", "required": true, "width": "half" },
-    { "id": "email", "type": "email", "label": "Email Address", "required": true, "width": "half", "autocomplete": "email" },
-    { "id": "service", "type": "text", "label": "Required Service", "required": true, "width": "full" },
-    { "id": "details", "type": "textarea", "label": "Project Details", "required": true, "width": "full" }
+    {
+      "id": "first",
+      "type": "text",
+      "label": "First name",
+      "required": true,
+      "width": "half",
+      "autocomplete": "given-name"
+    },
+    {
+      "id": "last",
+      "type": "text",
+      "label": "Last name",
+      "required": true,
+      "width": "half",
+      "autocomplete": "family-name"
+    },
+    {
+      "id": "phone",
+      "type": "phone",
+      "label": "Phone number",
+      "required": true,
+      "width": "half"
+    },
+    {
+      "id": "email",
+      "type": "email",
+      "label": "Email address",
+      "required": true,
+      "width": "half",
+      "autocomplete": "email"
+    },
+    {
+      "id": "service",
+      "type": "text",
+      "label": "Required service",
+      "required": true,
+      "width": "full"
+    },
+    {
+      "id": "details",
+      "type": "textarea",
+      "label": "Project details",
+      "required": true,
+      "width": "full"
+    }
   ]
 }

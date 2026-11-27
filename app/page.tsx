@@ -1,157 +1,158 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow, FeatureBox, Members, QuoteSection, ServiceCard, Stat, Testimonials } from "@/components/Blocks";
+import { Eyebrow, Members, QuoteSection } from "@/components/Blocks";
 import HeroVideo from "@/components/HeroVideo";
+import { ReasonCards, ServiceCards, TrustStrip } from "@/components/HomeCards";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
-import { PRODUCT_TILES } from "@/content/data/products";
+import ProductTiles from "@/components/ProductTiles";
+import ReviewCards from "@/components/ReviewCards";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
+import { BUSINESS, SITE_URL, absoluteUrl } from "@/lib/site";
 import styles from "./home.module.css";
 
+// Google title and description approved 2026-11-26.
 export const metadata = pageMetadata({
-  title: "High Quality Wooden Pallets in British Columbia | Geo Pallet Ltd",
+  title: "Wooden Pallets in BC | Custom & Heat-Treated | Geo Pallet",
   description:
-    "Looking for wooden pallets in British Columbia? Geo Pallet provides custom pallets, heat treated pallets, and reliable pallet solutions with fast delivery.",
+    "Wooden pallet manufacturer in Surrey & Langley, BC. New, custom, ISPM-15 heat-treated and recycled pallets, skids and crates, delivered across BC.",
   path: "/",
+  image: "/video/geo-pallet-hero-poster.jpg",
+  imageAlt: "3D wooden pallet by Geo Pallet Ltd.",
 });
 
 export default function HomePage() {
   return (
-    <>
-      <section className={styles.hero}>
-        <div className={styles.heroMedia}>
-          <Image src="/home-hero-poster.jpg" alt="" fill priority sizes="100vw" className={styles.poster} />
-          <HeroVideo id="DevrDZtQOV0" />
-        </div>
+    <div className={styles.home}>
+      {/* 1. Video + headline */}
+      <section className={styles.hero} aria-labelledby="home-title">
+        <HeroVideo className={styles.heroMedia} />
         <div className={`container ${styles.heroText}`}>
-          <h1 className={styles.h1}>
-            <span className={styles.pre}>Trusted Source for a Wooden Pallet in British Columbia.</span>
-            <span className={styles.main}>High-Performance Durability at a Competitive Price</span>
-          </h1>
+          <p className={styles.pre}>Trusted Source for a Wooden Pallet in British Columbia.</p>
+          <h1 id="home-title" className={styles.h1}>High-Performance Wooden Pallets in British Columbia</h1>
+          <p className={styles.tagline}>Durability at a competitive price</p>
           <p className={styles.heroLead}>
-            Operating out of Surrey and Langley, we build new and custom solutions tailored to your needs. As a local wooden
-            pallet company, we obsess over the details so that your freight stays safe across British Columbia.
+            Operating out of Surrey and Langley, we build new and custom solutions tailored to your needs. As a local wooden pallet
+            company, we obsess over the details so that your freight stays safe across British Columbia.
           </p>
-          <Link href="/pallet-inquiry-forms/" className="btn btn-gradient">
-            Get Started <span className="btn-dot"><Icon name="arrowRight" /></span>
-          </Link>
+          <div className={styles.ctas}>
+            <a href="#form" className="btn btn-gradient">
+              Get a Quote <span className="btn-dot"><Icon name="arrowRight" /></span>
+            </a>
+            <a href="#products" className={styles.ghost}>
+              View Products <Icon name="chevronDown" />
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className={`container split ${styles.about}`}>
-          <div className="reveal">
+      {/* 2. Trust strip */}
+      <section className="container" aria-label="Geo Pallet in numbers">
+        <TrustStrip />
+      </section>
+
+      {/* 3. About */}
+      <section className={styles.block} aria-labelledby="about-title">
+        <div className={`container ${styles.section}`}>
+          <header className={`${styles.header} reveal`}>
             <Eyebrow>About Us</Eyebrow>
-            <h2 className="h-lg">
-              <Link href="/about/">Reliable Wooden Pallets at a Fair Price</Link>
-            </h2>
-            <Link href="/about/" className="btn">Know More</Link>
-          </div>
-          <div className="reveal">
-            <p className="lead">
-              We deliver high-quality <strong>new pallets</strong> and <strong>custom wooden pallets</strong> designed to handle
-              your specific load requirements. Based in <strong>Surrey</strong>, our <strong>wooden pallet company</strong> focuses
-              on the small details to ensure your freight moves safely across BC.
+            <h2 id="about-title" className={styles.h2}>Your Local Wooden Pallet Company in Surrey, BC</h2>
+            <p className={styles.sub}>
+              We deliver high-quality <strong>new pallets</strong> and <strong>custom wooden pallets</strong> designed to handle your
+              specific load requirements. Based in <strong>Surrey</strong>, our <strong>wooden pallet company</strong> focuses on the
+              small details to ensure your freight moves safely across BC.
             </p>
-            <div className="grid grid-2">
-              <Stat value="150k+" label="Completed Projects" />
-              <Stat value="1,000+" label="Clients" />
-            </div>
-          </div>
+          </header>
+          <Link href="/about/" className="btn btn-ghost">Our Story</Link>
         </div>
       </section>
 
-      <section className={`section ${styles.products}`} aria-labelledby="products-title">
-        <div className="container">
-          <h2 id="products-title" className="h-md center">Explore Pallet Products</h2>
-          <ul className={styles.tiles}>
-            {PRODUCT_TILES.map((p) => (
-              <li key={p.href} className="reveal">
-                <Link href={p.href} className={styles.tile}>
-                  <h3>{p.title}</h3>
-                  <Image src={p.image} alt={p.alt} width={534} height={284} sizes="(max-width: 600px) 90vw, (max-width: 1024px) 45vw, 300px" />
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {/* 4. Products */}
+      <section className={styles.block} id="products" aria-labelledby="products-title">
+        <div className={`container ${styles.section}`}>
+          <header className={`${styles.header} reveal`}>
+            <Eyebrow>Our Products</Eyebrow>
+            <h2 id="products-title" className={styles.h2}>Explore Our Wooden Pallet Products</h2>
+          </header>
+          <ProductTiles />
         </div>
       </section>
 
-      <section className="section" aria-labelledby="services-title">
-        <div className="container">
-          <div className={`split ${styles.servicesHead}`}>
-            <div className="reveal">
-              <Eyebrow>Our Services</Eyebrow>
-              <h2 id="services-title" className="h-sm">Geo Pallet: Reliable Team &amp; Customized Solutions</h2>
-            </div>
-            <p className="lead reveal">
-              <Link href="/pallet-supplier-british-columbia/">
-                We customize our work to best serve you, offering reliable wooden pallets British Columbia tailored to your supply chain.
-              </Link>
+      {/* 5. Services */}
+      <section className={styles.block} aria-labelledby="services-title">
+        <div className={`container ${styles.section}`}>
+          <header className={`${styles.header} reveal`}>
+            <Eyebrow>Our Services</Eyebrow>
+            <h2 id="services-title" className={styles.h2}>Pallet Services Across British Columbia</h2>
+            <p className={styles.sub}>
+              We customize our work to best serve you, offering reliable wooden pallets British Columbia tailored to your supply chain.
             </p>
-          </div>
-          <div className="grid grid-3">
-            <ServiceCard
-              icon="truck"
-              title="Delivery Solutions"
-              text="We provide reliable pallet delivery and pallet pickup to ensure your wooden pallets reach you on time across BC."
-              href="/pallet-supplier-british-columbia/#delivery"
-              image="/wp-content/uploads/2024/05/BC-and-WA-geo-pallet-map.svg"
-              imageAlt="Map of pallet delivery across British Columbia and Washington"
-            />
-            <ServiceCard
-              icon="hammer"
-              title="Pallet Repair"
-              text="Our pallet repair and pallet recycling services deliver prompt, dependable solutions that meet industry standards and help you save on costs."
-              href="/pallet-supplier-british-columbia/#repair"
-              image="/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-12-at-5.42.32-AM-2-819x1024.jpeg"
-              imageAlt="Pallet repair services"
-            />
-            <ServiceCard
-              icon="fire"
-              title="Heat Treated Pallets"
-              text="Our heat treated pallets are ISPM 15 pallets compliant, offering reliable protection for your export needs."
-              href="/pallet-supplier-british-columbia/#heat"
-            />
-          </div>
+          </header>
+          <ServiceCards />
         </div>
       </section>
 
-      <section className={`section ${styles.quality}`}>
-        <div className="container narrow center reveal">
-          <Eyebrow>Quality That Performs</Eyebrow>
-          <h2 className="h-md">Turning Your Shipping Needs into Reality.</h2>
-          <p className="lead">
-            We build custom wooden pallets that give your business a competitive edge. Our clients rely on our pallet manufacturer
-            expertise for consistent quality, durable skids, and dependable support across Vancouver and Langley.
-          </p>
-        </div>
-        <div className={`container grid grid-3 ${styles.features}`}>
-          <FeatureBox
-            icon="/wp-content/uploads/2026/03/icons8-pricing-48.png"
-            title="Competitive Pricing"
-            text="We provide affordable, high-quality wooden pallets to ensure exceptional value for your business in Richmond."
-          />
-          <FeatureBox
-            icon="/wp-content/uploads/2026/03/icons8-example-50-1.png"
-            title="Tailored Custom Builds"
-            text="Our expert team uses a hands-on approach to build new pallets that fit your specific warehouse and shipping dimensions."
-          />
-          <FeatureBox
-            icon="/wp-content/uploads/2026/03/icons8-goal-oriented-focus-50-1.png"
-            title="Customer-First Focus"
-            text="Your needs come first, which is why we offer durable, custom-designed wooden pallets British Columbia built to last."
-          />
+      {/* 6. Why choose us */}
+      <section className={styles.block} aria-labelledby="why-title">
+        <div className={`container ${styles.section}`}>
+          <header className={`${styles.header} reveal`}>
+            <Eyebrow>Quality That Performs</Eyebrow>
+            <h2 id="why-title" className={styles.h2}>Why Businesses Choose Geo Pallet</h2>
+            <p className={styles.sub}>
+              We build custom wooden pallets that give your business a competitive edge. Our clients rely on our pallet manufacturer
+              expertise for consistent quality, durable skids, and dependable support across Vancouver and Langley.
+            </p>
+          </header>
+          <ReasonCards />
         </div>
       </section>
 
-      <QuoteSection />
+      {/* 7. Reviews */}
+      <section className={styles.block} aria-labelledby="reviews-title">
+        <div className={`container ${styles.section}`}>
+          <header className={`${styles.header} reveal`}>
+            <Eyebrow>Testimonials</Eyebrow>
+            <h2 id="reviews-title" className={styles.h2}>What Our Customers Say</h2>
+            <p className={styles.sub}>
+              Customers drive our commitment to continuous improvement. On the whole , regular process reviews ensure compliance and
+              consistently meet evolving needs with high-quality solutions.
+            </p>
+          </header>
+        </div>
+        <ReviewCards />
+      </section>
 
-      <Testimonials intro="Customers drive our commitment to continuous improvement. On the whole , regular process reviews ensure compliance and consistently meet evolving needs with high-quality solutions." />
+      {/* 8. Short quote form (the detailed form is offered after sending) */}
+      <QuoteSection title="Get a Free Pallet Quote" />
 
-      <Members />
+      {/* 9. Memberships */}
+      <Members title="Industry Association Memberships" centered />
 
-      <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }])} />
-    </>
+      {/* Phones: always-visible Call / Get a Quote bar */}
+      <nav className={styles.actionBar} aria-label="Quick contact">
+        <a href={`tel:${BUSINESS.phones[0].tel}`}>
+          <Icon name="phone" /> Call
+        </a>
+        <a href="#form" className={styles.actionPrimary}>
+          Get a Quote <Icon name="arrowRight" />
+        </a>
+      </nav>
+
+      <JsonLd
+        data={[
+          breadcrumbLd([{ name: "Home", path: "/" }]),
+          {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: "Geo Pallet wooden pallet",
+            description: "3D animation of a Geo Pallet wooden pallet being assembled, board by board.",
+            thumbnailUrl: absoluteUrl("/video/geo-pallet-hero-poster.jpg"),
+            contentUrl: absoluteUrl("/video/geo-pallet-hero.mp4"),
+            uploadDate: "2026-11-26",
+            duration: "PT1M18S",
+            publisher: { "@id": `${SITE_URL}/#business` },
+          },
+        ]}
+      />
+    </div>
   );
 }

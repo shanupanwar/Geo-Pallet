@@ -8,7 +8,7 @@ category: WOODEN PALLETS & SOLUTIONS
 categorySlug: wooden-pallets-solutions
 categories:
   - wooden-pallets-solutions
-image: /wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-11.47.10-PM.jpeg
+image: /wp-content/uploads/2026/05/2-way-stringer-pallet.jpeg
 imageAlt: 2-way wooden stringer pallets in a warehouse
 focusKeyword: 2 way pallets
 ---

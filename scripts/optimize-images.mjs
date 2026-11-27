@@ -28,7 +28,7 @@ function usedImages() {
       if (fs.statSync(p).isDirectory()) walk(p);
       else if (/\.(tsx?|json|md|css)$/.test(name) && name !== "image-manifest.json") {
         const text = fs.readFileSync(p, "utf8");
-        for (const m of text.matchAll(/(\/(?:wp-content\/uploads\/[^"'`\s)]+|[\w-]+)\.(?:png|jpe?g|webp))/gi)) found.add(m[1]);
+        for (const m of text.matchAll(/(\/(?:wp-content\/uploads\/[^"'`\s)]+|images\/[^"'`\s)]+|[\w-]+)\.(?:png|jpe?g|webp))/gi)) found.add(m[1]);
       }
     }
   };

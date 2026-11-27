@@ -8,7 +8,7 @@ category: Uncategorized
 categorySlug: uncategorized
 categories:
   - uncategorized
-image: /wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-11.51.31-PM.jpeg
+image: /wp-content/uploads/2026/05/recycled-wooden-pallet.jpeg
 imageAlt: Stack of recycled wooden pallets
 focusKeyword: Recycled Wooden Pallets
 ---

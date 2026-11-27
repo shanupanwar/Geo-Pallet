@@ -3,13 +3,24 @@
   top: 0;
   z-index: 100;
   background: #000;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* After scrolling: shorter, see-through dark glass with a hairline, like Apple's menu bar. */
+.header[data-scrolled] {
+  background: rgba(0, 0, 0, 0.78);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
 .inner {
   max-width: 1440px;
   margin-inline: auto;
   height: var(--header-h);
-  padding: 0 15px;
+  padding: 0 20px;
+  transition: height 0.3s ease;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -21,8 +32,19 @@
 }
 
 .logo img {
-  width: 144px;
+  width: 130px;
   height: auto;
+  transition: width 0.3s ease;
+}
+
+@media (min-width: 1025px) {
+  .header[data-scrolled] .inner {
+    height: 64px;
+  }
+
+  .header[data-scrolled] .logo img {
+    width: 108px;
+  }
 }
 
 .nav {

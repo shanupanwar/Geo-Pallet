@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { submitForm, validators } from "@/lib/forms";
+import { submitForm } from "@/lib/forms";
+import { checkEmail, recordSend, tooManyRecent } from "@/lib/spam";
 import styles from "./Footer.module.css";
 
 /** Footer "Subscribe to our newsletter" form. */
@@ -13,10 +14,12 @@ export default function NewsletterForm() {
     const fd = new FormData(e.currentTarget);
     if (fd.get("website")) return; // filled only by spam robots
     const email = String(fd.get("email") || "");
-    const err = validators.email(email);
-    if (err) return setStatus({ kind: "error", msg: err });
+    const c = checkEmail(email);
+    if (!c.ok) return setStatus({ kind: "error", msg: c.error });
+    if (tooManyRecent()) return setStatus({ kind: "error", msg: "You've sent several requests in the last hour. Please try again later." });
     setStatus({ kind: "sending" });
-    const r = await submitForm("Newsletter sign-up", [{ label: "Email", value: email }]);
+    const r = await submitForm("Newsletter sign-up", [{ label: "Email", value: email.trim().toLowerCase() }], [], c.junk ? ["Email looks like a placeholder"] : []);
+    if (r.ok) recordSend();
     setStatus(r.ok ? { kind: "done", msg: "The form was sent successfully." } : { kind: "error", msg: r.error });
   }
 

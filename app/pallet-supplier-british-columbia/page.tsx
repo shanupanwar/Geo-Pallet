@@ -13,24 +13,24 @@ export const metadata = pageMetadata({
   description:
     "Quality wooden pallets supplied across Canada by Geo Pallet. Serving businesses throughout British Columbia, including Vancouver and nearby areas.",
   path: "/pallet-supplier-british-columbia/",
-  image: "/wp-content/uploads/2026/03/IMG_3008-1.jpeg",
+  image: "/wp-content/uploads/2026/03/geo-pallet-delivery-truck.jpeg",
   imageAlt: "Pallet delivery service",
 });
 
 const TILES = [
-  { href: "#delivery", src: "/wp-content/uploads/2026/03/IMG_3008-1.jpeg", alt: "Pallet delivery service", title: "Delivery Solutions" },
+  { href: "#delivery", src: "/wp-content/uploads/2026/03/geo-pallet-delivery-truck.jpeg", alt: "Pallet delivery service", title: "Delivery Solutions" },
   { href: "#repair", src: "/wp-content/uploads/2026/03/Repair.jpg-e1775853615414.jpeg", alt: "Pallet repair", title: "Pallet Repair" },
-  { href: "#heat", src: "/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-05-at-02.55.02-1.jpeg", alt: "Heat treated pallets", title: "Heat treated Pallets" },
-  { href: "#choose", src: "/wp-content/uploads/2026/03/WhatsApp-Image-2025-08-07-at-16.02.47-1.jpeg", alt: "Wooden pallet supplier | Geo pallet Ltd", title: "Why Choose Us" },
-  { href: "#gallery", src: "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.26-AM-1.jpeg", alt: "Pallet Gallery", title: "Pallet Gallery" },
+  { href: "#heat", src: "/wp-content/uploads/2026/03/heat-treated-pallets-ht-stamp-printing.jpeg", alt: "Heat treated pallets", title: "Heat treated Pallets" },
+  { href: "#choose", src: "/wp-content/uploads/2026/03/geo-pallet-facility-british-columbia.jpeg", alt: "Wooden pallet supplier | Geo pallet Ltd", title: "Why Choose Us" },
+  { href: "#gallery", src: "/wp-content/uploads/2026/04/geo-pallet-lumber-yard.jpeg", alt: "Pallet Gallery", title: "Pallet Gallery" },
 ];
 
 const GALLERY = [
-  "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.25-AM-2.jpeg",
-  "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.25-AM.jpeg",
-  "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.26-AM-1.jpeg",
-  "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.31-AM-1.jpeg",
-  "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.30-AM.jpeg",
+  "/wp-content/uploads/2026/04/wooden-pallets-stacked-warehouse.jpeg",
+  "/wp-content/uploads/2026/04/new-wooden-pallets-stack-yard.jpeg",
+  "/wp-content/uploads/2026/04/geo-pallet-lumber-yard.jpeg",
+  "/wp-content/uploads/2026/04/new-wooden-pallet-top-view.jpeg",
+  "/wp-content/uploads/2026/04/wooden-skid-frame-stringers.jpeg",
 ].map((src, i) => ({ src, alt: `Wooden pallets at Geo Pallet Ltd. (photo ${i + 1})` }));
 
 const WHY = [
@@ -139,7 +139,7 @@ export default function ServicesPage() {
       <section className="section" id="heat" aria-labelledby="heat-title">
         <div className="container split">
           <Image
-            src="/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-05-at-02.55.02-1-819x1024.jpeg"
+            src="/wp-content/uploads/2026/03/heat-treated-pallets-ht-stamp-printing-819x1024.jpeg"
             alt="Heat treated pallets"
             width={819}
             height={1024}

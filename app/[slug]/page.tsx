@@ -4,9 +4,8 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Blocks";
 import JsonLd from "@/components/JsonLd";
 import PostCard from "@/components/PostCard";
-import SchemaForm, { type FormSchema } from "@/components/SchemaForm";
+import QuoteForm from "@/components/QuoteForm";
 import VideoFacade from "@/components/VideoFacade";
-import quoteSchema from "@/content/forms/quote.json";
 import { formatDate, getAllPosts, getCategories, getPost } from "@/lib/posts";
 import { REDIRECTS } from "@/lib/redirects";
 import { articleLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -39,12 +38,12 @@ export async function generateMetadata({ params }: PageProps<"/[slug]">) {
 }
 
 const GALLERY = [
-  { href: "/2-way-pallets/", src: "/wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-11.47.10-PM-768x432.jpeg", alt: "2-way pallets" },
-  { href: "/4-way-pallets/", src: "/wp-content/uploads/2026/04/WhatsApp-Image-2026-06-24-at-10.44.48-AM.jpeg", alt: "4-way pallets" },
-  { href: "/wooden-skids/", src: "/wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-9.55.10-PM-768x432.jpeg", alt: "Wooden skids" },
-  { href: "/wing-pallets/", src: "/wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-9.55.09-PM-768x432.jpeg", alt: "Wing pallets" },
-  { href: "/block-pallets/", src: "/wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-9.55.06-PM-768x432.jpeg", alt: "Block pallets" },
-  { href: "/wood-cribbing/", src: "/wp-content/uploads/2026/05/WhatsApp-Image-2026-06-01-at-9.55.04-PM-768x432.jpeg", alt: "Wood cribbing" },
+  { href: "/2-way-pallets/", src: "/wp-content/uploads/2026/05/2-way-stringer-pallet-768x432.jpeg", alt: "2-way pallets" },
+  { href: "/4-way-pallets/", src: "/wp-content/uploads/2026/04/4-way-stringer-pallet.jpeg", alt: "4-way pallets" },
+  { href: "/wooden-skids/", src: "/wp-content/uploads/2026/05/wooden-skid-768x432.jpeg", alt: "Wooden skids" },
+  { href: "/wing-pallets/", src: "/wp-content/uploads/2026/05/wing-pallet-768x432.jpeg", alt: "Wing pallets" },
+  { href: "/block-pallets/", src: "/wp-content/uploads/2026/05/block-pallet-768x432.jpeg", alt: "Block pallets" },
+  { href: "/wood-cribbing/", src: "/wp-content/uploads/2026/05/wood-cribbing-768x432.jpeg", alt: "Wood cribbing" },
 ];
 
 /** Forwarding page for an old address. */
@@ -118,7 +117,7 @@ export default async function PostPage({ params }: PageProps<"/[slug]">) {
           <div className={styles.box}>
             <h2 className={styles.boxTitle}>Get Free Quote</h2>
             <span className={styles.dot} aria-hidden="true" />
-            <SchemaForm schema={{ ...(quoteSchema as FormSchema), fields: (quoteSchema as FormSchema).fields.map((f) => ({ ...f, width: "full" })) }} idPrefix="sidebar-quote" />
+            <QuoteForm compact idPrefix="sidebar-quote" />
           </div>
           <div className={styles.box}>
             <h2 className={styles.boxTitle}>Blog Categories</h2>

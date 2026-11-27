@@ -1,0 +1,161 @@
+.tiles {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 28px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  outline-offset: 6px;
+}
+
+/* The pallet "stands" on a soft gold spotlight that brightens on hover. */
+.stage {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px 6px 18px;
+  isolation: isolate;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 6px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(210, 181, 130, 0.35), transparent);
+  filter: blur(6px);
+  opacity: 0.45;
+  transform: scaleX(0.85);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  z-index: -1;
+}
+
+.stage img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.45s ease;
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.55));
+}
+
+.name {
+  margin: 10px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+  position: relative;
+  padding-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+/* thin gold line that grows under the name */
+.name::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gold);
+  transform: translateX(-50%) scaleX(0.6);
+  opacity: 0.6;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.more .icon {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.tile:hover .stage img,
+.tile:focus-visible .stage img {
+  transform: translateY(-10px) scale(1.04);
+  filter: drop-shadow(0 22px 18px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 18px rgba(210, 181, 130, 0.18));
+}
+
+.tile:hover .stage::before,
+.tile:focus-visible .stage::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.tile:hover .name,
+.tile:focus-visible .name {
+  color: var(--gold-light);
+}
+
+.tile:hover .name::after,
+.tile:focus-visible .name::after {
+  transform: translateX(-50%) scaleX(2.2);
+  opacity: 1;
+}
+
+.tile:hover .more,
+.tile:focus-visible .more {
+  opacity: 1;
+  transform: none;
+}
+
+.tile:hover .more .icon {
+  transform: translateX(3px);
+}
+
+.tile:active .stage img {
+  transform: translateY(-4px) scale(0.99);
+  transition-duration: 0.12s;
+}
+
+/* Phones/tablets have no hover: show "View details" all the time. */
+@media (hover: none) {
+  .more {
+    opacity: 0.85;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage img,
+  .more,
+  .name::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 18px;
+  }
+
+  .stage img {
+    height: 130px;
+  }
+}

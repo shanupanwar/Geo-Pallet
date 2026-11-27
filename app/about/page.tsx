@@ -23,7 +23,7 @@ const STORY: StoryItem[] = [
     icon: "clipboardCheck",
     title: "Why Geo Pallet Began",
     lead: "Built to Meet a Need in B.C.",
-    image: "/wp-content/uploads/2026/03/WhatsApp-Image-2025-08-07-at-16.02.47-1.jpeg",
+    image: "/wp-content/uploads/2026/03/geo-pallet-facility-british-columbia.jpeg",
     body: (
       <p>
         Geo Pallet Ltd. was created to solve a common challenge across British Columbia: businesses needed strong, reliable, custom
@@ -35,7 +35,7 @@ const STORY: StoryItem[] = [
     icon: "peopleCarry",
     title: "Founding of Geo Pallet Ltd. (2007)",
     lead: "Founded by Industry Leaders",
-    image: "/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-12-at-5.42.32-AM-2.jpeg",
+    image: "/wp-content/uploads/2026/03/pallet-repair-worker-nail-gun.jpeg",
     body: (
       <>
         <p>
@@ -53,7 +53,7 @@ const STORY: StoryItem[] = [
     icon: "warehouse",
     title: "Building the Foundation",
     lead: "How We Built Trust and Strengthened Operations",
-    image: "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.26-AM-1.jpeg",
+    image: "/wp-content/uploads/2026/04/geo-pallet-lumber-yard.jpeg",
     body: (
       <>
         <p>With years of experience behind them, the founders grew Geo Pallet through:</p>
@@ -69,7 +69,7 @@ const STORY: StoryItem[] = [
     icon: "peopleArrows",
     title: "Inheritance and Active Involvement",
     lead: "Continuing the Legacy Leading Today",
-    image: "/wp-content/uploads/2026/04/WhatsApp-Image-2026-03-12-at-5.42.31-AM-2.jpeg",
+    image: "/wp-content/uploads/2026/04/geo-pallet-team-measuring-lumber.jpeg",
     body: (
       <>
         <p>
@@ -88,7 +88,7 @@ const STORY: StoryItem[] = [
     icon: "sortUp",
     title: "The Gaps We Solved",
     lead: "From Industry Gaps to Engineered Solutions",
-    image: "/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-05-at-02.55.02-1.jpeg",
+    image: "/wp-content/uploads/2026/03/heat-treated-pallets-ht-stamp-printing.jpeg",
     body: (
       <>
         <p>Geo Pallet was built to address real, everyday challenges businesses faced:</p>
