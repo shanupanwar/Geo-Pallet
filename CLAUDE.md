@@ -125,9 +125,12 @@ excluded from the sitemap.
 
 ## Next steps (status)
 
-1. **Connect the forms**: script and guide are ready. Waiting for the owner to deploy the Apps Script
-   and paste the Web app URL (…/exec). Then: set `FORM_ENDPOINT`, test every form end to end
-   (quote, inquiry with upload, contact, newsletter), later add Cloudflare Turnstile.
+1. **Forms**: connected and live (2026-11-27). GitHub variable `FORM_ENDPOINT` = the owner's Apps Script
+   web app (test Gmail for now). Tested live: quote form → script replies ok. Owner still to confirm
+   rows in the Sheet's "Quote request" tab (rows go to one tab per form, not Sheet1) and emails.
+   Still to do: test inquiry form with upload, contact forms, newsletter; switch NOTIFY_EMAIL to
+   office@geopalletltd.com; add Cloudflare Turnstile before go-live.
+   Local dev uses `.env.local` (gitignored) with `NEXT_PUBLIC_FORM_ENDPOINT`.
 2. **UI/UX for the other pages** (About, Products + pallet pages, Services, Blog, Contact, Inquiry
    forms, Site Map, 404) to match the homepage — show designs for approval first.
 3. **Test everything** (links, phones, speed/SEO).
