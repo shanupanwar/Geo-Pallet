@@ -20,7 +20,7 @@
   --container: 1280px;
   --gutter: 20px;
   --header-h: 88px;
-  --font: var(--font-vietnam), "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: var(--font-main), "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-alt: var(--font-poppins), Poppins, system-ui, sans-serif;
 }
 
@@ -150,9 +150,12 @@ p {
   margin: 0 0 20px;
 }
 
-.eyebrow .icon {
+.eyebrow .icon,
+.eyebrow svg {
   color: var(--gold);
-  font-size: 15px;
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 
 /* ---------- Headings ---------- */

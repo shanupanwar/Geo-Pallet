@@ -68,7 +68,7 @@ export default function MobileMenu({ nav, phone }: { nav: NavItem[]; phone: { la
           <a href={`tel:${phone.tel}`} className={styles.phone}>
             <Icon name="phone" className={styles.phoneIcon} /> {phone.label}
           </a>
-          <Link href="/#form" className={styles.quote} onClick={() => setOpen(false)}>
+          <Link href="/#form" className={styles.panelQuote} onClick={() => setOpen(false)}>
             Get a Quote
           </Link>
         </div>

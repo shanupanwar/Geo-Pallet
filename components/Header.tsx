@@ -54,7 +54,7 @@ export default function Header() {
             {BUSINESS.phones[0].label}
           </a>
           <Link href="/#form" className={styles.quote}>
-            Get a Quote
+            Get a Quote <Icon name="arrowRight" className={styles.quoteArrow} />
           </Link>
         </div>
 

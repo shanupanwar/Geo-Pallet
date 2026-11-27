@@ -8,7 +8,26 @@
 }
 
 .block {
-  padding-block: calc(var(--space) / 2);
+  padding-block: 0;
+}
+
+/* Clear sections: every section is its own band, alternating pure black and charcoal,
+   with generous space, so you always see where one section ends and the next begins. */
+.home {
+  --band: #0b0c11;
+}
+
+.home > section:nth-of-type(n + 3) {
+  padding-block: var(--space);
+}
+
+.home > section:nth-of-type(even) {
+  background: var(--band);
+  border-block: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.trustBand {
+  padding-block: 34px;
 }
 
 /* Every section follows the same centered pattern:
@@ -54,6 +73,7 @@
 /* ---------- 1. Video + headline ---------- */
 .hero {
   position: relative;
+  margin-top: calc(-1 * var(--header-h)); /* video starts behind the see-through header */
 }
 
 .heroMedia {
@@ -68,7 +88,7 @@
   width: 100%;
   height: auto;
   aspect-ratio: 1280 / 542;
-  max-height: calc(100svh - var(--header-h) - 200px);
+  max-height: calc(100svh - 160px);
   object-fit: contain;
   background: var(--bg);
 }
@@ -98,8 +118,8 @@
 }
 
 .heroText {
-  padding-top: 8px;
-  padding-bottom: 40px;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(56px, 7vw, 96px);
   text-align: center;
 }
 
@@ -178,7 +198,12 @@
   }
 
   .heroText {
-    padding-bottom: 28px;
+    padding-top: 36px;
+    padding-bottom: 56px;
+  }
+
+  .hero {
+    margin-top: 0; /* phones: video starts under the header */
   }
 
   .actionBar {

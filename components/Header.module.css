@@ -2,14 +2,14 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #000;
-  border-bottom: 1px solid rgba(210, 181, 130, 0.16); /* thin gold hairline */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)); /* see-through at the top */
+  border-bottom: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* After scrolling: shorter, see-through dark glass with a hairline, like Apple's menu bar. */
 .header[data-scrolled] {
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(6, 6, 9, 0.72);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   backdrop-filter: saturate(160%) blur(14px);
   border-bottom-color: rgba(210, 181, 130, 0.22);
@@ -304,9 +304,37 @@
 .quote {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(210, 181, 130, 0.45);
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.quoteArrow {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+
+.quote:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.quote:hover .quoteArrow {
+  transform: translateX(4px);
+}
+
+.panelQuote {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 0 20px;
+  min-height: 48px;
   border-radius: 8px;
   background: var(--gold-gradient);
   color: #111;
@@ -314,16 +342,6 @@
   font-weight: 800;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  white-space: nowrap;
-  transition: filter 0.25s, transform 0.25s;
-}
-
-.quote:hover {
-  filter: brightness(1.08);
-}
-
-.quote:active {
-  transform: translateY(1px);
 }
 
 @media (max-width: 1024px) {
@@ -339,7 +357,14 @@
     border-radius: 8px;
   }
 
-  .panelActions .quote {
-    min-height: 48px;
+}
+
+/* Phones/tablets: keep the header readable (no video behind it there) */
+@media (max-width: 1024px) {
+  .header {
+    background: rgba(6, 6, 9, 0.9);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
   }
 }

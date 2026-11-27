@@ -45,8 +45,10 @@ export default function HomePage() {
       </section>
 
       {/* 2. Trust strip */}
-      <section className="container" aria-label="Geo Pallet in numbers">
-        <TrustStrip />
+      <section className={styles.trustBand} aria-label="Geo Pallet in numbers">
+        <div className="container">
+          <TrustStrip />
+        </div>
       </section>
 
       {/* 3. About */}

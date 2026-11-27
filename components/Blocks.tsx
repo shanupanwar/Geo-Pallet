@@ -7,13 +7,8 @@ import styles from "./Blocks.module.css";
 
 /* Reusable page sections shared by several pages. All render as plain HTML (no JavaScript). */
 
-export function Eyebrow({ children, as: Tag = "p" }: { children: React.ReactNode; as?: "p" | "span" }) {
-  return (
-    <Tag className="eyebrow">
-      <Icon name="pallet" /> {children}
-    </Tag>
-  );
-}
+export { default as Eyebrow } from "./Eyebrow";
+import Eyebrow from "./Eyebrow";
 
 export function ServiceCard({
   title,
